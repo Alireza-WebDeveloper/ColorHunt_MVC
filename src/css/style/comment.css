@@ -1,0 +1,134 @@
+.comment--Tittle{
+    border-radius: 0.2rem;
+    gap: 10px;
+}
+
+.info--comments , .add--Comment{
+    font-family: Far_Nazanin , sans-serif ,'Courier New', Courier, monospace;
+}
+
+/* InfoComment  */
+.comment--Tittle .info--comments{
+ position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  word-break: break-all;
+  background-color: var(--darklight);
+  border-radius: 0.2rem;
+}
+
+.info--comments .svg--infoComments{
+    width: 25px;
+    height: 25px;
+}
+
+/* Add Comment  */
+
+.comment--Tittle .add--Comment{
+    position: relative;
+    padding: 0.4rem 0.5rem;
+    color: var(--dark);
+    font-size: 1.2rem;
+    overflow: hidden;
+    background-color: var(--darklight);
+}
+
+.add--Comment .svg--addplus{
+    width:20px;
+    height: 20px;
+}
+.comment--Tittle .add--Comment:hover{
+    background-color: var(--addCmd2);
+    box-shadow:inset 0 0 5px 2px var(--addCmd1)
+    ,inset 0 0 10px 2px   var(--addCmd1)
+    ,inset 0 0 15px 2px  var(--addCmd1)
+    ,inset 0 0 20px 2px  var(--addCmd1)
+    ,inset 0 0 50px 2px  var(--addCmd1);
+    color: var(--light);
+   
+}
+ 
+
+
+/* Form Comment  */
+
+#comment-Form{
+  background-color: var(--dark);
+  display: none;
+}
+
+#comment-Form input , #comment-Form textarea{
+    text-align: right;
+    box-shadow: inset 0 0 10px var(--dark);
+}
+
+:is(#author-FirstName,#author-lastName,#author-description)::placeholder , #comment-Submit{
+  color: var(--dark);
+  text-align: right;
+  font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
+}
+ 
+#comment-Submit:hover{
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+/* Comment List  */
+.header--Comment{
+    text-align: right;
+    font-family: BTitrBd , 'Courier New', Courier, monospace;
+}
+
+.svg--commentList , .svg--dataList{
+    width: min(1.3rem,3rem);
+    height: min(1.7rem,3rem);
+    padding: 0.1rem;
+}
+
+.author--Information{
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.author--name , .author--date{
+    font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
+    color: var(--light);
+    font-size: 1rem;
+}
+.comment-List-Description .text--Description{
+    text-align: right;
+    color: var(--light);
+    font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
+    font-size: 1rem;
+}
+
+
+/* Media Query  */
+
+@media (max-width:768px) and (pointer:fine) {
+    
+    .author--name , .author--date{
+       font-size: 0.6rem;
+    }
+    .comment-List-Description .text--Description{
+    font-size: 0.6rem;
+    }
+}
+
+
+@media (max-width:768px) and (pointer:coarse) {
+    .comment--Tittle .info--comments ,.comment--Tittle .add--Comment{
+        font-size: 1.3rem;
+    }
+    .author--name , .author--date{
+       font-size: 1.2rem;
+    }
+    .comment-List-Description .text--Description{
+    font-size: 1.3rem;
+    }
+}

@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: BTitrBd;
+  src: url(/src/css/font/BTitrBd/BTitrBd.ttf);
+}
+@font-face {
+  font-family: Mlight;
+  src: url(/src/css/font/MLigth/Mlight.ttf);
+}
+
+ @font-face {
+  font-family: MaktabRita;
+  src: url(/src/css/font/Maktab/MaktabRita-Regular.eot);
+}
+
+@font-face {
+  font-family:Far_Nazanin ;
+  src: url(/src/css/font/Far_Nazanin/Far_Nazanin.ttf);
+}
+
+@font-face {
+  font-family: Rye;
+  src: url(/src/css/font/Rye/OFL.txt);
+}  
+
+:root {
+  --darkblue:#52616B;
+  --dark:#1E2022;
+  --darklight:#C9D6DF;
+  --light:#F0F5F9;
+  --spinner1:#FF5677;
+ --spinner2:#9145B6;
+ --addCmd1:#57CC99 ;
+ --addCmd2:#38A3A5;
+}
+body{
+  background-image: linear-gradient(to right,var(--darkblue),var(--darklight));
+ 
+}
+
+.container-fluid {
+  position: relative;
+ 
+}
+/* ScrollBar  */
+::-webkit-scrollbar {
+  width: 10px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: var(--light);
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color:var(--dark);
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color:var(--dark);
+}
+@media (max-width:768px) and (pointer:coarse) {
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+}
+
+ 

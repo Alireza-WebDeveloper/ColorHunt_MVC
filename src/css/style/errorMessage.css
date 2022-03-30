@@ -1,0 +1,27 @@
+.error{
+    background-color: var(--light);
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+    width: 100%;
+}
+
+.error .error--Message{
+    text-align: center;
+    word-break: break-all;
+    font-family: Far_Nazanin , sans-serif , 'Courier New', Courier, monospace;
+    padding: 0.3rem;
+}
+
+
+/* 
+  <div class="row d-flex justify-content-center mb-3">
+          <div class="col col-4">
+            <div class="error">
+              <h4 class="error--Message">
+               به دلیل ضعیفی اینترنت شما لود نمی شود 
+              </h4>
+            </div>
+          </div>
+        </div>
+
+*/

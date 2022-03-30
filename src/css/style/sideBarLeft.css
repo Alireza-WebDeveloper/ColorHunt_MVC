@@ -1,0 +1,101 @@
+
+/* SideBar Tabs  */
+.sideBar--Tabs{
+    background-color: var(--light);
+    border-radius: 0.3rem;
+    position: relative;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+#btn--sideBar{
+    background-image: linear-gradient(to right,var(--darkblue),var(--light),var(--darklight));
+}
+
+.sideBar--Tabs::before{
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width:100%;
+    height: 5px;
+    z-index: 1;
+}
+
+.sideBar--Tabs .btn-Tabs{
+    display: flex;
+    justify-content: center;
+    font-family: Mlight ,sans-serif,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;;
+    align-items: center;
+    font-size: 1.4rem;
+    gap: 10px;
+}
+
+.sideBar--Tabs .btn-Tabs:hover{
+  background-color: var(--darkblue);
+  color:var(--light);
+}
+
+.svg--btnTab{
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* SideBar Tags  */
+
+.sideBar-Tags{
+    background-color: var(--light);
+    border-radius: 0.2rem;
+}
+
+.nav-Tags , .item-Tags , .link-Tags{
+    position: relative;
+}
+
+.nav-Tags{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-Tags:hover{
+    background-color: var(--darkblue);
+    box-shadow: inset 0 0 10px var(--dark);
+    border-radius: 0.3rem;
+}
+.item-Tags:hover .link-Tags{
+    color:var(--light);
+}
+ 
+.item-Tags .link-Tags{
+    text-align: center;
+    font-family: Mlight ,sans-serif,'Segoe UI', Tahoma, Geneva, Verdana;
+    font-size: 1.5rem;
+    color: var(--dark);
+}
+
+ 
+.svg--MenuSide{
+    width: 50px;
+    height: 50px;
+    border-radius: 0.3rem;
+}
+
+/* Offcanves */
+
+#offcanvasLeft{
+    background-color: var(--light);
+}
+
+/* Media Query  */
+
+/* @media (max-width:768px) and (pointer:coarse) {
+    .main--SideBar{
+      background-image: none;
+    }
+} */

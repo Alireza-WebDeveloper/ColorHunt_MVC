@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>colorHunt</title>
+    <script type="module" defer src="src/js/script/controller.js"></script>
+    <script src="src/js/library/jquery-3.4.1.min.js"></script>
+    <link rel="icon" href="src/css/iconPage/icon.jpg" />
+    <link rel="stylesheet" href="src/css/style/base.css"/>
+    <link rel="stylesheet" href="src/css/style/comment.css"/>
+    <link rel="stylesheet" href="src/css/style/header.css"/>
+    <link rel="stylesheet" href="src/css/style/mainPalette.css"/>
+    <link rel="stylesheet" href="/src/css/style/mainSinglePalette.css"/>
+    <link rel="stylesheet" href="/src/css/style/pagination.css"/>
+    <link rel="stylesheet" href="/src/css/style/sideBarLeft.css"/>
+    <link rel="stylesheet" href="/src/css/style/sideBarRight.css"/>
+    <link rel="stylesheet" href="/src/css/style/errorMessage.css"/>
+     <!-- Bootstrap Css -->
+     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-grid.css.map"/>
+     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-grid.min.css"/>
+     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-grid.rtl.min.css"/>
+     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-reboot.min.css"/>
+     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-utilities.min.css"/>
+     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-reboot.rtl.min.css"/>
+     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.rtl.min.css"/>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header Page -->
+      <header class="header--Page ">
+        <div class="row">
+          <div class="col">
+            <div class="row row-cols-xl-2 row-cols-lg-2 row-cols-md-1 row-cols-sm-1 row-cols-1 response--HeaderPage ">
+              <!-- header--form  -->
+              <section class="col header--form ">
+                <form   action="" id="form-Search">
+                  <div class="form-group">
+                    <input class="form-control text-end" type="text" id="input--Search" placeholder="پالت مورد نظر خود را سرچ کنید ">
+                    <button class="btn" id="btn--Search">
+                      <svg class="svg--BtnSearch">
+                        <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#search"></use>
+                      </svg>
+                    </button>
+                  </div>
+                </form>
+              </section>
+              <!-- header--tabs  -->
+              <section class="col header--tabs  d-flex justify-content-end">
+                <ul class="nav nav-Tabs w-100 d-xl-flex d-lg-flex d-md-none  d-sm-none d-none 
+                justify-content-xl-around  justify-content-lg-around   
+                ">
+                  <li class="nav-item list-Tabs"><a href="#1111" class="link-Tabs nav-link">درباره ما</a></li>
+                  <li class="nav-item list-Tabs"><a href="#2222" class="link-Tabs nav-link">پالت ها</a></li>
+                  <li class="nav-item list-Tabs"><a href="#3333" class="link-Tabs nav-link">ساخت پالت</a></li>
+                  <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs nav-link">نشانک</a></li>
+                </ul>
+                <div class="dropdown  text-end 
+                  d-xl-none d-lg-none d-md-block  d-sm-block d-block 
+                ">
+                  <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuTabs" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg class="svg--MenuTab">
+                      <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#list"></use>
+                    </svg>
+                  </a>
+                  <ul class="nav-Tabs   dropdown-menu" aria-labelledby="dropdownMenuTabs">
+                    <li class="nav-item list-Tabs"><a href="#1111" class="link-Tabs dropdown-item nav-link" data-tab="about">درباره ما</a></li>
+                    <li class="nav-item list-Tabs"><a href="#2222" class="link-Tabs dropdown-item nav-link" data-tab="palette">پالت ها</a></li>
+                    <li class="nav-item list-Tabs"><a href="#3333" class="link-Tabs dropdown-item nav-link" data-tab="create">ساخت پالت</a></li>
+                    <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs dropdown-item nav-link" data-tab="bookmark">لیست ذخیره شده شما</a></li>
+                  </ul>
+                </div>
+              </section> 
+            </div> 
+          </div>
+        </div>
+          
+      </header>
+      <!-- main Page -->
+      <main class="main--Page">
+        <div class="row">
+          <!-- mainSideBar Left  -->
+        <aside class="mainSideBar-Left  col col-xl-2 col-lg-3 col-md-12 col-sm-12 col-12 ">
+          <div class="row row-cols-1  ">
+            <!-- SideBar Tabs  -->
+            <div class="col  d-none d-sm-none d-lg-block d-xl-block">
+              <section class="sideBar--Tabs mt-2">
+                <a href="#" class="btn btn-Tabs">
+                  <svg class="svg--btnTab" data-tab="new">
+                    <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#star-fill"></use>
+                  </svg>
+                  جدید
+                </a>
+                <a href="#" class="btn btn-Tabs" data-tab="random">
+                  <svg class="svg--btnTab">
+                    <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#hdmi"></use>
+                  </svg>
+                  تصادفی
+                </a>
+                <a href="#" class="btn btn-Tabs" data-tab="popular">
+                  <svg class="svg--btnTab">
+                    <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#heart-fill"></use>
+                  </svg>
+                  محبوب
+                </a>
+              </section>
+              <section class="sideBar-Tags mt-1">
+                <ul class="nav nav-Tags">
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">طلایی</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">پاستل</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">نئون</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">طلا</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">قدیمی</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">سرد</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">طلایی</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">زمستان</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">قوه</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">پاییز</a></li>
+                  <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">بهاری</a></li>
+                </ul>
+              </section>
+            </div>
+            <!-- SideBar Tags  -->
+            <div class="col  d-block d-sm-block d-lg-block d-lg-none d-xl-none responsive--SideBar mt-2 ">
+                <button class="btn" id="btn--sideBar" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+                  <svg class="svg--MenuSide">
+                    <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#list"></use>
+                  </svg>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+                  <div class="offcanvas-header d-flex">
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                  </div>
+                <div class="offcanvas-body">
+                <section class="sideBar--Tabs mt-2">
+                <a href="#" class="btn btn-Tabs">
+                  <svg class="svg--btnTab" data-tab="new">
+                    <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#star-fill"></use>
+                  </svg>
+                  جدید
+                </a>
+                <a href="#" class="btn btn-Tabs" data-tab="random">
+                  <svg class="svg--btnTab">
+                    <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#hdmi"></use>
+                  </svg>
+                  تصادفی
+                </a>
+                <a href="#" class="btn btn-Tabs" data-tab="popular">
+                  <svg class="svg--btnTab">
+                    <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#heart-fill"></use>
+                  </svg>
+                  محبوب
+                </a>
+              </section>
+                  <section class="sideBar-Tags mt-1">
+                    <ul class="nav nav-Tags">
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">طلایی</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">پاستل</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">نئون</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">طلا</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">قدیمی</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">سرد</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">طلایی</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">زمستان</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">قوه</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">پاییز</a></li>
+                      <li class="nav-item item-Tags"><a href="#" class="link-Tags nav-link">بهاری</a></li>
+                    </ul>
+                  </section>
+                </div>
+                </div>
+            </div>
+          </div>
+           <!-- Row  About More S -->
+        </aside>
+        <section class="main--Center  col  col-xl-8 col-lg-7 col-md-12 col-sm-12 col-12 p-4">
+          <!-- single Palette  -->
+          <div class="row d-flex justify-content-center">
+            <div class="col col-12">
+              <div class="row d-flex justify-content-center single row-cols-1 gy-3">
+                <div class="col"><h1 class="header--singlePalette">جزییات پالت رنگی</h1></div>
+                <section class="col col-xl-8 col-lg-10 col-md-8 col-sm-10 col-12 single--Palette">
+                  <div class="item">
+                    <section class="palette">
+                      <div class="recipe-Place c-1" data-index="1" data-code="...">
+                        <span class="copy-code">#636985</span>
+                      </div>
+                      <div class="recipe-Place c-2" data-index="1" data-code="...">
+                       <span class="copy-code">#636985</span>
+                      </div>
+                      <div class="recipe-Place c-3" data-index="1" data-code="...">
+                       <span class="copy-code">#636985</span>
+                      </div>
+                      <div class="recipe-Place c-4" data-index="1" data-code="...">
+                       <span class="copy-code">#636985</span>
+                      </div>
+                    </section>
+                    <section class="palette-Details mt-2">
+                      <button class="btn btn--Bookmark">
+                       <svg class="svg--btnBookmark">
+                         <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#bookmark"></use>
+                       </svg>
+                       <span class="num--Likes">136</span>
+                      </button>
+                      <button class="btn btn--downloadPalette">
+                        <svg class="svg--downloadPalette">
+                          <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#download"></use>
+                        </svg>
+                        <span>تصویر</span>
+                      </button>
+                      <button class="btn btn--btnsourePalette">
+                        <svg class="svg--btnsourePalette">
+                          <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#link"></use>
+                        </svg>
+                        <span>لینک</span>
+                      </button>
+                      <span class="date">دیروز</span>
+                    </section>
+                   </div>
+                </section>
+                <section class="col pt-3 rounded table--SinglePalette">
+                  <table class="table  table-responsive table-hover">
+                    <thead>
+                      <tr class="single--Circle">
+                        <th class="col"><div class="circle-singPalette"></div></th>
+                        <th class="col"><div class="circle-singPalette"></div></th>
+                        <th class="col"><div class="circle-singPalette"></div></th>
+                        <th class="col"><div class="circle-singPalette"></div></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="single--CodeRgb">
+                        <td class=""><button class="btn rgb-Copy" data-copy="...">#fbd6d2</button></td>
+                        <td class=""><button class="btn rgb-Copy" data-copy="...">#F190B7</button></td>
+                        <td class=""><button class="btn rgb-Copy" data-copy="...">#CE49BF</button></td>
+                        <td class=""><button class="btn rgb-Copy" data-copy="...">#A63EC5</button></td>
+                      </tr>
+                      <tr class="single--CodeHex">
+                        <td class=""><button class="btn hex-Copy" data-copy="...">rgb(251, 214, 210)</button></td>
+                        <td class=""><button class="btn hex-Copy" data-copy="...">rgb(241, 144, 183)</button></td>
+                        <td class=""><button class="btn hex-Copy" data-copy="...">rgb(206, 73, 191)</button></td>
+                        <td class=""><button class="btn hex-Copy" data-copy="...">rgb(166, 62, 197)</button></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </section>
+              </div>
+            </div>
+          </div>
+          <!-- Paletts  -->
+          <div class="row row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-sm-2 row-cols-1 gy-3 mt-5 global--Palette">
+             <div class="col">
+              <div class="item">
+              <section class="palette">
+                <div class="recipe-Place c-1" data-index="1" data-code="...">
+                  <a class="recipe-Link btn" href="#1555"></a>
+                  <span class="copy-code">#636985</span>
+                </div>
+                <div class="recipe-Place c-2" data-index="1" data-code="...">
+                 <a class="recipe-Link btn" href="#1444"></a>
+                 <span class="copy-code">#636985</span>
+                </div>
+                <div class="recipe-Place c-3" data-index="1" data-code="...">
+                 <a class="recipe-Link btn" href="#1233"></a>
+                 <span class="copy-code">#636985</span>
+                </div>
+                <div class="recipe-Place c-4" data-index="1" data-code="...">
+                 <a class="recipe-Link btn" href="#12222"></a>
+                 <span class="copy-code">#636985</span>
+                </div>
+              </section>
+              <section class="palette-Details">
+                <button class="btn btn--Bookmark">
+                 <svg class="svg--btnBookmark">
+                   <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#bookmark"></use>
+                 </svg>
+                 <span class="num--Likes">136</span>
+                </button>
+                <span class="date">یک ماه</span>
+              </section>
+             </div>
+            </div>
+
+          </div>
+           <!-- Pagination -->
+           <div class="row  mt-3 d-flex justify-content-center ">
+             <div class="col col-12 response-Pagination">
+                <ul class="pagination mt-3  d-flex justify-content-center">
+                  <li class="page-item mt-1" data-goToPage="">
+                      <svg class="svg--PrevPage">
+                        <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-left-short"></use>
+                      </svg>
+                  </li>
+                  <li class="active-Page mt-1" data-goToPage="">صفحه 1 از 41</li>
+                  <li class="page-item mt-1" data-goToPage="">2</li>
+                  <li class="page-item mt-1" data-goToPage="">3</li>
+                  <li class="page-item mt-1" data-goToPage="">
+                      <svg class="svg--nextPage">
+                        <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#arrow-right-short"></use>
+                      </svg>
+                  </li>
+                  <li class='mt-1'>...</li>
+                  <li class="page-item mt-1" data-goToPage="">41</li>
+                </ul>
+             </div>
+           </div>
+           <!-- comment section -->
+           <div class="row mt-3">
+             <div class="col">
+               <div class="row row-cols-1 bg-light p-4 rounded">
+                 <section class="col comment--Tittle d-flex 
+                 flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column
+                 justify-content-xl-between  justify-content-lg-between  justify-content-md-between  justify-content-sm-between
+                 justify-content-column
+                 align-items-center
+                 ">
+                   <button class="btn add--Comment  order-xl-first order-lg-first order-md-first order-sm-first order-last ">
+                     افزودن دیدگاه
+                         <svg class="svg--addplus">
+                      <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#plus"></use>
+                    </svg>
+                   </button>
+                   <h4 class="info--comments   order-xl-last">
+                     <span>
+                       دیدگاه ثبت شده
+                       <bdo dir="right">55</bdo>
+                     </span>
+                     <svg class="svg--infoComments">
+                      <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#chat-dots"></use>
+                    </svg>
+                   </h4>
+                 </section>
+                 <!-- Coment Form  -->
+                 <section class="col rounded mt-4">
+                   <div class="row d-flex justify-content-center">
+                     <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 ">
+                      <form class="row row-cols-1  gy-3 p-3 rounded" id="comment-Form">
+                        <div class="col comment-Form-Name">
+                          <input class="form-control form-control-lg" type="text" id="author-FirstName" name="firstname" placeholder="نام">
+                        </div>
+                        <div class="col comment-Form-Lastname">
+                          <input class="form-control form-control-lg" type="text" id="author-lastName" name="lastname" placeholder="نام خانوادگی">
+                        </div>
+                        <div class="col comment-Form-description">
+                         <textarea class="form-control form-control-lg" id="author-description" name="description" rows="4" placeholder="نظر خود را ثبت نمایید"></textarea>
+                        </div>
+                        <div class="col comment-Form-submit d-flex justify-content-center">
+                           <button type="submit" class="btn btn-light p-2" id="comment-Submit">ثبت دیدگاه</button>
+                         </div>
+                     </form> 
+                     </div>
+                   </div>
+                 </section>
+                 <!-- Comment List  -->
+                 <section class="p-3 rounded mt-3">
+                   <div class="row row-cols-1">
+                     <div class="col"><h4 class="header--Comment">نظرات</h4></div>
+                     <div class="col">
+                        <div class="row comment--List gy-3 row-cols-1">
+                          <!-- Commnet 1  -->
+                          <section class="col bg-dark rounded" data-tab="..." data-cmd="1" data-info="cmd">
+                          <div class="row row-cols-1">
+                            <div class="col d-flex justify-content-end">
+                                 <div class="author--Information d-flex flex-column">
+                                  <div class="author--name">
+                                    <span>محمد انصاری </span>
+                                     <svg class="svg--commentList bg-light rounded">
+                                    <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#person"></use>
+                                  </svg>
+                                  </div>
+                                  <div class="author--date">
+                                    <span>23/04/2022</span>
+                                    <svg class="svg--dataList bg-light rounded">
+                                      <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#calendar2"></use>
+                                    </svg>
+                                  </div>
+                                 </div>
+                            </div>
+                            <div class="col comment-List-Description">
+                              <p class="text--Description">ممنون ، بسیار وب سایت خوبی دارین </p>
+                            </div>
+                          </div>
+                          </section>
+                          <!-- Comment 2  -->
+                          <section class="col bg-dark rounded" data-tab="..." data-cmd="1" data-info="cmd">
+                            <div class="row row-cols-1">
+                              <div class="col d-flex justify-content-end">
+                                   <div class="author--Information d-flex flex-column">
+                                    <div class="author--name">
+                                      <span>محمد انصاری </span>
+                                       <svg class="svg--commentList bg-light rounded">
+                                      <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#person"></use>
+                                    </svg>
+                                    </div>
+                                    <div class="author--date">
+                                      <span>23/04/2022</span>
+                                      <svg class="svg--dataList bg-light rounded">
+                                        <use href="/node_modules/bootstrap-icons/bootstrap-icons.svg#calendar2"></use>
+                                      </svg>
+                                    </div>
+                                   </div>
+                              </div>
+                              <div class="col comment-List-Description">
+                                <p class="text--Description">ممنون ، بسیار وب سایت خوبی دارین </p>
+                              </div>
+                            </div>
+                            </section>     
+                        </div>
+                     </div>
+                   </div>
+                 </section>
+               </div>
+             </div>
+           </div>
+        </section>
+        <aside class="main--SideBarRight col col-xl-2 col-lg-2  d-xl-block d-lg-block d-md-none d-sm-none d-none p-4 ">
+          <!-- BookMarking  -->
+          <div class="row pt-1">
+            <div class="col d-flex flex-column  main--Bookmarking">
+              <section class="bookmark-Header">
+                <h4 class="text--bokmark">مجموعه پالت های مورد علاقه شما</h4>
+              </section>
+              <section class="bookmark">
+                <div class="bookmark-list">
+                    <section class="palette mt-2">
+                      <button type="button" class="btn remove--BookMark btn-close" data-code="">
+                      </button>
+                      <a class="recipe-Link" href="#1555">
+                      <div class="recipe-Place c-1" data-index="1" data-code="...">
+                      </div>
+                      <div class="recipe-Place c-2" data-index="1" data-code="...">
+                      </div>
+                      <div class="recipe-Place c-3" data-index="1" data-code="...">
+                      </div>
+                      <div class="recipe-Place c-4" data-index="1" data-code="...">
+                      </a>
+                      </section>
+                      </div>
+                    </section>
+                </div>
+              </div>
+               <!-- Row  About More S -->
+               
+        </aside>
+        </div>
+      </main>
+      <!-- footer Page -->
+      <footer class="footer--Page"></footer>
+    </div>
+  </body>
+</html>

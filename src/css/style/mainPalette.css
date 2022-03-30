@@ -1,0 +1,134 @@
+ 
+ .global--Palette{
+    border-radius: 0.5rem;
+    background-color: var(--light);
+    
+}
+.global--Palette .item{
+ position: relative;
+ display: flex;
+ flex-direction: column;
+ border-radius: 0.5rem;
+}
+
+.global--Palette .palette{
+    position: relative;
+    width: 100%;
+}
+
+.global--Palette .recipe-Place{
+    position: relative;
+    width: 100%;
+    height: min(3.5rem,5rem);
+}
+
+.recipe-Place:nth-child(1){
+    background-color: #B6C9F0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  
+}
+.recipe-Place:nth-child(2){
+    background-color: #FFE5E2;
+}
+.recipe-Place:nth-child(3){
+    background-color: #E93B81;
+}
+.recipe-Place:nth-child(4){
+    background-color: #F5ABC9;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.global--Palette .recipe-Link{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.global--Palette .copy-code{
+    position: absolute;
+    bottom: 0.3rem;
+    left: 0.3rem;
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.2rem;
+    font-family: Far_Nazanin , sans-serif ,'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.global--Palette .recipe-Place:hover .copy-code{
+    opacity: 1;
+}
+
+.global--Palette .copy-code:hover{
+  background-color: var(--light);
+  border: solid var(--dark) 1px;
+  color: var(--dark);
+}
+
+ .palette-Details{
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.2rem;
+    align-items: center;
+ }
+
+ .palette-Details .date{
+     font-family: Mlight , sans-serif , 'Courier New', Courier, monospace;
+     color: var(--darkblue);
+     font-size: 1.3rem;
+     cursor:text;
+ }
+
+ .date::selection{
+     color: var(--dark);
+   
+ }
+
+.num--Likes{
+    font-family:  Mlight , sans-serif , 'Courier New', Courier, monospace;
+    font-size: 1.2rem;
+}
+
+ 
+
+.svg--btnBookmark{
+    width: min(20px,30px);
+    height: min(20px,30px);
+}
+
+
+
+@media (max-width:468px) and (pointer:fine) {
+    .global--Palette .recipe-Place{
+        position: relative;
+        width: 100%;
+        height: min(2rem,5rem);
+    }
+}
+
+@media (max-width:768px) and (pointer:coarse) {
+    /* .global--Palette .copy-code{
+        
+    } */
+    .num--Likes{
+        font-family:  Mlight , sans-serif , 'Courier New', Courier, monospace;
+        font-size: 1.4rem;
+    }
+    .palette-Details .date{
+        font-size: 1.6rem;
+    }
+    .svg--btnBookmark{
+        width: min(30px,40px);
+        height: min(30px,40px);
+    }
+}
+
+
+ 

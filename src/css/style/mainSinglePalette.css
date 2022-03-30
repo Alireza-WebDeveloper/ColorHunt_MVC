@@ -1,0 +1,166 @@
+.single{
+    /* background-color: var(--dark);  */
+    background-color: var(--light);
+    border-radius: 0.5rem;
+}
+.header--singlePalette{
+    text-align: center;
+    font-family: Far_Nazanin , sans-serif , 'Courier New', Courier, monospace;
+}
+
+.single--Palette{
+    position: relative;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.single--Palette .palette{
+    position: relative;
+    height: min(400px,450px)
+}
+
+
+.single--Palette .recipe-Place{
+    position: relative;
+    display:flex;
+    height: 25%;
+}
+.single--Palette .copy-code{
+    position: absolute;
+    bottom: 0.3rem;
+    left: 0.3rem;
+    background-color: var(--dark);
+    color: var(--light);
+    padding: 0.3rem 0.7rem;
+    border-radius: 0.2rem;
+    font-family: Far_Nazanin , sans-serif ,'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    opacity: 0;
+    cursor: pointer;
+}
+.single--Palette .recipe-Place:hover .copy-code{
+    opacity: 1;
+}
+
+.single--Palette .copy-code:hover{
+    background-color: var(--light);
+    border: solid var(--dark) 1px;
+    color: var(--dark);
+}
+.single--Palette .palette-Details{
+     display: flex;
+     justify-content: space-around;
+     flex-wrap: wrap;
+     align-content: center;
+     gap: 15px;
+}
+
+.single--Palette .date{
+    color: var(--darklight);
+    font-size: 0.8rem;
+}
+ 
+
+
+.single--Palette .btn--downloadPalette , .single--Palette .btn--btnsourePalette , .single--Palette .btn--Bookmark{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    background-color: var(--darklight);
+    color: var(--dark);
+    font-size: 1.2rem;
+    font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
+     font-weight: 600;
+}
+
+:is(.single--Palette .btn--downloadPalette , .single--Palette .btn--btnsourePalette , .single--Palette .btn--Bookmark):hover{
+    background-color: var(--light);
+}
+
+.btn--downloadPalette svg{
+    width: 25px;
+    height: 25px;
+}
+
+.btn--btnsourePalette svg{
+    width: 25px;
+    height: 25px;
+}
+
+
+/* Table Single Palette */
+.table--SinglePalette  tr td , .table--SinglePalette  tr th{
+     text-align: center;
+      
+    
+}
+
+.single--Circle .circle-singPalette{
+     width: 40px;
+     height: 40px;
+     margin: auto;
+     border-radius: 50%;
+}
+
+.single--Circle th:nth-child(1) .circle-singPalette{
+    background-color: #B6C9F0;
+}
+
+.single--Circle th:nth-child(2) .circle-singPalette{
+    background-color: #FFE5E2;
+}
+
+.single--Circle th:nth-child(3) .circle-singPalette{
+    background-color: #E93B81;
+}
+
+.single--Circle th:nth-child(4) .circle-singPalette{
+    background-color: #F5ABC9;
+}
+
+
+.single--CodeRgb .rgb-Copy , .single--CodeHex .hex-Copy{
+   font-size: 0.9rem;
+   word-break: break-all;
+   width: 100%;
+   height: min(40px,50px);
+}
+
+.single--CodeRgb .rgb-Copy:hover , .single--CodeHex .hex-Copy:hover{
+    background-color: var(--darklight);
+}
+
+
+
+@media (max-width:748px) and (pointer:fine) {
+    .single--CodeRgb .rgb-Copy , .single--CodeHex .hex-Copy{
+        font-size: 0.5rem;
+     }
+   
+}
+
+@media (max-width:480px) and (pointer:fine) {
+    .single--CodeRgb .rgb-Copy , .single--CodeHex .hex-Copy{
+        font-size: 0.2rem;
+     }
+}
+
+
+@media (max-width:768px) and (pointer:coarse) {
+    .single--Palette .palette{
+        position: relative;
+        height: min(270px,320px)
+    }
+    .single--Palette .btn--downloadPalette , .single--Palette .btn--btnsourePalette , .single--Palette .btn--Bookmark{
+        gap: 5px;
+        font-size: 1rem;
+       
+    }
+    .single--CodeRgb .rgb-Copy , .single--CodeHex .hex-Copy{
+        font-size: 0.5rem;
+        font-weight: bold;
+        height: min(50px,60px);
+     }
+}
+
