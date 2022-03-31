@@ -33,3 +33,12 @@ const generateMarkUp = function(){
   `افزودن دیدگاه <svg class="svg--addplus"> <use href="${icon}#plus"></use></svg>
   `;
 }
+
+// DropDownMenu Target
+let dropdownMenuTabs = document.querySelector('#dropdownMenuTabs');
+dropdownMenuTabs.addEventListener('click',function(e){
+  const button = e.target.closest('#dropdownMenuTabs');
+  const childrens = Array.from(e.target.closest('#dropdownMenuTabs').querySelectorAll('span'));
+   if(!button) return;
+   childrens.forEach((el,index)=>el.classList.toggle(`activeRolle-${index}`))
+})
