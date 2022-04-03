@@ -41,16 +41,7 @@
     width:20px;
     height: 20px;
 }
-.comment--Tittle .add--Comment:hover{
-    background-color: var(--addCmd2);
-    box-shadow:inset 0 0 5px 2px var(--addCmd1)
-    ,inset 0 0 10px 2px   var(--addCmd1)
-    ,inset 0 0 15px 2px  var(--addCmd1)
-    ,inset 0 0 20px 2px  var(--addCmd1)
-    ,inset 0 0 50px 2px  var(--addCmd1);
-    color: var(--light);
-   
-}
+ 
  
 
 
