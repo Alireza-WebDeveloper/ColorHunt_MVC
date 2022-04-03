@@ -77,7 +77,7 @@
      font-weight: 600;
 }
 
-:is(.single--Palette .btn--downloadPalette , .single--Palette .btn--btnsourePalette , .single--Palette .btn--Bookmark):hover{
+:is(.single--Palette .btn--downloadPalette , .single--Palette .btn--btnsourePalette , .single--Palette .btn--Bookmark:hover{
     background-color: var(--light);
     box-shadow: inset 6px 6px 12px var(--darklight),
     inset -6px -6px 12px var(--darklight);
