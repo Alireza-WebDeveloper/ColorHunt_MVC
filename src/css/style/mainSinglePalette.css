@@ -12,6 +12,9 @@
     position: relative;
     padding: 1rem;
     border-radius: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: inset 3px 3px 12px var(--darklight),
+                inset -3px -3px 12px var(--darklight);
 }
 
 .single--Palette .palette{
