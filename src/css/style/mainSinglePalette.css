@@ -133,7 +133,8 @@
 }
 
 .single--CodeRgb .rgb-Copy:hover , .single--CodeHex .hex-Copy:hover{
-    background-color: var(--darklight);
+    background-color: var(--dark);
+    color: var(--light);
 }
 
 
