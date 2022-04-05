@@ -90,6 +90,7 @@
     font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
     color: var(--light);
     font-size: 1rem;
+    text-align: right;
 }
 .comment-List-Description .text--Description{
     text-align: right;
