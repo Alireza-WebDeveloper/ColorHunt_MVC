@@ -4,16 +4,16 @@ import * as model from './moudule';
  
 // Sticky Header 
 let headerPage = document.querySelector('.header--Page');
-let tableSinglePalette = document.querySelector('.table--SinglePalette');
+let globalPalette = document.querySelector('.global--Palette');
 const observeHeader = new IntersectionObserver(([data])=>{
   const event = data.isIntersecting;
   if(!event) return;
-  headerPage.classList.toggle('stickHeader');
+  headerPage.classList.toggle('stickHeader',event);
 },{
     root:null,
     threshold:0
 });
-observeHeader.observe(tableSinglePalette);
+observeHeader.observe(globalPalette);
 
 // Slide Toggle Jquery Form Comment 
 let addComment = document.querySelector('.add--Comment');
