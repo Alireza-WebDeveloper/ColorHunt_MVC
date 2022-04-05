@@ -11,7 +11,7 @@ const observeHeader = new IntersectionObserver(([data])=>{
   headerPage.classList.toggle('stickHeader');
 },{
     root:null,
-    threshold:1
+    threshold:0
 });
 observeHeader.observe(tableSinglePalette);
 
