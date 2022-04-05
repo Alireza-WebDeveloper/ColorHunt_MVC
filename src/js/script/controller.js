@@ -4,7 +4,7 @@ import * as model from './moudule';
  
 // Sticky Header 
 let headerPage = document.querySelector('.header--Page');
-let globalPalette = document.querySelector('.global--Palette');
+let tableSinglePalette = document.querySelector('.table--SinglePalette');
 const observeHeader = new IntersectionObserver(([data])=>{
   const event = data.isIntersecting;
   if(!event) return;
@@ -13,7 +13,7 @@ const observeHeader = new IntersectionObserver(([data])=>{
     root:null,
     threshold:1
 });
-observeHeader.observe(globalPalette);
+observeHeader.observe(tableSinglePalette);
 
 // Slide Toggle Jquery Form Comment 
 let addComment = document.querySelector('.add--Comment');
