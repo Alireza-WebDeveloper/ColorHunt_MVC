@@ -7,10 +7,11 @@ let headerPage = document.querySelector('.header--Page');
 let globalPalette = document.querySelector('.global--Palette');
 const observeHeader = new IntersectionObserver(([data])=>{
   const event = data.isIntersecting;
-  headerPage.classList.toggle('stickHeader',event);
+  if(!event) return;
+  headerPage.classList.toggle('stickHeader');
 },{
     root:null,
-    threshold:0
+    threshold:1
 });
 observeHeader.observe(globalPalette);
 
