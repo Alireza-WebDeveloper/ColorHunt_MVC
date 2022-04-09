@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/src/css/style/sideBarRight.css"/>
     <link rel="stylesheet" href="/src/css/style/errorMessage.css"/>
     <link rel="stylesheet" href="/src/css/style/animation.css"/>
+    <link rel="stylesheet" href="/src/css/style/createPalette.css"/>
      <!-- Bootstrap Css -->
      <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-grid.css.map"/>
      <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap-grid.min.css"/>
@@ -59,10 +60,10 @@
                 <ul class="nav nav-Tabs w-100 d-xl-flex d-lg-flex d-md-none  d-sm-none d-none 
                 justify-content-xl-around  justify-content-lg-around   
                 ">
-                  <li class="nav-item list-Tabs"><a href="#1111" class="link-Tabs nav-link">درباره ما</a></li>
-                  <li class="nav-item list-Tabs"><a href="#2222" class="link-Tabs nav-link">پالت ها</a></li>
-                  <li class="nav-item list-Tabs"><a href="#3333" class="link-Tabs nav-link">ساخت پالت</a></li>
-                  <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs nav-link">نشانک</a></li>
+                  <li class="nav-item list-Tabs"><a href="#1111" class="link-Tabs nav-link" data-tab="about">درباره ما</a></li>
+                  <li class="nav-item list-Tabs"><a href="#2222" class="link-Tabs nav-link" data-tab="create">پالت ها</a></li>
+                  <li class="nav-item list-Tabs"><a href="#3333" class="link-Tabs nav-link" data-tab="create-Pallete" data-bs-toggle="modal" data-bs-target="#createPallete">ساخت پالت</a></li>
+                  <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs nav-link" data-tab="bookmark">نشانک</a></li>
                 </ul>
                 <div class="dropdown  text-end 
                   d-xl-none d-lg-none d-md-block  d-sm-block d-block 
@@ -77,7 +78,7 @@
                   <ul class="nav-Tabs   dropdown-menu" aria-labelledby="dropdownMenuTabs">
                     <li class="nav-item list-Tabs"><a href="#1111" class="link-Tabs dropdown-item nav-link" data-tab="about">درباره ما</a></li>
                     <li class="nav-item list-Tabs"><a href="#2222" class="link-Tabs dropdown-item nav-link" data-tab="palette">پالت ها</a></li>
-                    <li class="nav-item list-Tabs"><a href="#3333" class="link-Tabs dropdown-item nav-link" data-tab="create">ساخت پالت</a></li>
+                    <li class="nav-item list-Tabs"><a href="#3333" class="link-Tabs nav-link" data-tab="create-Pallete" data-bs-toggle="modal" data-bs-target="#createPallete">ساخت پالت</a></li>
                     <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs dropdown-item nav-link" data-tab="bookmark">لیست ذخیره شده شما</a></li>
                   </ul>
                 </div>
@@ -193,6 +194,52 @@
            <!-- Row  About More S -->
         </aside>
         <section class="main--Center  col  col-xl-8 col-lg-7 col-md-12 col-sm-12 col-12 p-4">
+          <!-- Create Palette  -->
+          <div class="row">
+            <div class="col">
+              <div class="modal fade" id="createPallete" tabindex="-1" aria-labelledby="createPallete" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title text--CreatePallete w-100">پالت خود را بسازید</h1> 
+                      <button type="button" class="btn-close  btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                       <div class="row d-flex justify-content-center">
+                         <div class="col col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5 col-xxl-6">
+                           <div class="row row-cols-1">
+                             <div class="col create--Palette  p-xl-5 p-lg-5 p-md-4 ps-md-2 p-1 rounded-3">
+                              <div class="item">
+                                <section class="palette">
+                                  <div class="recipe-Place c-1" data-index="2" data-code="...">
+                                    <input type="color" class="form-control form-control-color" value="#969696" title="Choose your color">
+                                  </div>
+                                  <div class="recipe-Place c-2" data-index="3" data-code="...">
+                                    <input type="color" class="form-control form-control-color" value="#CCCCCC" title="Choose your color">
+                                  </div>
+                                  <div class="recipe-Place c-3" data-index="4" data-code="...">
+                                    <input type="color" class="form-control form-control-color" value="#DDDDDD" title="Choose your color">
+                                  </div>
+                                  <div class="recipe-Place c-4" data-index="4" data-code="...">
+                                    <input type="color" class="form-control form-control-color" value="#EEEEEE" title="Choose your color">
+                                  </div>
+                                </section>
+                               </div>
+                               <div class="col information-CreatePalette d-flex justify-content-center mt-3">
+                                <form class="form-CreatePalette" action="">
+                                  <button type="submit" class="btn   " id="btn--CreatePalette">ثبت پالت</button>
+                                </form>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- single Palette  -->
           <div class="row d-flex justify-content-center">
             <div class="col col-12">
