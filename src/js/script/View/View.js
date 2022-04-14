@@ -4,7 +4,7 @@ export default class View{
     /**
      * 
      * @param {*} data آبجکت از اطالاعات 
-     * @deprecated نمایش روی صفحه برای کاربر
+     * @description نمایش روی صفحه برای کاربر
      * @returns 
      */
     _render(data){
@@ -75,4 +75,5 @@ export default class View{
     _clear(){
         this._parElement.innerHTML ='';
     }
+    
 }
