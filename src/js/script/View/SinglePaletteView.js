@@ -10,6 +10,7 @@ class SinglePalettView extends View{
      super();
      this._parElement.addEventListener('click',this._copyColor.bind(this));
      this._parElement.addEventListener('click',this._downloadImagePalette.bind(this));
+     this._parElement.addEventListener('click',this._copyCodePalette.bind(this))
  }
  /**
   * 
@@ -46,7 +47,7 @@ class SinglePalettView extends View{
             </svg>
             <span>تصویر</span>
           </button>
-          <button class="btn btn--btnsourePalette">
+          <button class="btn btn--btnsourePalette" data-code='${this._data.id}'>
             <svg class="svg--btnsourePalette">
               <use href="${icon}#link"></use>
             </svg>
@@ -142,12 +143,26 @@ class SinglePalettView extends View{
     a.click();
   }
  }
+ _copyCodePalette(e){
+   const button = e.target.closest('.btn--btnsourePalette');
+   if(!button) return;
+  //  Copy on ClipBoard
+   let code = button.dataset.code;
+   console.log(code);
+   navigator.clipboard.writeText(`${code}`);
+ }
+ 
  /**
   *   toolTipe Copy Color Hex , Rgb 
+  *   toolTipe Copy Code -> ID Palette
   */
  _toolTips(){
   
   tippy('.copy-code',{
+    content:'کپی کد',
+    duration:400
+  })
+  tippy('.btn--btnsourePalette',{
     content:'کپی کد',
     duration:400
   })
