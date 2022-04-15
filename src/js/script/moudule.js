@@ -74,6 +74,7 @@ const loadingAddLikePalette = async function(id){
          const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${id}`,'PUT')])
         if(!data) return;
         state.likesList.push(data.id);
+        updateLocalStorageLikesList();
         const updatePalette = state.allPalettes.result.find((ObjectData)=>ObjectData.id === id);
         updatePalette.likes+=1;
         if(updatePalette.id === state.singlePalette.id){
