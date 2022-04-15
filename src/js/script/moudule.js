@@ -8,9 +8,11 @@ const state =
     singlePalette:{},
     allPalettes:{
         result:[],
+        query:'',
         page:1,
-        resultPerPage:Res_Per_Page
-    }
+        resultPerPage:Res_Per_Page,
+    },
+    likesList:[]
 }
 
 /**
@@ -40,6 +42,8 @@ const state =
         const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${query}`)])
         if(!data) return;
         state.allPalettes.result = data;
+        state.allPalettes.query = query;
+        
      }catch(error){
          throw  error;
      }
@@ -57,5 +61,42 @@ const state =
      const end = page * state.allPalettes.resultPerPage;
      return state.allPalettes.result.slice(start,end);
  }
+/**
+ * 
+ * @param {*} id کد استرینگ 
+ * @description به سمت سرور ارسال  و آپدیت لایک صورت گرفته 
+ *              و همچنین به لیست مورد نظر پالت های لایک شده اضافه می شود
+ * @returns 
+ */
+const loadingAddLikePalette = async function(id){
+    try{
+        if(state.likesList.includes(id)) return;
+         const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${id}`,'PUT')])
+        if(!data) return;
+        state.likesList.push(data.id);
+        updateLocalStorageLikesList();
+    }catch(error){
 
-export {loadingGetSinglePalett , state , loadingGetAllPalette ,getAllPalettePage};
+    }
+}
+/**
+ * هر بار که لایک کنیم و یا لایک رو برداریم لوکال آپدیت می شود 
+ */
+const updateLocalStorageLikesList = function(){
+    localStorage.setItem('likesList',JSON.stringify(state.likesList))
+}
+
+/**
+ * 
+ * @returns وقتی که صفحه رو لود کردیم برای ما لیست پالت های لایک شده رو برمی گرداند
+ *           که اگر ما دوباره بیایم کلیک کنیم برای لایک 
+ *           در صورتی که وجود داشته باشد دیگر لایک اضافه می شود
+ */
+const loadingLocalStorageLikesList = function(){
+    const data = localStorage.getItem('likesList');
+    if(!data) return;  
+    state.likesList = JSON.parse(data);
+}
+
+export {loadingGetSinglePalett , state , loadingGetAllPalette ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList};
+

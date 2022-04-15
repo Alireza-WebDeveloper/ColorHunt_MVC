@@ -10,10 +10,10 @@ import { async } from "regenerator-runtime";
  */
 const Ajax = async function(url,type,uploadData){
     try{
-        const fetchPro = uploadData ? fetch(url,{
+        const fetchPro = type ? fetch(url,{
             method:type,
             headers:{'Content-Type':'application/json'},
-            body:uploadData
+            ...(uploadData && {body:JSON.stringify(uploadData)})
         }) : fetch(url);
         const response = await fetchPro;
         if(!response.ok) throw new Error(`Wrong Request Ajax ${response.status}`);  
@@ -24,6 +24,7 @@ const Ajax = async function(url,type,uploadData){
     }
     
 }
+
 
 /**
  * 

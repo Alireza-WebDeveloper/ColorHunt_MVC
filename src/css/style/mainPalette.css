@@ -98,7 +98,7 @@
 
  
 
-.svg--btnBookmark{
+.svg--btnBookmark  , .svg--btnLike{
     width: min(20px,30px);
     height: min(20px,30px);
 }
@@ -124,7 +124,7 @@
     .palette-Details .date{
         font-size: 1.6rem;
     }
-    .svg--btnBookmark{
+    .svg--btnBookmark , .svg--btnLike{
         width: min(30px,40px);
         height: min(30px,40px);
     }

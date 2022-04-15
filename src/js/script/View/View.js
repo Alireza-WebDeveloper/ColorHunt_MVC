@@ -1,6 +1,24 @@
 export default class View{
     _data;
-    _update(){}
+    _update(data){
+      this._data = data;
+      const newMarkUp = this._generateMarkUp();
+      const newDom = document.createRange().createContextualFragment(newMarkUp);
+      const newElement = Array.from(newDom.querySelectorAll('*'));
+      const curElement = Array.from(this._parElement.querySelectorAll('*'));
+      newElement.forEach((newEl,i)=>{
+        const curEl = curElement[i];
+        /// Update Change Text
+        if(!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !==''){
+          curEl.textContent = newEl.textContent;
+        }
+        if(!newEl.isEqualNode(curEl)){
+          Array.from(newEl.attributes).forEach(attr =>
+            curEl.setAttribute(attr.name, attr.value)
+          );
+        }
+      })
+    }
     /**
      * 
      * @param {*} data آبجکت از اطالاعات 

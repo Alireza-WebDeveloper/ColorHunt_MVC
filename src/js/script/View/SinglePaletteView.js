@@ -35,11 +35,17 @@ class SinglePalettView extends View{
       </div>
     </section>
         <section class="palette-Details mt-2">
-          <button class="btn btn--Bookmark">
+          <button class="btn btn--Bookmark" data-code='${this._data.id}'>
            <svg class="svg--btnBookmark">
              <use href="${icon}#bookmark"></use>
            </svg>
-           <span class="num--Likes">${this._data.likes}</span>
+           <span>ذخیره</span>
+          </button>
+          <button class='btn btn-Like' data-code='${this._data.id}'>
+          <svg class="svg--btnLike">
+          <use href="${icon}#heart${this._data.likes > 0 ?'-fill' :''}"></use>
+           </svg>
+          <span class="num--Likes">${this._data.likes}</span>
           </button>
           <button class="btn btn--downloadPalette" >
             <svg class="svg--downloadPalette">
@@ -151,6 +157,18 @@ class SinglePalettView extends View{
    console.log(code);
    navigator.clipboard.writeText(`${code}`);
  }
+ /**
+  * 
+  * @param {*} handler فانکشن کنترل که ایدی دریافتی رو به سمت ماژول  و در نهایت درخواست از سرور 
+  */
+ _addHandlerLikePalette(handler){
+  this._parElement.addEventListener('click',function(e){
+    const button = e.target.closest('.btn-Like');
+    if(!button) return;
+    const id = button.dataset.code;
+    handler(id);
+  })
+}
  
  /**
   *   toolTipe Copy Color Hex , Rgb 

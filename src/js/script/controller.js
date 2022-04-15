@@ -51,15 +51,40 @@ const controlPagination = function (goToPage){
    AllPaletteView._render(model.getAllPalettePage(goToPage));
    PaginationView._render(model.state.allPalettes);
 }
+
+/**
+ * 
+ * @param {*} id کد رشته 
+ * @description کد دریافتی ارسال به سمت سرور لایک به پالت اضافه می شود
+ *              و دوباره اطلاعات تمامی پالت ها و تک پالت گرفته شده
+ *              و بر اساس موقعیت صفحه بندی که مثلا در بین 10 تا 20 قرار دارند آپدیت
+ *              روی تمامی پالت و تک پالت صورت می گیرد  
+ */
+const controlUpadeLikePalette = async function(id){
+  await model.loadingAddLikePalette(id);
+  await model.loadingGetAllPalette(model.state.allPalettes.query);
+  await model.loadingGetSinglePalett(id);
+  AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
+  SinglePaletteView._update(model.state.singlePalette);
+}
+
+/**
+ * این قسمت برای لود کردن آبجکت های ذخیره شده در لوکال
+ */
+const controlLocalStorage = function(){
+   model.loadingLocalStorageLikesList();
+}
  
 const initials = function(){
  controlGetAllPalett();
  AllPaletteView._addHandler(controlGetSinglePalett);
  AllPaletteView._windowLoading(controlGetSinglePalett);
  AllPaletteView._windowPopState(controlGetSinglePalett);
+ AllPaletteView._addHandlerLikePalette(controlUpadeLikePalette);
+ SinglePaletteView._addHandlerLikePalette(controlUpadeLikePalette);
  PaginationView._addHandler(controlPagination);
- 
 
+ controlLocalStorage();
 }
 
 initials();

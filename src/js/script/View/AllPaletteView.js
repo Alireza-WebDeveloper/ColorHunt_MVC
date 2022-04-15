@@ -9,7 +9,6 @@ class AllPaletteView extends View{
         this._parElement.addEventListener('click',this._copyColor.bind(this));
     }
  _generateMarkUp(){
-     console.log(this._data);
      return this._data.map((ObjectData)=>{
          return `<div class="col">
          <div class="item">
@@ -32,12 +31,19 @@ class AllPaletteView extends View{
            </div>
          </section>
          <section class="palette-Details">
-           <button class="btn btn--Bookmark">
+         <div class='buttons--Info'>
+         <button class="btn btn--Bookmark w-100  d-flex justify-content-start" data-code='${ObjectData.id}'>
             <svg class="svg--btnBookmark">
               <use href="${icon}#bookmark"></use>
             </svg>
-            <span class="num--Likes">${ObjectData.likes}</span>
            </button>
+           <button class='btn btn-Like w-100 d-flex justify-content-start align-items-center' data-code='${ObjectData.id}'>
+           <svg class="svg--btnLike">
+              <use href="${icon}#heart${ObjectData.likes > 0 ?'-fill' :''}"></use>
+            </svg>
+           <span class="num--Likes">${ObjectData.likes}</span>
+           </button>
+         </div>
            <span class="date">${this._calcDateCreatePalette(ObjectData.creationDate)}</span>
          </section>
         </div>
@@ -90,6 +96,18 @@ class AllPaletteView extends View{
       handler(id);
     })
   }
+   /**
+  * 
+  * @param {*} handler فانکشن کنترل که ایدی دریافتی رو به سمت ماژول  و در نهایت درخواست از سرور 
+  */
+  _addHandlerLikePalette(handler){
+    this._parElement.addEventListener('click',function(e){
+      const button = e.target.closest('.btn-Like');
+      if(!button) return;
+      const id = button.dataset.code;
+      handler(id);
+    })
+  }
   _windowLoading(handler){
     window.addEventListener('load',function(){
       let pathName =  location.pathname;
@@ -104,6 +122,7 @@ class AllPaletteView extends View{
       handler(id);
     })
   }
+
 }
 
 
