@@ -37,7 +37,7 @@ class SinglePalettView extends View{
         <section class="palette-Details mt-2">
           <button class="btn btn--Bookmark" data-code='${this._data.id}'>
            <svg class="svg--btnBookmark">
-             <use href="${icon}#bookmark"></use>
+           <use href="${icon}#bookmark${this._data.bookmarked ?'-fill':''}"></use>
            </svg>
            <span>ذخیره</span>
           </button>
@@ -164,6 +164,14 @@ class SinglePalettView extends View{
  _addHandlerLikePalette(handler){
   this._parElement.addEventListener('click',function(e){
     const button = e.target.closest('.btn-Like');
+    if(!button) return;
+    const id = button.dataset.code;
+    handler(id);
+  })
+}
+_addHandlerBookmarkPalette(handler){
+  this._parElement.addEventListener('click',function(e){
+    const button = e.target.closest('.btn--Bookmark');
     if(!button) return;
     const id = button.dataset.code;
     handler(id);

@@ -8,6 +8,7 @@ import { async } from 'regenerator-runtime';
 import SinglePaletteView from './View/singlePaletteView';
 import AllPaletteView from './View/AllPaletteView';
 import PaginationView from './View/PaginationView';
+import BookmarkView from './View/BookmarkView';
 /**
  * 
  * @param {*} id  رشته از آی دی  پالت رنگی 
@@ -36,7 +37,7 @@ const controlGetAllPalett = async function(query = 'all'){
   await model.loadingGetAllPalette(query);
   AllPaletteView._render(model.getAllPalettePage());
   AllPaletteView._toolTips();
-  PaginationView._render(model.state.allPalettes)
+  PaginationView._render(model.state.allPalettes);
  }catch(error){
    AllPaletteView._renderError(error);
  }
@@ -67,9 +68,32 @@ const controlUpadeLikePalette = async function(id){
   if(SinglePaletteView._parElement.querySelector('.palette')){
     AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
     SinglePaletteView._update(model.state.singlePalette);
-  }{
+  }else{
     AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
   }  
+}
+/**
+ * 
+ * @param {*} id کد رشته  
+ * @description کد دریافتی به  سمت ماژول جاوا اسکریپت فرستاده 
+ *               اضافه و حذف شدن پالت به لیست ذخیره اجرا می شود ،
+ */
+const controlUpdateBookMarkList = function(id){
+  model.addBookMarkList(id);
+ if(SinglePaletteView._parElement.querySelector('.palette')){
+  AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
+  SinglePaletteView._update(model.state.singlePalette);
+  BookmarkView._render(model.state.bookMarkList);
+ }else{
+  AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
+  BookmarkView._render(model.state.bookMarkList);
+ }
+}
+/**
+ * نمایش   لیست پالت های ذخیره شده
+ */
+const controlBookMarkView = function(){
+  BookmarkView._render(model.state.bookMarkList);
 }
 
 /**
@@ -77,18 +101,23 @@ const controlUpadeLikePalette = async function(id){
  */
 const controlLocalStorage = function(){
    model.loadingLocalStorageLikesList();
+   model.loadingLocalStorageBookMarkList();
 }
  
 const initials = function(){
  controlGetAllPalett();
+ controlLocalStorage();
  AllPaletteView._addHandler(controlGetSinglePalett);
  AllPaletteView._windowLoading(controlGetSinglePalett);
  AllPaletteView._windowPopState(controlGetSinglePalett);
  AllPaletteView._addHandlerLikePalette(controlUpadeLikePalette);
+ AllPaletteView._addHandlerBookmarkPalette(controlUpdateBookMarkList);
  SinglePaletteView._addHandlerLikePalette(controlUpadeLikePalette);
+ SinglePaletteView._addHandlerBookmarkPalette(controlUpdateBookMarkList);
  PaginationView._addHandler(controlPagination);
-
- controlLocalStorage();
+ BookmarkView._addHandler(controlBookMarkView);
+ BookmarkView._addHandlerRemove(controlUpdateBookMarkList);
+ BookmarkView._addHandlerSinglePalette(controlGetSinglePalett);
 }
 
 initials();

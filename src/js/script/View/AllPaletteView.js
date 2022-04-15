@@ -34,7 +34,7 @@ class AllPaletteView extends View{
          <div class='buttons--Info'>
          <button class="btn btn--Bookmark w-100  d-flex justify-content-start" data-code='${ObjectData.id}'>
             <svg class="svg--btnBookmark">
-              <use href="${icon}#bookmark"></use>
+              <use href="${icon}#bookmark${ObjectData.bookmarked ?'-fill':''}"></use>
             </svg>
            </button>
            <button class='btn btn-Like w-100 d-flex justify-content-start align-items-center' data-code='${ObjectData.id}'>
@@ -103,6 +103,14 @@ class AllPaletteView extends View{
   _addHandlerLikePalette(handler){
     this._parElement.addEventListener('click',function(e){
       const button = e.target.closest('.btn-Like');
+      if(!button) return;
+      const id = button.dataset.code;
+      handler(id);
+    })
+  }
+  _addHandlerBookmarkPalette(handler){
+    this._parElement.addEventListener('click',function(e){
+      const button = e.target.closest('.btn--Bookmark');
       if(!button) return;
       const id = button.dataset.code;
       handler(id);
