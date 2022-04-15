@@ -62,8 +62,8 @@ const controlPagination = function (goToPage){
  */
 const controlUpadeLikePalette = async function(id){
   await model.loadingAddLikePalette(id);
-  await model.loadingGetAllPalette(model.state.allPalettes.query);
-  await model.loadingGetSinglePalett(id);
+  // await model.loadingGetAllPalette(model.state.allPalettes.query);
+  // await model.loadingGetSinglePalett(id);
   AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
   SinglePaletteView._update(model.state.singlePalette);
 }
