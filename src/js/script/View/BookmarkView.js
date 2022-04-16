@@ -37,8 +37,13 @@ class BookmarkView extends View{
             e.preventDefault();
             const button = e.target.closest('.recipe-Link');
             if(!button) return;
-            const id = button.dataset.code;
-            handler(id);
+            let newUrl = new URL(location.origin);
+            let pathName = button.getAttribute('href');
+            let id =pathName.split('/')[2];
+            history.pushState({id},null,`${pathName}`)
+            newUrl.pathname = pathName;
+            const code = button.dataset.code;
+            handler(code);
         })
     }
 }
