@@ -9,6 +9,7 @@ import SinglePaletteView from './View/singlePaletteView';
 import AllPaletteView from './View/AllPaletteView';
 import PaginationView from './View/PaginationView';
 import BookmarkView from './View/BookmarkView';
+import BookmarkView2 from './View/BookmarkView2';
 /**
  * 
  * @param {*} id  رشته از آی دی  پالت رنگی 
@@ -84,9 +85,11 @@ const controlUpdateBookMarkList = function(id){
   AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
   SinglePaletteView._update(model.state.singlePalette);
   BookmarkView._render(model.state.bookMarkList);
+  BookmarkView2._render(model.state.bookMarkList);
  }else{
   AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
   BookmarkView._render(model.state.bookMarkList);
+  BookmarkView2._render(model.state.bookMarkList);
  }
 }
 /**
@@ -94,6 +97,7 @@ const controlUpdateBookMarkList = function(id){
  */
 const controlBookMarkView = function(){
   BookmarkView._render(model.state.bookMarkList);
+  BookmarkView2._render(model.state.bookMarkList);
 }
 
 /**
@@ -118,6 +122,11 @@ const initials = function(){
  BookmarkView._addHandler(controlBookMarkView);
  BookmarkView._addHandlerRemove(controlUpdateBookMarkList);
  BookmarkView._addHandlerSinglePalette(controlGetSinglePalett);
+ BookmarkView2._addHandler(controlBookMarkView);
+ BookmarkView2._addHandlerRemove(controlUpdateBookMarkList);
+ BookmarkView2._addHandlerSinglePalette(controlGetSinglePalett);
 }
 
 initials();
+
+
