@@ -13,6 +13,7 @@ export default class BookmarkPreView extends View{
             <div class="recipe-Place c-3" data-index="3"  style='background-color:${ObjectData.color3}'>
             </div>
             <div class="recipe-Place c-4" data-index="4"   style='background-color:${ObjectData.color4}'>
+            </div>
             </a>
             </section>`
         }).join('');
