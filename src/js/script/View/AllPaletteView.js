@@ -93,7 +93,9 @@ class AllPaletteView extends View{
       let id =pathName.split('/')[2];
       history.pushState({id},null,`${pathName}`)
       newUrl.pathname = pathName;
+      document.querySelector('.main--Page').scrollIntoView({behavior:'smooth'})
       handler(id);
+     
     })
   }
    /**

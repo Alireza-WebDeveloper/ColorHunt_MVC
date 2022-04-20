@@ -50,6 +50,7 @@ const controlGetAllPalett = async function(query = 'all'){
  * @description پیج بندی قسمت مربوط به تمامی پالت های لود شده
  */
 const controlPagination = function (goToPage){
+   SinglePaletteView._clear();
    AllPaletteView._render(model.getAllPalettePage(goToPage));
    PaginationView._render(model.state.allPalettes);
 }
@@ -69,8 +70,10 @@ const controlUpadeLikePalette = async function(id){
   if(SinglePaletteView._parElement.querySelector('.palette')){
     AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
     SinglePaletteView._update(model.state.singlePalette);
+    BookmarkView2._update(model.state.bookMarkList);
   }else{
     AllPaletteView._update(model.getAllPalettePage(model.state.allPalettes.page));
+    BookmarkView2._update(model.state.bookMarkList);
   }  
 }
 /**
@@ -125,6 +128,7 @@ const initials = function(){
  BookmarkView2._addHandler(controlBookMarkView);
  BookmarkView2._addHandlerRemove(controlUpdateBookMarkList);
  BookmarkView2._addHandlerSinglePalette(controlGetSinglePalett);
+ BookmarkView2._addHandlerLikePalette(controlUpadeLikePalette);
 }
 
 initials();
