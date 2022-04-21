@@ -97,6 +97,15 @@
         width: 40px;
         height: 20%;
     }
+    .item{
+        width: 100%;
+    }
+    .bookmark-list2 .palette{
+        border-radius: 0.5rem;
+        position: relative;
+        width:100%;
+      
+    }
 }
 
 @media (max-width:768px) and (pointer:coarse) {
