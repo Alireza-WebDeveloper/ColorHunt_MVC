@@ -1,6 +1,6 @@
 import bootstrap from 'bootstrap';
 import icon from '../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
-import * as model from './moudule';
+import * as model from './module';
  
 // Sticky Header 
 let headerPage = document.querySelector('.header--Page');

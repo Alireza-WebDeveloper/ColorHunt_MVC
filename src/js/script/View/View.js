@@ -19,12 +19,7 @@ export default class View{
         }
       })
     }
-    /**
-     * 
-     * @param {*} data آبجکت از اطالاعات 
-     * @description نمایش روی صفحه برای کاربر
-     * @returns 
-     */
+    
     _render(data){
         if(!data) return;
         this._data = data;
@@ -32,11 +27,7 @@ export default class View{
        const markUp =  this._generateMarkUp();
        this._parElement.insertAdjacentHTML('beforeEnd',markUp); 
     }
-    /**
-     * 
-     * @param {*} message  رشته String
-     * @description پیام ضعیفی اینترنت
-     */
+  
     _renderError(message ='اینترنت شما ضعیف است، دوباره تلاش کنید'){
        this._clear();
         const markUp = `
@@ -52,14 +43,9 @@ export default class View{
       this._parElement.insertAdjacentHTML('beforeEnd',markUp);
        
     }
-    /**
-     * پیام موفقیت آمیز
-     */
+   
     _renderSuccess(){}
-    /**
-     * 
-     * @param {*} message  پیام خطا
-     */
+   
     _renderLoading(message ='در حال لود شدن'){
       this._clear();
         const markUp = `<div class="col d-flex justify-content-center">
@@ -87,9 +73,7 @@ export default class View{
         </div>`;
         this._parElement.insertAdjacentHTML('beforeEnd',markUp);
     }
-    /**
-     * پاک کردن یک عنصر اصلی
-     */
+   
     _clear(){
         this._parElement.innerHTML ='';
     }

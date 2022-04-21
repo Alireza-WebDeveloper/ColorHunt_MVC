@@ -26,11 +26,6 @@ const Ajax = async function(url,type,uploadData){
 }
 
 
-/**
- * 
- * @param {*} SEC  ثانیه
- * @returns  زمان اتنظار لود شدن دیتا
- */
 const timeOut = function(SEC){
     return new Promise((_,reject)=>{
         setTimeout(function(){

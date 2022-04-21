@@ -2,7 +2,8 @@ import View from "./view";
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
 import tippy from 'tippy.js';
 import '../../../../node_modules/tippy.js/dist/tippy.css'; 
-class AllPaletteView extends View{
+import SinglePalettePreView from "./SinglePalettePreView";
+class AllPaletteView extends SinglePalettePreView{
     _parElement = document.querySelector('.global--Palette');
     constructor(){
         super();
@@ -50,13 +51,11 @@ class AllPaletteView extends View{
        </div>`
      }).join('');
  }
-
-  //////// Function اشتراکی
-  /**
+ /**
   * 
-  * @param {*} string رشته از تاریخ ساخت 
-  * @description نمایش تاریخ ساخت پالت
-  * @returns Example : امروز ، یک هفته پیش ... بقیه موارد
+  * @param {*} string = string of date
+  * @description create date
+  * @returns Ex:04/03/2022 , today , week , ...
   */
    _calcDateCreatePalette(string){
     const dateCreate = new Date(`${string}`);
@@ -66,11 +65,11 @@ class AllPaletteView extends View{
     return day === 0 ? 'امروز' : day < 7 ? `روز پیش${day}` : day === 7 ? 'یک هفته پیش' : day > 7 ? history : ''; 
    }
   /**
-  * 
-  * @param {*} e 
-  * @description برای کپی کردن کد هر پالت رنگی 
-  * @returns یک رشته به صورت rgba,hex
-  */
+   * 
+   * @param {*} e = button
+   * @description copy code palette 
+   * @returns  rgb,hex
+   */
    _copyColor(e){
     const button = e.target.closest('.copy-code');
     if(!button) return;
@@ -83,25 +82,10 @@ class AllPaletteView extends View{
       duration:400
     })
    }
-  _addHandler(handler){
-    this._parElement.addEventListener('click',function(e){
-      e.preventDefault();
-      const a = e.target.closest('.recipe-Link');
-      if(!a) return;
-      let newUrl = new URL(location.origin);
-      let pathName = a.getAttribute('href');
-      let id =pathName.split('/')[2];
-      history.pushState({id},null,`${pathName}`)
-      newUrl.pathname = pathName;
-      document.querySelector('.main--Page').scrollIntoView({behavior:'smooth'})
-      handler(id);
-     
-    })
-  }
    /**
-  * 
-  * @param {*} handler فانکشن کنترل که ایدی دریافتی رو به سمت ماژول  و در نهایت درخواست از سرور 
-  */
+    * 
+    * @param {*} handler = controlUpadeLikePalette()
+    */
   _addHandlerLikePalette(handler){
     this._parElement.addEventListener('click',function(e){
       const button = e.target.closest('.btn-Like');
@@ -110,6 +94,10 @@ class AllPaletteView extends View{
       handler(id);
     })
   }
+  /**
+   * 
+   * @param {*} handler = controlUpdateBookMarkList() 
+   */
   _addHandlerBookmarkPalette(handler){
     this._parElement.addEventListener('click',function(e){
       const button = e.target.closest('.btn--Bookmark');
@@ -118,6 +106,10 @@ class AllPaletteView extends View{
       handler(id);
     })
   }
+  /**
+   * 
+   * @param {*} handler = controlGetSinglePalett() 
+   */
   _windowLoading(handler){
     window.addEventListener('load',function(){
       let pathName =  location.pathname;
@@ -126,6 +118,10 @@ class AllPaletteView extends View{
       handler(id);
     })
   }
+  /**
+   * 
+   * @param {*} handler = controlGetSinglePalett() 
+   */
   _windowPopState(handler){
     window.addEventListener('popstate',function(e){
       let id = e?.state?.id;

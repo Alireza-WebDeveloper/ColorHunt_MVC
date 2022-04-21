@@ -2,7 +2,7 @@
 import bootstrap from 'bootstrap';
 import { Modal } from 'bootstrap';
 import icon from '../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
-import * as model from './moudule';
+import * as model from './module';
 import * as componet from './componet';
 import { async } from 'regenerator-runtime';
 import SinglePaletteView from './View/singlePaletteView';
@@ -10,12 +10,9 @@ import AllPaletteView from './View/AllPaletteView';
 import PaginationView from './View/PaginationView';
 import BookmarkView from './View/BookmarkView';
 import BookmarkView2 from './View/BookmarkView2';
-/**
- * 
- * @param {*} id  رشته از آی دی  پالت رنگی 
- * @description درخواست از سرور با استفاده از ایدی پالت رنگی
- * 
- */
+
+
+///Single Palette
 const controlGetSinglePalett = async function(id){
  try{
   SinglePaletteView._renderLoading();
@@ -27,11 +24,7 @@ const controlGetSinglePalett = async function(id){
  }
  
 }
-/**
- * 
- * @param {*} query کد رشته
- * @description برای لود شدن هر صفحه از پالت های رنگی
- */
+ ///All Palette
 const controlGetAllPalett = async function(query = 'all'){
  try{
    AllPaletteView._renderLoading();
@@ -44,25 +37,14 @@ const controlGetAllPalett = async function(query = 'all'){
  }
  
 }
-/**
- * 
- * @param {*} goToPage  شماره صفحه گرفته شده
- * @description پیج بندی قسمت مربوط به تمامی پالت های لود شده
- */
+/// Pagination
 const controlPagination = function (goToPage){
    SinglePaletteView._clear();
    AllPaletteView._render(model.getAllPalettePage(goToPage));
    PaginationView._render(model.state.allPalettes);
 }
 
-/**
- * 
- * @param {*} id کد رشته 
- * @description کد دریافتی ارسال به سمت سرور لایک به پالت اضافه می شود
- *              و دوباره اطلاعات تمامی پالت ها و تک پالت گرفته شده
- *              و بر اساس موقعیت صفحه بندی که مثلا در بین 10 تا 20 قرار دارند آپدیت
- *              روی تمامی پالت و تک پالت صورت می گیرد  
- */
+///Like Palette
 const controlUpadeLikePalette = async function(id){
   await model.loadingAddLikePalette(id);
   // await model.loadingGetAllPalette(model.state.allPalettes.query);
@@ -76,12 +58,7 @@ const controlUpadeLikePalette = async function(id){
     BookmarkView2._update(model.state.bookMarkList);
   }  
 }
-/**
- * 
- * @param {*} id کد رشته  
- * @description کد دریافتی به  سمت ماژول جاوا اسکریپت فرستاده 
- *               اضافه و حذف شدن پالت به لیست ذخیره اجرا می شود ،
- */
+///BookmarkList
 const controlUpdateBookMarkList = function(id){
   model.addBookMarkList(id);
  if(SinglePaletteView._parElement.querySelector('.palette')){
@@ -95,26 +72,22 @@ const controlUpdateBookMarkList = function(id){
   BookmarkView2._render(model.state.bookMarkList);
  }
 }
-/**
- * نمایش   لیست پالت های ذخیره شده
- */
+// when->Loading Page
 const controlBookMarkView = function(){
   BookmarkView._render(model.state.bookMarkList);
   BookmarkView2._render(model.state.bookMarkList);
 }
 
-/**
- * این قسمت برای لود کردن آبجکت های ذخیره شده در لوکال
- */
+///Local Storage , when->Loading Page
 const controlLocalStorage = function(){
    model.loadingLocalStorageLikesList();
    model.loadingLocalStorageBookMarkList();
 }
- 
+/// Initials Functions
 const initials = function(){
  controlGetAllPalett();
  controlLocalStorage();
- AllPaletteView._addHandler(controlGetSinglePalett);
+ AllPaletteView._addHandlerSinglePalette(controlGetSinglePalett);
  AllPaletteView._windowLoading(controlGetSinglePalett);
  AllPaletteView._windowPopState(controlGetSinglePalett);
  AllPaletteView._addHandlerLikePalette(controlUpadeLikePalette);
@@ -122,15 +95,14 @@ const initials = function(){
  SinglePaletteView._addHandlerLikePalette(controlUpadeLikePalette);
  SinglePaletteView._addHandlerBookmarkPalette(controlUpdateBookMarkList);
  PaginationView._addHandler(controlPagination);
- BookmarkView._addHandler(controlBookMarkView);
+ BookmarkView._windowLoading(controlBookMarkView);
  BookmarkView._addHandlerRemove(controlUpdateBookMarkList);
  BookmarkView._addHandlerSinglePalette(controlGetSinglePalett);
- BookmarkView2._addHandler(controlBookMarkView);
+ BookmarkView2._windowLoading(controlBookMarkView);
  BookmarkView2._addHandlerRemove(controlUpdateBookMarkList);
  BookmarkView2._addHandlerSinglePalette(controlGetSinglePalett);
  BookmarkView2._addHandlerLikePalette(controlUpadeLikePalette);
 }
-
 initials();
 
 

@@ -2,7 +2,7 @@
 import { async } from "regenerator-runtime";
 import { Ajax , timeOut} from "./helpers";
 import { API_URL , SEC ,Res_Per_Page} from "./config";
-
+/// State 
 const state =
 {
     singlePalette:{},
@@ -16,13 +16,8 @@ const state =
     bookMarkList:[]
 }
 
-/**
- * 
- * @param {String} id 'ایدی مربوط به هر پالت '
- * @returns Object آبجکت
- * @description  'دریافت اطلاعات یک پالت'
- *               از سرور
- */
+
+///Single Palette
  const loadingGetSinglePalett = async function(id){
    try{
        const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${id}`)])
@@ -39,12 +34,7 @@ const state =
        throw error;
    }
  }
-/**
- * 
- * @param {*} query کد رشته
- * @description درخواست از سرور برای گرفتن تمامی پالت های رنگی بر مبانی رشته کد
- * @returns آرایه
- */
+///All Palette
  const loadingGetAllPalette = async function(query){
      try{
         const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${query}`)])
@@ -66,67 +56,51 @@ const state =
      }
  }
 
-/**
- * 
- * @param {*} page شماره صفحه 
- * @description از طریق این فانشکن تعیین می کنیم چه تعداد آرایه پالت رنگی هر صفحه لود شود
- * @returns 
- */
+ ///Pagination
  const getAllPalettePage = function(page = state.allPalettes.page){
      state.allPalettes.page = page;
      const start = (page - 1) * state.allPalettes.resultPerPage;
      const end = page * state.allPalettes.resultPerPage;
      return state.allPalettes.result.slice(start,end);
  }
-/**
- * 
- * @param {*} id کد استرینگ 
- * @description به سمت سرور ارسال  و آپدیت لایک صورت گرفته 
- *              و همچنین به لیست مورد نظر پالت های لایک شده اضافه می شود
- * @returns 
- */
+///LikePalette
 const loadingAddLikePalette = async function(id){
     try{
         if(state.likesList.includes(id)) return;
          const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${id}`,'PUT')])
         if(!data) return;
         state.likesList.push(data.id);
-        updateLocalStorageLikesList();
+        // set on allPalette
         const updatePalette = state.allPalettes.result.find((ObjectData)=>ObjectData.id === id);
-        updatePalette.likes+=1;
+        if(updatePalette){
+            updatePalette.likes+=1;
+        }
+        // set on Bookmark Palette
+        const updateBookMark = state.bookMarkList.findIndex((ObjectData)=>ObjectData.id === updatePalette.id);
+        if(updateBookMark != -1){
+            state.bookMarkList[updateBookMark] = updatePalette;
+        }
+        // set on SinglePalette
         if(updatePalette.id === state.singlePalette.id){
             state.singlePalette.likes+=1;
         }
+        updateLocalStorageLikesList();
+        updateLocalStorageBookMarkList();
     }catch(error){
-
+        throw error;
     }
 }
-/**
- * هر بار که لایک کنیم و یا لایک رو برداریم لوکال آپدیت می شود 
- */
 const updateLocalStorageLikesList = function(){
     localStorage.setItem('likesList',JSON.stringify(state.likesList))
 }
 
-/**
- * 
- * @returns وقتی که صفحه رو لود کردیم برای ما لیست پالت های لایک شده رو برمی گرداند
- *           که اگر ما دوباره بیایم کلیک کنیم برای لایک 
- *           در صورتی که وجود داشته باشد دیگر لایک اضافه می شود
- */
 const loadingLocalStorageLikesList = function(){
     const data = localStorage.getItem('likesList');
     if(!data) return;  
     state.likesList = JSON.parse(data);
 }
 
-/**
- * 
- * @param {*} id کد رشته پالت 
- * @description چک می کنیم اگر ایدی مربوط در لیست ذخیره شده وجود نداشت ، اون پالت به لیست اضافه در غیر این صورت 
- *              اگر وجود داشت پس باید حذف شود به همین دلیل سریع فانکشن حذف رخ می دهد
- * @returns 
- */
+///BookMarkList
 const addBookMarkList = function(id){
     const include = state.bookMarkList.some((ObjectData)=>ObjectData.id === id);
     if(include) return deleteBookMarkList(id);
@@ -135,39 +109,27 @@ const addBookMarkList = function(id){
      updatePalette.bookmarked = true;
      state.singlePalette.id === id ? state.singlePalette.bookmarked = true :'';
      state.bookMarkList.push(updatePalette);
-     loadingLocalStorageLBookMarkList();
+     updateLocalStorageBookMarkList();
 }
 
-/**
- * 
- * @param {*} id کد رشته پالت 
- * @description پالت از لیست حذف می شود 
- */
 const deleteBookMarkList = function(id){
     const index = state.bookMarkList.findIndex((ObjectData)=>ObjectData.id === id);
     state.bookMarkList.splice(index,1);
     const updatePalette = state.allPalettes.result.find((ObjectData)=>ObjectData.id === id);
     updatePalette.bookmarked = false;
     state.singlePalette.id === id ? state.singlePalette.bookmarked = false :'';
-    loadingLocalStorageLBookMarkList();
+    updateLocalStorageBookMarkList();
 }
 
-/**
- * آپدیت لوکال مربوط به لیست ذخیره شده
- */
-const loadingLocalStorageLBookMarkList = function(){
+const updateLocalStorageBookMarkList = function(){
     localStorage.setItem('bookmarklist',JSON.stringify(state.bookMarkList));
 }
 
-
-/**
- * زمان بارگذاری سایت ، لوکال گرفته و به لیست ذخیره شده اضافه می شود
- */
- const loadingLocalStorageBookMarkList = function(){
+const loadingLocalStorageBookMarkList = function(){
     const data = localStorage.getItem('bookmarklist');
     if(!data) return;  
     state.bookMarkList = JSON.parse(data);
 }
-
+/// Exports 
 export {loadingGetSinglePalett , state , loadingGetAllPalette ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList ,loadingLocalStorageBookMarkList};
 

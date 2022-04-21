@@ -12,10 +12,7 @@ class SinglePalettView extends View{
      this._parElement.addEventListener('click',this._downloadImagePalette.bind(this));
      this._parElement.addEventListener('click',this._copyCodePalette.bind(this))
  }
- /**
-  * 
-  * @returns html code -> Single Palette
-  */
+ 
  _generateMarkUp(){
     return `<div class="col"><h1 class="header--singlePalette">جزییات پالت رنگی</h1></div>
     <section class="col col-xl-8 col-lg-10 col-md-8 col-sm-10 col-12 single--Palette">
@@ -93,8 +90,8 @@ class SinglePalettView extends View{
  }
  /**
   * 
-  * @param {hex} hex دریافت رشته به صورت کد  
-  * @returns rgba(...,...,...); 
+  * @param {*} hex Ex:#FC526
+  * @returns  Ex:rgb(234,255,134)
   */
  _convertHexToRGBA (hex){
     let r = parseInt(hex.slice(1, 3), 16),
@@ -102,23 +99,23 @@ class SinglePalettView extends View{
     b = parseInt(hex.slice(5, 7), 16);
     return "rgb(" + r + ", " + g + ", " + b + ")";
  }
- /**
-  * 
-  * @param {*} e 
-  * @description برای کپی کردن کد هر پالت رنگی 
-  * @returns یک رشته به صورت rgba,hex
-  */
+   /**
+   * 
+   * @param {*} e = button
+   * @description copy code palette 
+   * @returns  rgb,hex
+   */
  _copyColor(e){
   const button = e.target.closest('.copy-code');
   if(!button) return;
   // copy on clipboard
   navigator.clipboard.writeText(`${button.textContent}`);
  }
- /**
+  /**
   * 
-  * @param {*} string رشته از تاریخ ساخت 
-  * @deprecated نمایش تاریخ ساخت پالت
-  * @returns Example : امروز ، یک هفته پیش ... بقیه موارد
+  * @param {*} string = string of date
+  * @description create date
+  * @returns Ex:04/03/2022 , today , week , ...
   */
  _calcDateCreatePalette(string){
   const dateCreate = new Date(`${string}`);
@@ -129,9 +126,9 @@ class SinglePalettView extends View{
  }
  /**
   * 
-  * @param {*} e  
-  * @description jpeg دانلود پالت مورد نظر به صورت یک تصویر با فرمت 
-  * @returns 
+  * @param {*} e = button
+  * @deprecated Download Image Palette 
+  * @returns file Image
   */
  _downloadImagePalette(e){
    const button = e.target.closest('.btn--downloadPalette');
@@ -149,6 +146,12 @@ class SinglePalettView extends View{
     a.click();
   }
  }
+ /**
+  * 
+  * @param {*} e  = button
+  * @description copy code rgb,hex
+  * @returns  Ex : #Fc263 || rgb(245,233,241)
+  */
  _copyCodePalette(e){
    const button = e.target.closest('.btn--btnsourePalette');
    if(!button) return;
@@ -157,10 +160,10 @@ class SinglePalettView extends View{
    console.log(code);
    navigator.clipboard.writeText(`${code}`);
  }
- /**
-  * 
-  * @param {*} handler فانکشن کنترل که ایدی دریافتی رو به سمت ماژول  و در نهایت درخواست از سرور 
-  */
+    /**
+    * 
+    * @param {*} handler = controlUpadeLikePalette()
+    */
  _addHandlerLikePalette(handler){
   this._parElement.addEventListener('click',function(e){
     const button = e.target.closest('.btn-Like');
@@ -169,6 +172,10 @@ class SinglePalettView extends View{
     handler(id);
   })
 }
+/**
+ * 
+ * @param {*} handler = controlUpdateBookMarkList()
+ */
 _addHandlerBookmarkPalette(handler){
   this._parElement.addEventListener('click',function(e){
     const button = e.target.closest('.btn--Bookmark');
@@ -178,10 +185,7 @@ _addHandlerBookmarkPalette(handler){
   })
 }
  
- /**
-  *   toolTipe Copy Color Hex , Rgb 
-  *   toolTipe Copy Code -> ID Palette
-  */
+ 
  _toolTips(){
   
   tippy('.copy-code',{
