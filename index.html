@@ -65,6 +65,7 @@
                   <li class="nav-item list-Tabs"><a href="#2222" class="link-Tabs nav-link" data-tab="create" data-text="پالت ها">پالت ها</a></li>
                   <li class="nav-item list-Tabs"><a href="#3333" class="link-Tabs nav-link" data-tab="create-Pallete" data-bs-toggle="modal" data-bs-target="#createPallete" data-text="ساخت پالت">ساخت پالت</a></li>
                   <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs dropdown-item nav-link" data-tab="bookmark-list2" data-bs-toggle="modal" data-bs-target="#bookmark-list2" data-text="لیست ذخیره پالت" >لیست ذخیره پالت</a></li>
+                  <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs dropdown-item nav-link" data-tab="createPalette-View" data-bs-toggle="modal" data-bs-target="#createPalette-View" data-text="لیست پالت ساخته شده" >لیست پالت ساخته شده</a></li>
                 </ul>
                 <div class="dropdown  text-end 
                   d-xl-none d-lg-none d-md-block  d-sm-block d-block 
@@ -81,6 +82,7 @@
                     <li class="nav-item list-Tabs"><a href="#2222" class="link-Tabs dropdown-item nav-link" data-tab="palette" data-text="پالت ها">پالت ها</a></li>
                     <li class="nav-item list-Tabs"><a href="#3333" class="link-Tabs nav-link" data-tab="create-Pallete" data-bs-toggle="modal" data-bs-target="#createPallete" data-text="ساخت پالت">ساخت پالت</a></li>
                     <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs dropdown-item nav-link" data-tab="bookmark-list2" data-bs-toggle="modal" data-bs-target="#bookmark-list2" data-text="لیست ذخیره پالت" >لیست ذخیره پالت</a></li>
+                    <li class="nav-item list-Tabs"><a href="#4444" class="link-Tabs dropdown-item nav-link" data-tab="createPalette-View" data-bs-toggle="modal" data-bs-target="#createPalette-View" data-text="لیست پالت ساخته شده" >لیست پالت ساخته شده</a></li>
                   </ul>
                 </div>
               </section> 
@@ -209,29 +211,9 @@
                        <div class="row d-flex justify-content-center">
                          <div class="col col-12 col-sm-10 col-md-8 col-lg-7 col-xl-5 col-xxl-6">
                            <div class="row row-cols-1">
-                             <div class="col create--Palette  p-xl-5 p-lg-5 p-md-4 ps-md-2 p-1 rounded-3">
-                              <div class="item">
-                                <section class="palette">
-                                  <div class="recipe-Place c-1" data-index="2" data-code="...">
-                                    <input type="color" class="form-control form-control-color" value="#969696" title="Choose your color">
-                                  </div>
-                                  <div class="recipe-Place c-2" data-index="3" data-code="...">
-                                    <input type="color" class="form-control form-control-color" value="#CCCCCC" title="Choose your color">
-                                  </div>
-                                  <div class="recipe-Place c-3" data-index="4" data-code="...">
-                                    <input type="color" class="form-control form-control-color" value="#DDDDDD" title="Choose your color">
-                                  </div>
-                                  <div class="recipe-Place c-4" data-index="4" data-code="...">
-                                    <input type="color" class="form-control form-control-color" value="#EEEEEE" title="Choose your color">
-                                  </div>
-                                </section>
-                               </div>
-                               <div class="col information-CreatePalette d-flex justify-content-center mt-3">
-                                <form class="form-CreatePalette" action="">
-                                  <button type="submit" class="btn   " id="btn--CreatePalette">ثبت پالت</button>
-                                </form>
-                               </div>
-                             </div>
+                             <form class="col create--Palette  p-xl-5 p-lg-5 p-md-4 ps-md-2 p-1 rounded-3">
+                              
+                              </form>
                            </div>
                          </div>
                        </div>
@@ -255,6 +237,27 @@
                       <div class="row pt-1">
                         <div class="col d-flex flex-column  main--Bookmarking">
                           <section class="bookmark"><div class="bookmark-list2"></div></section>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- CreatePaletteView -->
+          <div class="row">
+            <div class="col">
+              <div class="modal fade" id="createPalette-View" tabindex="-1" aria-labelledby="createPalette-View" aria-hidden="true">
+                <div class="modal-dialog modal-fullscreen">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="btn-close  btn-lg" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row pt-1">
+                        <div class="col d-flex flex-column main--CreatePaletteView">
+                          <div class="createPalette-List"></div>
                           </div>
                         </div>
                     </div>

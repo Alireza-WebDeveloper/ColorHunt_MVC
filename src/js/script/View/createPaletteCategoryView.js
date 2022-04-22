@@ -1,13 +1,12 @@
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
 import BookmarkPreView from './BookmarkPreView';
-class BookmarkView2 extends BookmarkPreView{
-    _parElement = document.querySelector('.bookmark-list2');
+class createPaletteCategoryView extends BookmarkPreView{
+    _parElement = document.querySelector('.createPalette-List');
     constructor(){
         super();
         this._parElement.addEventListener('click',this._hideModal.bind(this));
     }
     _generateMarkUp(){
-       
         return this._data.map((ObjectData)=>{
             return ` 
              <div class='item'>
@@ -39,10 +38,6 @@ class BookmarkView2 extends BookmarkPreView{
             `
         }).join('');
     }
-    /**
-     * 
-     * @param {*} handler = controlUpadeLikePalette() 
-     */
     _addHandlerLikePalette(handler){
         this._parElement.addEventListener('click',function(e){
           const button = e.target.closest('.btn-Like');
@@ -51,12 +46,11 @@ class BookmarkView2 extends BookmarkPreView{
           handler(id);
         })
       }
-    _hideModal(e){
-            const button = e.target.closest('.recipe-Link');
-            if(!button) return;
-            $('#bookmark-list2').click();
-
+      _hideModal(e){
+        const button = e.target.closest('.recipe-Link');
+        if(!button) return;
+        $('#bookmark-list2').click();
     }
 }
 
-export default new BookmarkView2();
+export default new createPaletteCategoryView();

@@ -19,6 +19,7 @@
     "fractional": "^1.0.0",
     "html2canvas": "^1.4.1",
     "regenerator-runtime": "^0.13.9",
+    "sweetalert2": "^11.4.9",
     "tippy.js": "^6.3.7",
     "transformer-js": "0.0.9"
   },

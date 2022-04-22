@@ -45,13 +45,13 @@ dropdownMenuTabs.addEventListener('click',function(e){
 })
 
 // Create Palette
-let palette = document.querySelector('.palette');
-palette.addEventListener('click',function(e){
-  const colorPicker = e.target.closest('.form-control-color');
-  if(!colorPicker) return;
-  colorPicker.addEventListener('input',function(e){
-    const recipePalette = e.target.closest('.recipe-Place');
-    if(!recipePalette) return;
-    recipePalette.style.backgroundColor = `${e.target.value}`;
-  })
-})
+// let palette = document.querySelector('.palette');
+// palette.addEventListener('click',function(e){
+//   const colorPicker = e.target.closest('.form-control-color');
+//   if(!colorPicker) return;
+//   colorPicker.addEventListener('input',function(e){
+//     const recipePalette = e.target.closest('.recipe-Place');
+//     if(!recipePalette) return;
+//     recipePalette.style.backgroundColor = `${e.target.value}`;
+//   })
+// })
