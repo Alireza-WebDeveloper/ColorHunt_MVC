@@ -228,3 +228,12 @@ z-index: 2;
     box-shadow:  6px 6px 4px #1e1e1e,
                  -6px -6px 4px #242424;
  }
+
+
+ @media (max-width:768px) and (pointer:fine) {
+    .dropdown-menu{
+        height: 200px;
+        overflow-y: scroll;
+    }
+ }
+ 

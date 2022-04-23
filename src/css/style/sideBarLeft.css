@@ -81,8 +81,8 @@
 
  
 .svg--MenuSide{
-    width: 55px;
-    height: 55px;
+    width: 40px;
+    height: 40px;
     border-radius: 0.3rem;
 }
 
@@ -94,8 +94,4 @@
 
 /* Media Query  */
 
-/* @media (max-width:768px) and (pointer:coarse) {
-    .main--SideBar{
-      background-image: none;
-    }
-} */
+ 
