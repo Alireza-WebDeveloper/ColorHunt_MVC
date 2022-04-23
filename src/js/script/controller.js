@@ -103,10 +103,12 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
       SinglePaletteView._render(model.state.singlePalette);
       SinglePaletteView._toolTips();
       createPaletteCategoryView._render(model.state.createCategoryPalette);
+      createPaletteCategory._pushState(model.state.singlePalette);
     }catch(error){
       createPaletteCategory._errorOnMessage(error);
     }
 }
+
 const controlUpdateCreatePaletteCategory = function(id){
  model.deleteCreatePaletteCategory(id);
  createPaletteCategoryView._render(model.state.createCategoryPalette);
@@ -142,6 +144,7 @@ const initials = function(){
  createPaletteCategory._windowLoading(controlAddCategoryNames);
  createPaletteCategoryView._addHandlerLikePalette(controlUpadeLikePalette);
  createPaletteCategoryView._addHandlerRemove(controlUpdateCreatePaletteCategory);
+ createPaletteCategoryView._addHandlerSinglePalette(controlGetSinglePalett);
 }
 initials();
 

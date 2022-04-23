@@ -37,9 +37,19 @@ class createPaletteCategory extends View{
           <button type="submit" class="btn" id="btn--CreatePalette">ثبت پالت</button>
        </div>`
     }
+    /**
+     * 
+     * @param {*} name =  Category names 
+     * @returns EX : <option value='pastel'>pastel</option>
+     */
     _generateMarkFormSelect(name){
         return `<option value="${name}">${name}</option>`;
     }
+    /**
+     * 
+     * @param {*} e = change background color input , recipe 
+     * @returns 
+     */
     _changeColor(e){
         const colorPicker = e.target.closest('.form-control-color');
         if(!colorPicker) return;
@@ -50,11 +60,15 @@ class createPaletteCategory extends View{
           this.value = e.target.value;
         })
     }
-   
+   /**
+    * 
+    * @param {*} handler =  controlCreatePaletteCategory()
+    * @description create Category {color1,color2,color3,color4} , name Category,EX : pastel ,...
+    */
     _addHandlerCreatePalette(handler){
         this._parElement.addEventListener('submit',createPaletteCategory.bind(this));
         function createPaletteCategory(e){
-            e.preventDefault(); 
+            e.preventDefault();
             this._cateGoryName = this._getCategoryName();
             const dataArr = [...new FormData(this._parElement)];
             const dataObj = Object.fromEntries(dataArr);
@@ -62,11 +76,12 @@ class createPaletteCategory extends View{
            
         }
     }
+    /// return Category name Ex:Pastel,...
     _getCategoryName(){
         const name =  this._parElement.querySelector('select').value;
         return name;
       }
-    
+    /// Success(100%)->Completed Create Palette
     _successMessage(){
         Swal.fire({
             title: 'ساخت پالت',
@@ -84,6 +99,7 @@ class createPaletteCategory extends View{
             }
           })
     }
+    /// Wrong(0%)->Create Palette
     _errorOnMessage(error){
         Swal.fire({
             title: 'ساخت پالت',
@@ -96,6 +112,7 @@ class createPaletteCategory extends View{
             backdrop:'black'
           })
     }
+    /// Refresh Background Color Recipes , Inputs 
     _clearData(){
          const [r1,r2,r3,r4] = Array.from(this._parElement.querySelectorAll('.recipe-Place'));
          const [inp1,inp2,inp3,inp4] = Array.from(this._parElement.querySelectorAll('.form-control-color'));
@@ -110,7 +127,11 @@ class createPaletteCategory extends View{
             handler();
         })
     }
-
+    /// When Create Completed -> /palette/${id} on location
+     _pushState(data){
+        const {id} = data;
+        history.pushState({id},null,`/palettes/${id}`);
+    }
 }
 
 export default new createPaletteCategory();

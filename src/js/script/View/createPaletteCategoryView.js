@@ -38,6 +38,10 @@ class createPaletteCategoryView extends BookmarkPreView{
             `
         }).join('');
     }
+     /**
+    * 
+    * @param {*} handler = controlUpadeLikePalette()
+    */
     _addHandlerLikePalette(handler){
         this._parElement.addEventListener('click',function(e){
           const button = e.target.closest('.btn-Like');
