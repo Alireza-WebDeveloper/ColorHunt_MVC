@@ -63,39 +63,54 @@ const state =
      return state.allPalettes.result.slice(start,end);
  }
 ///LikePalette
+const UiLikesList = (data)=>{
+// Update Object -> All Palette()
+const updateObj_AllPalette = state.allPalettes.result.findIndex(({id})=>id === data.id);
+if(updateObj_AllPalette !== -1){
+    state.allPalettes.result[updateObj_AllPalette].likes = data.likes;
+}
+// Update Object -> CreateAllCategory Palette()
+const updateObj_CreateCategoryPalette = state.createCategoryPalette.findIndex(({id})=>id === data.id);
+if(updateObj_CreateCategoryPalette !== -1){
+    state.createCategoryPalette[updateObj_CreateCategoryPalette].likes = data.likes;
+}
+// Update Object -> BookMarkList 
+const updateObj_BookMarkList = state.bookMarkList.findIndex(({id})=>id === data.id);
+if(updateObj_BookMarkList !== -1){
+    state.bookMarkList[updateObj_BookMarkList].likes = data.likes;
+}
+// updateObj_SinglePalette
+if(state.singlePalette.id === data.id){
+    state.singlePalette.likes = data.likes;
+}
+/// update LocalStorage Like-> LikeList  , BookMarkList , CreatePaletteCategory
+updateLocalStorageLikesList();
+updateLocalStorageBookMarkList();
+updateLocalStorageCreatePaletteCategory();
+}
 const loadingAddLikePalette = async function(id){
     try{
-        if(state.likesList.includes(id)) return;
+        if(state.likesList.includes(id)) return loadingDisLikePalette(id);
          const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${id}`,'PUT')])
         if(!data) return;
         /// Add id  To Like List []
         state.likesList.push(data.id);
-        // Update Object -> All Palette()
-        const updateObj_AllPalette = state.allPalettes.result.findIndex(({id})=>id === data.id);
-        if(updateObj_AllPalette !== -1){
-            state.allPalettes.result[updateObj_AllPalette].likes = data.likes;
-        }
-        // Update Object -> CreateAllCategory Palette()
-        const updateObj_CreateCategoryPalette = state.createCategoryPalette.findIndex(({id})=>id === data.id);
-        if(updateObj_CreateCategoryPalette !== -1){
-            state.createCategoryPalette[updateObj_CreateCategoryPalette].likes = data.likes;
-        }
-        // Update Object -> BookMarkList 
-        const updateObj_BookMarkList = state.bookMarkList.findIndex(({id})=>id === data.id);
-        if(updateObj_BookMarkList !== -1){
-            state.bookMarkList[updateObj_BookMarkList].likes = data.likes;
-        }
-        // updateObj_SinglePalette
-        if(state.singlePalette.id === data.id){
-            state.singlePalette.likes = data.likes;
-        }
-        /// update LocalStorage Like-> LikeList  , BookMarkList , CreatePaletteCategory
-        updateLocalStorageLikesList();
-        updateLocalStorageBookMarkList();
-        updateLocalStorageCreatePaletteCategory();
+        UiLikesList(data);
     }catch(error){
         throw error;
     }
+}
+const loadingDisLikePalette = async function(id){
+   try{
+    const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/dislike/${id}`,'PUT')])
+    if(!data) return;
+    // Delete From likesList 
+    const index = state.likesList.findIndex((id)=>id === data.id);
+    state.likesList.splice(index,1);
+    UiLikesList(data);
+   }catch(error){
+       throw error
+   }
 }
 const updateLocalStorageLikesList = function(){
     localStorage.setItem('likesList',JSON.stringify(state.likesList))
@@ -153,7 +168,7 @@ const loadingLocalStorageBookMarkList = function(){
 }
 /* 
  allCategory ->load on Select Form
- Create Palette By Category Name
+ Create Palette By Category Nameیشسیشسی
 */
 const loadingGetAllCategoryNames = async function(query){
     try{
