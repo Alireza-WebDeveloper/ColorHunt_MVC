@@ -55,3 +55,20 @@ dropdownMenuTabs.addEventListener('click',function(e){
 //     recipePalette.style.backgroundColor = `${e.target.value}`;
 //   })
 // })
+
+
+const nav_Tabs = document.querySelector('.nav-Tabs');
+const animateTabs = function(e){
+  const target = e.target.closest('.list-Tabs');
+  const ul = nav_Tabs.querySelectorAll('.list-Tabs');
+  if(!target) return;
+  ul.forEach((element)=>{
+    const {opacity,blur} = this;
+   element.style.opacity = `${opacity}`;
+   element.style.filter = `blur(${blur}px)`;
+  })
+  target.style.opacity = '1';
+  target.style.filter = 'blur(0)';
+}
+nav_Tabs.addEventListener('mouseover',animateTabs.bind({opacity:0.2,blur:2}));
+nav_Tabs.addEventListener('mouseout',animateTabs.bind({opacity:1,blur:0}));
