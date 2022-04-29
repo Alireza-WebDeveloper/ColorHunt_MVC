@@ -11,7 +11,35 @@
     
 }
 #btn--sideBar{
-    background-image: linear-gradient(to right,var(--light),var(--light));
+    position: relative;
+    background-color: var(--light);
+    border-radius: 5px;
+    perspective: 1000;
+    transform-style: preserve-3d;
+}
+
+#btn--sideBar::before{
+    position: absolute;
+    content: "";
+    inset: 0;
+    left: 0;
+    border: solid var(--light) 4px;
+    border-radius: 5px;
+    transition: all 0.8s linear;
+    opacity: 0;
+}
+#btn--sideBar:hover::before{
+   animation: btn--sideBar 0.7s linear infinite both;
+}
+@keyframes btn--sideBar {
+    from{
+        transform: scale(1.2);
+        opacity: 0;
+    }
+    to{
+        transform: scale(1.1);
+        opacity: 1;
+    }
 }
 
 .sideBar--Tabs::before{
