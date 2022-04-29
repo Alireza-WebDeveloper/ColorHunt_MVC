@@ -41,7 +41,16 @@ dropdownMenuTabs.addEventListener('click',function(e){
   const button = e.target.closest('#dropdownMenuTabs');
   const childrens = Array.from(e.target.closest('#dropdownMenuTabs').querySelectorAll('span'));
    if(!button) return;
+   button.classList.toggle('active');
    childrens.forEach((el,index)=>el.classList.toggle(`activeRolle-${index}`))
+}) 
+document.addEventListener('click',function(e){
+  const button = e.target.closest('#dropdownMenuTabs');
+  if(!button && dropdownMenuTabs.classList.contains('active')){
+      dropdownMenuTabs.classList.toggle('active');
+      dropdownMenuTabs.querySelectorAll('span').forEach((el,index)=>el.classList.toggle(`activeRolle-${index}`));
+     
+  }
 })
 
 // Create Palette
