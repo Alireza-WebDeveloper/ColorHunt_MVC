@@ -197,7 +197,29 @@ _addHandlerBookmarkPalette(handler){
     duration:400
   })
  }
-  
+  /**
+   * 
+   * @param {*} handler = controlGetSinglePalett() 
+   */
+   _windowLoading(handler){
+    window.addEventListener('load',function(){
+      let pathName =  location.pathname;
+      let id = pathName.split('/')[2]; 
+      let length = pathName.split('/').length; 
+      if(id && length === 3 && pathName.startsWith('/palettes/')) handler(id);
+    })
+  }
+   /**
+   * 
+   * @param {*} handler = controlGetSinglePalett() 
+   */
+    _windowPopState(handler){
+      window.addEventListener('popstate',function(e){
+        let id = e?.state?.id;
+        if(!id) return;
+        handler(id);
+      })
+    }
 }
 
 export  default new SinglePalettView();

@@ -33,4 +33,15 @@ const timeOut = function(SEC){
         },1000*SEC);
     })
 }
-export {Ajax , timeOut};
+
+
+const timeRun = function(SEC){
+    return new Promise((_,reject)=>{
+        setTimeout(function(){
+            Resolve('');
+        },1000*SEC);
+    })
+}
+
+
+export {Ajax , timeOut , timeRun};

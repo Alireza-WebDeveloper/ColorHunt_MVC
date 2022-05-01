@@ -106,26 +106,15 @@ class AllPaletteView extends SinglePalettePreView{
       handler(id);
     })
   }
-  /**
-   * 
-   * @param {*} handler = controlGetSinglePalett() 
-   */
   _windowLoading(handler){
-    window.addEventListener('load',function(){
-      let pathName =  location.pathname;
-      let id = pathName.split('/')[2]; 
-      if(!id) return;
-      handler(id);
+    window.addEventListener('load',function(e){
+      if(e.target.location.origin === e.target.location.href.slice(0,-1)) handler();
     })
   }
-  /**
-   * 
-   * @param {*} handler = controlGetSinglePalett() 
-   */
   _windowPopState(handler){
     window.addEventListener('popstate',function(e){
-      let id = e?.state?.id;
-      handler(id);
+      console.log(e);
+       if(e.target.location.origin === e.target.location.href.slice(0,-1)) handler();
     })
   }
 

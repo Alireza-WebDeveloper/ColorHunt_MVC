@@ -3,7 +3,7 @@ import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
 class PaginationView extends View{
     _parElement = document.querySelector('.pagination');
     _generateMarkUp(){
-        const numPage = Math.floor(this._data.result.length / this._data.resultPerPage);
+        const numPage =  this._data.resultPerPage;
          
         // اولین صفحه 
        if(this._data.page === 1 && numPage > 1 ){
@@ -40,7 +40,7 @@ class PaginationView extends View{
        }
        // آخرین صفحه
        if(this._data.page === numPage){
-           console.log(this._data.page);
+          
           return `
           <li class="page-item mt-1 start" data-goToPage="${1}">${1}</li>
            <li class="page-item mt-1" id='prevState' data-goToPage="${this._data.page-1}">
@@ -99,12 +99,21 @@ class PaginationView extends View{
      * @description از این طریق وقتی روی صفحه 2 کلیک کنیم ، ایتم های بین 10 و 20 لود می شوند
      */
     _addHandler(handler){
-      this._parElement.addEventListener('click',function(e){
-          const button = e.target.closest('.page-item');
-          if(!button) return;
-          const goToPage = +button.dataset.gotopage;
-           handler(goToPage);
-      })
+      this._parElement.addEventListener('click',runPage.bind(this));
+      function runPage(e){
+        const button = e.target.closest('.page-item');
+        if(!button) return;
+        const goToPage = +button.dataset.gotopage;
+        /// Run 
+        handler(goToPage);
+        ///History Push State 
+         const createUrl = new URL(location.href);
+         createUrl.pathname = `/palettes/all/${this._data.query}`
+         createUrl.searchParams.set('pageSize',`${this._data.resultPerPage}`);
+         createUrl.searchParams.set('pageNumber',`${this._data.page}`);
+         console.log(e);
+         history.pushState({pathname:createUrl.pathname,pageSize:createUrl.searchParams.get('pageSize'),pageNumber:createUrl.searchParams.get('pageNumber')},null,`${createUrl.pathname}/${createUrl.search}`);
+    }
     }
 }
 

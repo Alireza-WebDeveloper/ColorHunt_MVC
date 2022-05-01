@@ -1,6 +1,6 @@
 'use strict';
 import { async } from "regenerator-runtime";
-import { Ajax , timeOut} from "./helpers";
+import { Ajax , timeOut , timeRun} from "./helpers";
 import { API_URL , SEC ,Res_Per_Page} from "./config";
 /// State 
 const state =
@@ -8,14 +8,14 @@ const state =
     singlePalette:{},
     allPalettes:{
         result:[],
-        query:'',
-        page:1,
-        resultPerPage:Res_Per_Page,
     },
     likesList:[],
     bookMarkList:[],
     allCategories:{
-        names:[]
+        names:[],
+        query:'',
+        page:1,
+        resultPerPage:Res_Per_Page,
     },
     createCategoryPalette:[]
 }
@@ -25,6 +25,7 @@ const state =
  const loadingGetSinglePalett = async function(id){
    try{
        const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${id}`)])
+       
        if(!data) return;
        state.singlePalette = data;
         //// Add Bookmarked when loading page , load singlePlaette
@@ -33,11 +34,13 @@ const state =
        throw error;
    }
  }
-///All Palette
- const loadingGetAllPalette = async function(query){
+///All Palette Similar
+ const loadingGetAllPaletteSimilar = async function(query){
      try{
         const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${query}`)])
+        console.log(data);
         if(!data) return;
+      
         state.allPalettes.result = data;
         state.allPalettes.query = query;
         //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
@@ -49,19 +52,47 @@ const state =
                }
             })
         })
+        console.log(data);
         
      }catch(error){
          throw  error;
      }
  }
+ // All Palette By Category Name 
+ const loadingGetAllPaletteCategoryByName_Page = async function(categoryName = state.allCategories.query , page = state.allCategories.page){
+     try{
+        state.allCategories.page = page;
+        const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/all/${categoryName}?pageSize=${state.allCategories.resultPerPage}&pageNumber=${page}`)])
+        if(!data) return;
+         
+        state.allCategories.query = categoryName;
+        state.allPalettes.result = data;
+        //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
+        /// مقدار صحیح به خودش بگیرد
+        state.allPalettes.result.forEach((ObjectRes)=>{
+            state.bookMarkList.forEach((ObjectBookMark)=>{
+               if( ObjectRes.id === ObjectBookMark.id){
+                   ObjectRes.bookmarked = true;
+               }
+            })
+        })
+     }catch(error){
+         throw error
+     }
+ }
+
 
  ///Pagination
- const getAllPalettePage = function(page = state.allPalettes.page){
-     state.allPalettes.page = page;
-     const start = (page - 1) * state.allPalettes.resultPerPage;
-     const end = page * state.allPalettes.resultPerPage;
-     return state.allPalettes.result.slice(start,end);
- }
+//  const getAllPalettePage = function(page = state.allPalettes.page){
+//      state.allPalettes.page = page;
+//      const start = (page - 1) * state.allPalettes.resultPerPage;
+//      const end = page * state.allPalettes.resultPerPage;
+//      return state.allPalettes.result.slice(start,end);
+//  }
+
+
+
+
 ///LikePalette
 const UiLikesList = (data)=>{
 // Update Object -> All Palette()
@@ -168,13 +199,24 @@ const loadingLocalStorageBookMarkList = function(){
 }
 /* 
  allCategory ->load on Select Form
- Create Palette By Category Nameیشسیشسی
+ allCategory ->load on category Page
+ Create Palette By Category Name
+ loading Category Page by Name
 */
-const loadingGetAllCategoryNames = async function(query){
+const loadingGetAllCategoryNames =   function(query){
     try{
-        const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}category/${query}`)])
-        if(!data) return;
-        state.allCategories.names = data.map(({name})=>name);
+        // const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}category/${query}`)])
+        // if(!data) return;
+        // state.allCategories.names = data.map(({name})=>name);
+        state.allCategories.names =
+        [
+            'Pastel', 'Neon', 'Gold', 'Vintage', 'Retro',
+            'Light', 'Dark', 'Warm', 'Cold', 'Summer', 'Fall',
+            'Winter', 'Spring', 'Rainbow', 'Night', 'Space', 'Earth',
+            'Nature', 'Sunset', 'Skin', 'Food', 'Cream', 'Coffee', 'Christmas', 
+            'Halloween', 'Wedding', 'Kids', 'Happy'
+        ]
+        
     }catch(error){
         throw error;
     }
@@ -210,5 +252,5 @@ const loadingLocalStorageCreatePaletteCategory = function(){
 
 
 /// Exports 
-export {loadingGetSinglePalett , state , loadingGetAllPalette ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory , deleteCreatePaletteCategory};
+export {loadingGetSinglePalett , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
 
