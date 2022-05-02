@@ -17,6 +17,7 @@ const Ajax = async function(url,type,uploadData){
         }) : fetch(url);
         const response = await fetchPro;
         if(!response.ok) throw new Error(`Wrong Request Ajax ${response.status}`);  
+        if(type === 'DELETE') return response.text();
         return response.json();
     }catch(error){
         console.log(error);  
@@ -36,9 +37,9 @@ const timeOut = function(SEC){
 
 
 const timeRun = function(SEC){
-    return new Promise((_,reject)=>{
+    return new Promise((resolve,_)=>{
         setTimeout(function(){
-            Resolve('');
+            resolve('');
         },1000*SEC);
     })
 }

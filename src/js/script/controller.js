@@ -83,7 +83,7 @@ const controlAddCategoryNames =   function (query = 'all'){
     createPaletteCategory._renderError(error);
   }
 }
-///Create Category Palette
+///Create And Delete  Category Palette
 const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
   try{
     await model.loadingCreatePaletteCategory(cateGoryName,uploadData); 
@@ -97,9 +97,13 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
   }
 }
 
-const controlUpdateCreatePaletteCategory = function(id){
-model.deleteCreatePaletteCategory(id);
-createPaletteCategoryView._render(model.state.createCategoryPalette);
+const controlDeleteCreatePaletteCategory = async function(id){
+   await model.deleteCreatePaletteCategory(id);
+   if(id === model.state.singlePalette.id)  SinglePaletteView._clear();
+   createPaletteCategoryView._render(model.state.createCategoryPalette);
+   BookmarkView._render(model.state.bookMarkList);
+   BookmarkView2._render(model.state.bookMarkList);
+   createPaletteCategoryView._pushState();
 }
 
 ///Like Palette
@@ -168,8 +172,8 @@ const initials = function(){
  createPaletteCategory._addHandlerCreatePalette(controlCreatePaletteCategory);
  createPaletteCategory._windowLoading(controlAddCategoryNames);
  createPaletteCategoryView._addHandlerLikePalette(controlUpadeLikePalette);
- createPaletteCategoryView._addHandlerRemove(controlUpdateCreatePaletteCategory);
  createPaletteCategoryView._addHandlerSinglePalette(controlGetSinglePalett);
+ createPaletteCategoryView._addHandlerDeletePalette(controlDeleteCreatePaletteCategory);
  CategoryByNamesView._addHandlerAllPaletteCategoryByName(controlAllPaletteCategoryByName);
  CategoryByNamesView._windowLoading(controlAllPaletteCategoryByName);
  CategoryByNamesView._windowPopState(controlAllPaletteCategoryByName);

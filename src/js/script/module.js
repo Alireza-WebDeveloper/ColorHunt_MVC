@@ -126,6 +126,7 @@ const loadingAddLikePalette = async function(id){
         if(!data) return;
         /// Add id  To Like List []
         state.likesList.push(data.id);
+        state.likesList = [...new Set(state.likesList)];
         UiLikesList(data);
     }catch(error){
         throw error;
@@ -234,12 +235,29 @@ const loadingCreatePaletteCategory = async function(cateGoryName,uploadData){
     }
 }
 
-const deleteCreatePaletteCategory = function(id){
-    const index = state.createCategoryPalette.findIndex((ObjectData)=>ObjectData.id === id);
-     state.createCategoryPalette.splice(index,1);
-     updateLocalStorageCreatePaletteCategory();
+const deleteCreatePaletteCategory = async function(id){
+    try{
+        await  Ajax(`${API_URL}palettes/${id}`,'DELETE');
+        ///Update Category List
+        const indexOfCategoryList = state.createCategoryPalette.findIndex((ObjectData)=>ObjectData.id === id);
+        state.createCategoryPalette.splice(indexOfCategoryList,1);
+        /// Update BookMark List 
+        const indexOfBookMarkList =  state.bookMarkList.findIndex((ObjectData)=>ObjectData.id === id);
+        if(indexOfBookMarkList !== -1){
+            state.bookMarkList.splice(indexOfBookMarkList,1);
+        }
+        /// Update Like List 
+        const indexOfLikeList = state.likesList.findIndex((getId)=>getId === id);
+        if(!indexOfLikeList !== -1){
+            state.likesList.splice(indexOfLikeList,1);
+        }
+        updateLocalStorageCreatePaletteCategory();
+        updateLocalStorageBookMarkList();
+        updateLocalStorageLikesList();
+    }catch(error){
+        console.log(error);
+    }
 }
-
 const updateLocalStorageCreatePaletteCategory = function(){
     localStorage.setItem('createPaletteCategory',JSON.stringify(state.createCategoryPalette));
 }
@@ -252,5 +270,5 @@ const loadingLocalStorageCreatePaletteCategory = function(){
 
 
 /// Exports 
-export {loadingGetSinglePalett , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
+export {loadingGetSinglePalett , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
 
