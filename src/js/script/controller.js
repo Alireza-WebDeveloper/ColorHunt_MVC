@@ -83,7 +83,7 @@ const controlAddCategoryNames =   function (query = 'all'){
     createPaletteCategory._renderError(error);
   }
 }
-///Create And Delete  Category Palette
+///Create Palette
 const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
   try{
     await model.loadingCreatePaletteCategory(cateGoryName,uploadData); 
@@ -96,7 +96,7 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
     createPaletteCategory._errorOnMessage(error);
   }
 }
-
+///Delete Create Palette
 const controlDeleteCreatePaletteCategory = async function(id){
    await model.deleteCreatePaletteCategory(id);
    if(id === model.state.singlePalette.id)  SinglePaletteView._clear();

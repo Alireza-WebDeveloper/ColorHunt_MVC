@@ -58,6 +58,10 @@ class createPaletteCategoryView extends BookmarkPreView{
         if(!button) return;
         $('#bookmark-list2').click();
     }
+    /**
+     * 
+     * @param {*} handler = controlDeleteCreatePaletteCategory() 
+     */
     _addHandlerDeletePalette(handler){
       this._parElement.addEventListener('click',function(e){
         const button = e.target.closest('.btn-Delete');
