@@ -6,6 +6,7 @@ import { API_URL , SEC ,Res_Per_Page} from "./config";
 const state =
 {
     singlePalette:{},
+    singlePaletteComments:[],
     allPalettes:{
         result:[],
     },
@@ -25,7 +26,6 @@ const state =
  const loadingGetSinglePalett = async function(id){
    try{
        const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${id}`)])
-       console.log(data);
        if(!data) return;
        state.singlePalette = data;
         //// Add Bookmarked when loading page , load singlePlaette
@@ -34,11 +34,18 @@ const state =
        throw error;
    }
  }
+/// Single Palette Comments 
+const loadingGetSinglePalettComments = async function(id){
+    const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}comments/${id}`)])
+    if(!data) return;
+    state.singlePaletteComments = data;
+}
+
+
 ///All Palette Similar
  const loadingGetAllPaletteSimilar = async function(query){
      try{
         const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${query}`)])
-        console.log(data);
         if(!data) return;
       
         state.allPalettes.result = data;
@@ -52,8 +59,6 @@ const state =
                }
             })
         })
-        console.log(data);
-        
      }catch(error){
          throw  error;
      }
@@ -64,7 +69,6 @@ const state =
         state.allCategories.page = page;
         const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/all/${categoryName}?pageSize=${state.allCategories.resultPerPage}&pageNumber=${page}`)])
         if(!data) return;
-         
         state.allCategories.query = categoryName;
         state.allPalettes.result = data;
         //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
@@ -267,5 +271,5 @@ const loadingLocalStorageCreatePaletteCategory = function(){
 }
 
 /// Exports 
-export {loadingGetSinglePalett , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
+export {loadingGetSinglePalett , loadingGetSinglePalettComments , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
 

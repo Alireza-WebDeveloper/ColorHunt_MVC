@@ -24,7 +24,7 @@ class createPaletteCategoryView extends BookmarkPreView{
             </a>
             </section>
             <section class="palette-Details">
-         <div class='buttons--Info d-flex w-100 flex-row justify-content-between align-items-center p-1'>
+         <div class='buttons--Info d-flex flex-row justify-content-between align-items-center p-1'>
            <button class='btn btn-Like  d-flex justify-content-start align-items-center' data-code='${ObjectData.id}'>
            <svg class="svg--btnLike">
               <use href="${icon}#heart${ObjectData.likes >= 1 ?'-fill' :''}"></use>

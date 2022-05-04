@@ -74,7 +74,7 @@
     font-family: BTitrBd , 'Courier New', Courier, monospace;
 }
 
-.svg--commentList , .svg--dataList{
+.svg--commentList , .svg--dataList , .svg--dataTitle{
     width: min(1.3rem,3rem);
     height: min(1.7rem,3rem);
     padding: 0.1rem;
@@ -86,7 +86,7 @@
     align-items: center;
     gap: 10px;
 }
-.author--name , .author--date{
+.author--name , .author--date , .author--title{
     font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
     color: var(--light);
     font-size: 1rem;
@@ -104,7 +104,7 @@
 
 @media (max-width:768px) and (pointer:fine) {
     
-    .author--name , .author--date{
+    .author--name , .author--date , .author--title{
        font-size: 0.6rem;
     }
     .comment-List-Description .text--Description{
@@ -117,7 +117,7 @@
     .comment--Tittle .info--comments ,.comment--Tittle .add--Comment{
         font-size: 1.3rem;
     }
-    .author--name , .author--date{
+    .author--name , .author--date , .author--title{
        font-size: 1.2rem;
     }
     .comment-List-Description .text--Description{

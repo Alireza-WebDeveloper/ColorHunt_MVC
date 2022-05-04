@@ -13,6 +13,7 @@ import BookmarkView2 from './View/BookmarkView2';
 import createPaletteCategory from './View/createPaletteCategory';
 import createPaletteCategoryView from './View/createPaletteCategoryView';
 import CategoryByNamesView from './View/CategoryByNamesView';
+import CommentsView from './View/CommentsView';
 ///Single Palette 
 const controlGetSinglePalett = async function(id){
  try{
@@ -26,17 +27,24 @@ const controlGetSinglePalett = async function(id){
   await model.loadingGetAllPaletteSimilar('all');
   AllPaletteView._render(model.state.allPalettes.result);
   AllPaletteView._toolTips();
+  // AllPaletteView._clear();
  }catch(error){
    SinglePaletteView._renderError(error);
  }
- 
 }
+//// Single Palette Comments 
+const controlGetSinglePaletteComments = async function(id){
+   CommentsView._renderLoading();
+   await model.loadingGetSinglePalettComments(id);
+   CommentsView._render(model.state.singlePaletteComments);
+};
+
+
  ///All Palette (Similar)
 const controlGetAllPalettSimilar= async function(query = 'all'){
  try{
    AllPaletteView._renderLoading();
    PaginationView._clear();
-   console.log('yes');
   await model.loadingGetAllPaletteSimilar(query);
   AllPaletteView._render(model.state.allPalettes.result);
   AllPaletteView._toolTips();
@@ -154,6 +162,7 @@ const initials = function(){
  
  controlLocalStorage();
  AllPaletteView._addHandlerSinglePalette(controlGetSinglePalett);
+
  AllPaletteView._addHandlerLikePalette(controlUpadeLikePalette);
  AllPaletteView._addHandlerBookmarkPalette(controlUpdateBookMarkList);
  AllPaletteView._windowPopState(controlGetAllPalettSimilar);
@@ -177,6 +186,13 @@ const initials = function(){
  CategoryByNamesView._addHandlerAllPaletteCategoryByName(controlAllPaletteCategoryByName);
  CategoryByNamesView._windowLoading(controlAllPaletteCategoryByName);
  CategoryByNamesView._windowPopState(controlAllPaletteCategoryByName);
+//  Comments
+AllPaletteView._addHandlerSinglePalette(controlGetSinglePaletteComments);
+BookmarkView2._addHandlerSinglePalette(controlGetSinglePaletteComments);
+BookmarkView._addHandlerSinglePalette(controlGetSinglePaletteComments);
+createPaletteCategoryView._addHandlerSinglePalette(controlGetSinglePaletteComments);
+SinglePaletteView._windowPopState(controlGetSinglePaletteComments);
+SinglePaletteView._windowLoading(controlGetSinglePaletteComments);
 }
 initials();
 
