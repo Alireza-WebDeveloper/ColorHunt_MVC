@@ -23,11 +23,11 @@ const controlGetSinglePalett = async function(id){
   SinglePaletteView._render(model.state.singlePalette);
   SinglePaletteView._toolTips();
   // Comment
-  AllPaletteView._renderLoading();
-  await model.loadingGetAllPaletteSimilar('all');
-  AllPaletteView._render(model.state.allPalettes.result);
-  AllPaletteView._toolTips();
-  // AllPaletteView._clear();
+  // AllPaletteView._renderLoading();
+  // await model.loadingGetAllPaletteSimilar('all');
+  // AllPaletteView._render(model.state.allPalettes.result);
+  // AllPaletteView._toolTips();
+  AllPaletteView._clear();
  }catch(error){
    SinglePaletteView._renderError(error);
  }
