@@ -34,9 +34,13 @@ const controlGetSinglePalett = async function(id){
 }
 //// Single Palette Comments 
 const controlGetSinglePaletteComments = async function(id){
-   CommentsView._renderLoading();
-   await model.loadingGetSinglePalettComments(id);
-   CommentsView._render(model.state.singlePaletteComments);
+   try{
+    CommentsView._renderLoading();
+    await model.loadingGetSinglePalettComments(id);
+    CommentsView._render(model.state.singlePaletteComments);
+   }catch(error){
+     CommentsView._renderError(error);
+   }
 };
 
 
