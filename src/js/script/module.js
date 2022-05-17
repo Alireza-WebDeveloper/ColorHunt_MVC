@@ -29,7 +29,8 @@ const state =
        if(!data) return;
        state.singlePalette = data;
         //// Add Bookmarked when loading page , load singlePlaette
-        state.bookMarkList.find((Object)=>Object.id === state.singlePalette.id) ? state.singlePalette.bookmarked = true : '';
+        state.bookMarkList.some((Object)=>Object.id === state.singlePalette.id) ? state.singlePalette.bookmarked = true : '';
+         
    }catch(error){
        throw error;
    }
@@ -170,7 +171,7 @@ const UiBookMark = (id,condition)=>{
     /// Update on Single Palette 
      state.singlePalette.id === id ? state.singlePalette.bookmarked = condition :'';
    /// Return Object Find
-     return updateObj_AllPalette || updateObj_CategoryPalette;
+     return updateObj_AllPalette || updateObj_CategoryPalette || state.singlePalette;
 }
 /// Add BookMark
 const addBookMarkList = function(id){
