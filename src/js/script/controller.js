@@ -15,6 +15,7 @@ import createPaletteCategoryView from './View/createPaletteCategoryView';
 import CategoryByNamesView from './View/CategoryByNamesView';
 import CommentsView from './View/CommentsView';
 import CarouselPaletteView from './View/CarouselPaletteView';
+import CategoryByNames2View from './View/CategoryByNames2View';
 ///Single Palette 
 const controlGetSinglePalett = async function(id){
  try{
@@ -95,6 +96,7 @@ const controlAddCategoryNames =   function (query = 'all'){
    model.loadingGetAllCategoryNames(query);
   createPaletteCategory._render(model.state.allCategories.names);
   CategoryByNamesView._render(model.state.allCategories);
+  CategoryByNames2View._render(model.state.allCategories);
   }catch(error){
     createPaletteCategory._renderError(error);
   }
@@ -194,6 +196,7 @@ const initials = function(){
  CategoryByNamesView._addHandlerAllPaletteCategoryByName(controlAllPaletteCategoryByName);
  CategoryByNamesView._windowLoading(controlAllPaletteCategoryByName);
  CategoryByNamesView._windowPopState(controlAllPaletteCategoryByName);
+ CategoryByNames2View._addHandlerAllPaletteCategoryByName(controlAllPaletteCategoryByName);
 //  Comments
 AllPaletteView._addHandlerSinglePalette(controlGetSinglePaletteComments);
 BookmarkView2._addHandlerSinglePalette(controlGetSinglePaletteComments);
