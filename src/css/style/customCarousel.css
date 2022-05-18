@@ -8,7 +8,7 @@
 }
 /* custom_Carousel_Item */
 .custom_Carousel__Item .palette .recipe-Place{
-    border-radius: 0;
+    
  }
 
  
@@ -19,6 +19,7 @@
     padding: 0;
     width: 100%;
     height: min(250px,300px);
+    border-radius: 5px;
     overflow: hidden;
 }
 .custom_Carousel__Item .palette .palette--Details{
@@ -36,6 +37,7 @@
     transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     cursor: pointer;
     transition-delay: 0.3s;
+    border-radius: 5px;
 }
 .palette--Details .svg--btnDetails{
     width: 40px;
