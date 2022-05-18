@@ -1,0 +1,83 @@
+.carousel_Main{
+    background: linear-gradient(145deg, #efeaea, #f0efef);
+    box-shadow:  6px 6px 4px #1e1e1e,
+                 -6px -6px 4px #242424;
+}
+.custom_Carousel{
+    /* background-color: var(--light); */
+}
+/* custom_Carousel_Item */
+.custom_Carousel__Item .palette .recipe-Place{
+    border-radius: 0;
+ }
+
+ 
+.custom_Carousel__Item .palette{
+    position: relative;
+    background-color: var(--dark);
+    border: solid rgb(179, 178, 178) 1.2px;
+    padding: 0;
+    width: 100%;
+    height: min(250px,300px);
+    overflow: hidden;
+}
+.custom_Carousel__Item .palette .palette--Details{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(230, 227, 224,0.5);
+    filter: blur(0.02rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    cursor: pointer;
+    transition-delay: 0.3s;
+}
+.palette--Details .svg--btnDetails{
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    transition: all 0.5s linear;
+    transition-delay: 0;
+}
+/* Animation On Hover */
+.custom_Carousel__Item :hover .palette--Details{
+    top: 0;
+    transition-delay: 0s;
+}
+
+.custom_Carousel__Item :hover .svg--btnDetails{
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+
+/* Custom_Carousel_Arrow */
+#custom_Carousel_Prev,#custom_Carousel_Next{
+    border-radius: 50px;
+}
+
+
+.svg--btnCarouselArrow{
+    width: 40px;
+    height: 40px;
+}
+
+/* Responsive Media Query */
+@media (max-width:768px) and (pointer:fine) {
+    .custom_Carousel__Item .palette{
+        height: min(220px,300px);
+    }
+}
+@media (max-width:768px) and (pointer:coarse) {
+    .custom_Carousel__Item .palette{
+        height: min(280px,400px);
+    }
+    .svg--btnCarouselArrow{
+        width: 60px;
+        height: 60px;
+    }
+}

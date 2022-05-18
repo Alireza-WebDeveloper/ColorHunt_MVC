@@ -14,6 +14,7 @@ import createPaletteCategory from './View/createPaletteCategory';
 import createPaletteCategoryView from './View/createPaletteCategoryView';
 import CategoryByNamesView from './View/CategoryByNamesView';
 import CommentsView from './View/CommentsView';
+import CarouselPaletteView from './View/CarouselPaletteView';
 ///Single Palette 
 const controlGetSinglePalett = async function(id){
  try{
@@ -48,10 +49,13 @@ const controlGetSinglePaletteComments = async function(id){
 const controlGetAllPalettSimilar= async function(query = 'all'){
  try{
    AllPaletteView._renderLoading();
+   CarouselPaletteView._renderLoading();
    PaginationView._clear();
   await model.loadingGetAllPaletteSimilar(query);
   AllPaletteView._render(model.state.allPalettes.result);
   AllPaletteView._toolTips();
+  CarouselPaletteView._render(model.state.allPalettes.result.slice(90,180));
+  CarouselPaletteView._slickCarousel();
   // PaginationView._render(model.state.allPalettes);
  }catch(error){
    AllPaletteView._renderError(error);
@@ -197,6 +201,9 @@ BookmarkView._addHandlerSinglePalette(controlGetSinglePaletteComments);
 createPaletteCategoryView._addHandlerSinglePalette(controlGetSinglePaletteComments);
 SinglePaletteView._windowPopState(controlGetSinglePaletteComments);
 SinglePaletteView._windowLoading(controlGetSinglePaletteComments);
+//// Carousel 
+CarouselPaletteView._addHandlerSinglePalette(controlGetSinglePalett);
+CarouselPaletteView._addHandlerSinglePalette(controlGetSinglePaletteComments);
 }
 initials();
 
