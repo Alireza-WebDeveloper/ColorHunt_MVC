@@ -69,35 +69,56 @@
 }
 
 /* Comment List  */
-.header--Comment{
+#comment-Form{
+    background-color: var(--dark);
+    display: none;
+  }
+  
+  #comment-Form input , #comment-Form textarea{
+      text-align: right;
+      box-shadow: inset 0 0 10px var(--dark);
+  }
+  
+  :is(#author-Name,#author-Title,#author-Message)::placeholder , #comment-Submit{
+    color: var(--dark);
     text-align: right;
-    font-family: BTitrBd , 'Courier New', Courier, monospace;
-}
-
-.svg--commentList , .svg--dataList , .svg--dataTitle{
-    width: min(1.3rem,3rem);
-    height: min(1.7rem,3rem);
-    padding: 0.1rem;
-}
-
-.author--Information{
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.author--name , .author--date , .author--title{
     font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
-    color: var(--light);
-    font-size: 1rem;
-    text-align: right;
-}
-.comment-List-Description .text--Description{
-    text-align: right;
-    color: var(--light);
-    font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
-    font-size: 1rem;
-}
+  }
+   
+  #comment-Submit:hover{
+      background-color: var(--dark);
+      color: var(--light);
+  }
+  
+  /* Comment List  */
+  .header--Comment{
+      text-align: right;
+      font-family: BTitrBd , 'Courier New', Courier, monospace;
+  }
+  
+  .svg--commentList , .svg--dataList , .svg--dataTitle{
+      width: min(1.3rem,3rem);
+      height: min(1.7rem,3rem);
+      padding: 0.1rem;
+  }
+  
+  .author--Information{
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+  }
+  .author--name , .author--date , .author--title{
+      font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
+      color: var(--light);
+      font-size: 1rem;
+  }
+  .comment-List-Description .text--Description{
+      text-align: right;
+      color: var(--light);
+      font-family: Mlight , sans-serif ,'Courier New', Courier, monospace;
+      font-size: 1rem;
+  }
 
 
 /* Media Query  */

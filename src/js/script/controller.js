@@ -14,6 +14,7 @@ import createPaletteCategory from './View/createPaletteCategory';
 import createPaletteCategoryView from './View/createPaletteCategoryView';
 import CategoryByNamesView from './View/CategoryByNamesView';
 import CommentsView from './View/CommentsView';
+import CommentFormView from './View/CommentFormView';
 import CarouselPaletteView from './View/CarouselPaletteView';
 import CategoryByNames2View from './View/CategoryByNames2View';
 ///Single Palette 
@@ -40,10 +41,12 @@ const controlGetSinglePaletteComments = async function(id){
     CommentsView._renderLoading();
     await model.loadingGetSinglePalettComments(id);
     CommentsView._render(model.state.singlePaletteComments);
+    CommentFormView._render(true);
    }catch(error){
      CommentsView._renderError(error);
    }
 };
+
 
 
  ///All Palette (Similar)
@@ -55,7 +58,7 @@ const controlGetAllPalettSimilar= async function(query = 'all'){
   await model.loadingGetAllPaletteSimilar(query);
   AllPaletteView._render(model.state.allPalettes.result);
   AllPaletteView._toolTips();
-  CarouselPaletteView._render(model.state.allPalettes.result.slice(90,180));
+  CarouselPaletteView._render(model.state.allPalettes.result.slice(0,90));
   CarouselPaletteView._slickCarousel();
   // PaginationView._render(model.state.allPalettes);
  }catch(error){
