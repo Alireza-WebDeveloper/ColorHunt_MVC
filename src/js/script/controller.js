@@ -52,6 +52,10 @@ const controlGetSinglePaletteComments = async function(id){
  ///All Palette (Similar)
 const controlGetAllPalettSimilar= async function(query = 'all'){
  try{
+   /// Single Palette Clear 
+   SinglePaletteView._clear(); 
+   CommentsView._clear();
+   CommentFormView._clear();
    AllPaletteView._renderLoading();
    CarouselPaletteView._renderLoading();
    PaginationView._clear();
@@ -69,6 +73,10 @@ const controlGetAllPalettSimilar= async function(query = 'all'){
 /// All Palettete (Category By Name)
 const controlAllPaletteCategoryByName =async function(categoryName,page=1){
   try{
+    /// Single Palette Clear 
+   SinglePaletteView._clear(); 
+   CommentsView._clear();
+   CommentFormView._clear();
     AllPaletteView._renderLoading();
     await model.loadingGetAllPaletteCategoryByName_Page(categoryName,page);
     await model.loadingGetSizeCategoryNames(categoryName);

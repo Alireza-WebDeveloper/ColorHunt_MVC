@@ -83,6 +83,9 @@
 
 .nav-Tags , .item-Tags , .link-Tags{
     position: relative;
+    text-transform: capitalize;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-variant-caps: all-small-caps;
 }
 
 .nav-Tags{
