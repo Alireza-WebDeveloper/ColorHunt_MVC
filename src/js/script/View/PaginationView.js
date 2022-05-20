@@ -3,8 +3,7 @@ import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
 class PaginationView extends View{
     _parElement = document.querySelector('.pagination');
     _generateMarkUp(){
-        const numPage =  this._data.resultPerPage;
-         
+      const numPage = Math.floor(this._data.size / this._data.resultPerPage);
         // اولین صفحه 
        if(this._data.page === 1 && numPage > 1 ){
            return `

@@ -17,6 +17,7 @@ const state =
         query:'',
         page:1,
         resultPerPage:Res_Per_Page,
+        size:0
     },
     createCategoryPalette:[]
 }
@@ -203,24 +204,29 @@ const loadingLocalStorageBookMarkList = function(){
 /* 
 Category 
 */
-const loadingGetAllCategoryNames =   function(query){
+const loadingGetAllCategoryNames = async  function(query){
     try{
-        // const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}category/${query}`)])
-        // if(!data) return;
-        // state.allCategories.names = data.map(({name})=>name);
-        state.allCategories.names =
-        [
-            'Pastel', 'Neon', 'Gold', 'Vintage', 'Retro',
-            'Light', 'Dark', 'Warm', 'Cold', 'Summer', 'Fall',
-            'Winter', 'Spring', 'Rainbow', 'Night', 'Space', 'Earth',
-            'Nature', 'Sunset', 'Skin', 'Food', 'Cream', 'Coffee', 'Christmas', 
-            'Halloween', 'Wedding', 'Kids', 'Happy'
-        ]
-        
+        const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}category/${query}`)])
+        if(!data) return;
+        state.allCategories.names = data;
     }catch(error){
         throw error;
     }
 }
+
+/* Category Size Pagination */
+const loadingGetSizeCategoryNames = async function(query){
+    try{
+      const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}category/size/${query}`)])
+      if(!data) return;
+      state.allCategories.size = +data;
+    }catch(error){
+        throw error;
+    }
+  }
+  
+
+
 //// CreateCategory
 const loadingCreatePaletteCategory = async function(cateGoryName,uploadData){
     try{
@@ -272,5 +278,5 @@ const loadingLocalStorageCreatePaletteCategory = function(){
 }
 
 /// Exports 
-export {loadingGetSinglePalett , loadingGetSinglePalettComments , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
+export {loadingGetSinglePalett , loadingGetSinglePalettComments , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingGetSizeCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
 

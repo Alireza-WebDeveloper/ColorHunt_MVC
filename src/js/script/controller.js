@@ -71,9 +71,15 @@ const controlAllPaletteCategoryByName =async function(categoryName,page=1){
   try{
     AllPaletteView._renderLoading();
     await model.loadingGetAllPaletteCategoryByName_Page(categoryName,page);
+    await model.loadingGetSizeCategoryNames(categoryName);
     AllPaletteView._render(model.state.allPalettes.result);
     SinglePaletteView._clear();
-    PaginationView._render(model.state.allCategories);
+    //// Render Pagination length and size > 0
+    if(model.state.allPalettes.result.length > 0 && model.state.allCategories.size > 0){
+      PaginationView._render(model.state.allCategories);
+    }else{
+      PaginationView._clear();
+    }
   }catch(error){
     CategoryByNamesView._renderError(error);
   }
@@ -94,9 +100,9 @@ const controlPagination =async function (goToPage){
 /*
   Loading Array Of CategoryNames
 */
-const controlAddCategoryNames =   function (query = 'all'){
+const controlAddCategoryNames = async  function (query = 'names'){
   try{
-   model.loadingGetAllCategoryNames(query);
+  await model.loadingGetAllCategoryNames(query);
   createPaletteCategory._render(model.state.allCategories.names);
   CategoryByNamesView._render(model.state.allCategories);
   CategoryByNames2View._render(model.state.allCategories);
