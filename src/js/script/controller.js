@@ -61,7 +61,7 @@ const controlGetAllPalettSimilar= async function(query = 'all'){
    /// Single Palette Clear 
    SinglePaletteView._clear(); 
    CommentsView._clear();
-  //  CommentFormView._clear();
+   CommentFormView._clear();
    AllPaletteView._renderLoading();
    CarouselPaletteView._renderLoading();
    PaginationView._clear();
