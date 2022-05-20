@@ -74,9 +74,9 @@ const controlGetAllPalettSimilar= async function(query = 'all'){
 const controlAllPaletteCategoryByName =async function(categoryName,page=1){
   try{
     /// Single Palette Clear 
-   SinglePaletteView._clear(); 
-   CommentsView._clear();
-   CommentFormView._clear();
+    SinglePaletteView._clear(); 
+    CommentsView._clear();
+    CommentFormView._clear();
     AllPaletteView._renderLoading();
     await model.loadingGetAllPaletteCategoryByName_Page(categoryName,page);
     await model.loadingGetSizeCategoryNames(categoryName);
