@@ -71,6 +71,20 @@ class CommentFormView extends View{
       button.innerHTML  = '';
       button.insertAdjacentHTML('beforeEnd',markUp);
     }
+    _addHandlerSendFormComment(handler){
+       this._parElement.addEventListener('submit',function(e){
+        e.preventDefault();
+        const dataArr = [...new FormData(this.querySelector('#comment-Form'))];
+        const dataObj = Object.fromEntries(dataArr); 
+        handler(dataObj);
+       })
+    }
+    _clearForm(){
+      this._parElement.querySelector('#author-Name').value = '';
+      this._parElement.querySelector('#author-Title').value = '';
+      this._parElement.querySelector('#author-Message').value = '';
+    }
+     
 }
 
 export default new CommentFormView();

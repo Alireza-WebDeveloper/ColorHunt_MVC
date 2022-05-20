@@ -43,6 +43,18 @@ const loadingGetSinglePalettComments = async function(id){
     state.singlePaletteComments = data;
 }
 
+//// Single Palette Send Comment 
+const loadingSendSinglePaletteComment = async function(ObjectData){
+    try{
+    //    const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}comments/${state.singlePalette.id}?author=${ObjectData.author}&title=${ObjectData.title}&message=${ObjectData.message}`,'POST')]);
+    //    if(!data) return;
+       console.log(ObjectData);
+    }catch(error){
+        throw error
+    }
+   }
+ 
+
 
 ///All Palette Similar
  const loadingGetAllPaletteSimilar = async function(query){
@@ -278,5 +290,5 @@ const loadingLocalStorageCreatePaletteCategory = function(){
 }
 
 /// Exports 
-export {loadingGetSinglePalett , loadingGetSinglePalettComments , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingGetSizeCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
+export {loadingGetSinglePalett , loadingGetSinglePalettComments , loadingSendSinglePaletteComment , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingGetSizeCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
 

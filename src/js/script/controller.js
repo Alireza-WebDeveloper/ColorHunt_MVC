@@ -47,6 +47,12 @@ const controlGetSinglePaletteComments = async function(id){
    }
 };
 
+//// Single Palette Send Form Comment 
+const controlSendFormCommentPalette = async function(ObjectData){
+     await model.loadingSendSinglePaletteComment(ObjectData);
+     CommentFormView._clearForm();
+}
+
 
 
  ///All Palette (Similar)
@@ -55,7 +61,7 @@ const controlGetAllPalettSimilar= async function(query = 'all'){
    /// Single Palette Clear 
    SinglePaletteView._clear(); 
    CommentsView._clear();
-   CommentFormView._clear();
+  //  CommentFormView._clear();
    AllPaletteView._renderLoading();
    CarouselPaletteView._renderLoading();
    PaginationView._clear();
@@ -118,6 +124,10 @@ const controlAddCategoryNames = async  function (query = 'names'){
     createPaletteCategory._renderError(error);
   }
 }
+ 
+
+
+
 ///Create Palette
 const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
   try{
@@ -224,6 +234,8 @@ SinglePaletteView._windowLoading(controlGetSinglePaletteComments);
 //// Carousel 
 CarouselPaletteView._addHandlerSinglePalette(controlGetSinglePalett);
 CarouselPaletteView._addHandlerSinglePalette(controlGetSinglePaletteComments);
+/// Comment Form Send
+CommentFormView._addHandlerSendFormComment(controlSendFormCommentPalette);
 }
 initials();
 
