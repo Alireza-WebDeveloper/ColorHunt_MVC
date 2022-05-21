@@ -6,7 +6,9 @@ class CategoryByNamesView extends CategoryByNamesPreView{
     _generateMarkUp(){
 
       return this._data.names.map((name)=>{
-            return `<li class="nav-item item-Tags"><a href="/paletes/all/${name}" data-categoryname='${name}' class="link-Tags nav-link">${name}</a></li>`;
+            return `<li class="nav-item item-Tags rounded-3 ${this._data.query === name ? 'bg-danger' : ''}">
+            <a href="/paletes/all/${name}" data-categoryname='${name}' class="link-Tags nav-link ${this._data.query === name ? 'text-dark' : ''}">${name}</a>
+            </li>`;
         }).join('');
     }
 }

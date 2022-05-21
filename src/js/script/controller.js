@@ -88,6 +88,8 @@ const controlAllPaletteCategoryByName =async function(categoryName,page=1){
     await model.loadingGetSizeCategoryNames(categoryName);
     AllPaletteView._render(model.state.allPalettes.result);
     SinglePaletteView._clear();
+    CategoryByNamesView._update(model.state.allCategories);
+    CategoryByNames2View._update(model.state.allCategories);
     //// Render Pagination length and size > 0
     if(model.state.allPalettes.result.length > 0 && model.state.allCategories.size > 0){
       PaginationView._render(model.state.allCategories);
