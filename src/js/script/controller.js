@@ -17,6 +17,7 @@ import CommentsView from './View/CommentsView';
 import CommentFormView from './View/CommentFormView';
 import CarouselPaletteView from './View/CarouselPaletteView';
 import CategoryByNames2View from './View/CategoryByNames2View';
+import SidebarTabsView from './View/SidebarTabsView';
 ///Single Palette 
 const controlGetSinglePalett = async function(id){
  try{
@@ -127,8 +128,15 @@ const controlAddCategoryNames = async  function (query = 'names'){
   }
 }
  
-
-
+/*
+ Loading SideBar Tabs
+*/
+const controlAddSidebarTabs = function(){
+ SidebarTabsView._render(true);
+}
+////// controlGetAllPalettePopular()
+///// controlGetAllPaletteRandom()
+//// controlGetAllPaletteNew()
 
 ///Create Palette
 const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
@@ -249,6 +257,8 @@ CarouselPaletteView._addHandlerSinglePalette(controlGetSinglePalett);
 CarouselPaletteView._addHandlerSinglePalette(controlGetSinglePaletteComments);
 /// Comment Form Send
 CommentFormView._addHandlerSendFormComment(controlSendFormCommentPalette);
+/// Sidebar Tabs Loading 
+SidebarTabsView._windowLoading(controlAddSidebarTabs);
 }
 initials();
 
