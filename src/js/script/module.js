@@ -131,7 +131,7 @@ updateLocalStorageCreatePaletteCategory();
 const loadingAddLikePalette = async function(id){
     try{
         if(state.likesList.includes(id)) return loadingDisLikePalette(id);
-         const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${id}`,'PUT')])
+         const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/like/${id}`,'PUT')])
         if(!data) return;
         /// Add id  To Like List []
         state.likesList.push(data.id);
