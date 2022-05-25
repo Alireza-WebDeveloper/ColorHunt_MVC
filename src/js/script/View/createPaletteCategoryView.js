@@ -72,6 +72,7 @@ class createPaletteCategoryView extends BookmarkPreView{
     }
     _pushState(){
      history.pushState({},'',`${location.origin}`);
+     window.location.reload(true);
     }
 }
 

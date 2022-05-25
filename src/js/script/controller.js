@@ -139,7 +139,7 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
     SinglePaletteView._render(model.state.singlePalette);
     SinglePaletteView._toolTips();
     /// Load and render Comments
-    await model.loadingGetSinglePalettComments(model.state.singlePalette);
+    await model.loadingGetSinglePalettComments(model.state.singlePalette.id);
     CommentsView._render(model.state.singlePaletteComments);
     CommentFormView._render(model.state.singlePaletteComments);
     /// render Category Create(View)
@@ -152,11 +152,16 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
 ///Delete Create Palette
 const controlDeleteCreatePaletteCategory = async function(id){
    await model.deleteCreatePaletteCategory(id);
-   if(id === model.state.singlePalette.id)  SinglePaletteView._clear();
+   if(id === model.state.singlePalette.id){
+    SinglePaletteView._clear();
+    CommentsView._clear();
+    CommentFormView._clear();
+    createPaletteCategoryView._pushState();
+   }
    createPaletteCategoryView._render(model.state.createCategoryPalette);
    BookmarkView._render(model.state.bookMarkList);
    BookmarkView2._render(model.state.bookMarkList);
-   createPaletteCategoryView._pushState();
+
 }
 
 ///Like Palette
