@@ -25,7 +25,7 @@ class CommentFormView extends View{
           <h4 class="info--comments   order-xl-last">
             <span>
               دیدگاه ثبت شده
-              <bdo dir="right">...</bdo>
+              <bdo dir="right">${this._data.length}</bdo>
             </span>
             <svg class="svg--infoComments">
              <use href="${icon}#chat-dots"></use>

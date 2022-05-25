@@ -41,7 +41,7 @@ const controlGetSinglePaletteComments = async function(id){
     CommentsView._renderLoading();
     await model.loadingGetSinglePalettComments(id);
     CommentsView._render(model.state.singlePaletteComments);
-    CommentFormView._render(true);
+    CommentFormView._render(model.state.singlePaletteComments);
    }catch(error){
      CommentsView._renderError(error);
    }
@@ -135,8 +135,14 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
   try{
     await model.loadingCreatePaletteCategory(cateGoryName,uploadData); 
     createPaletteCategory._successMessage();
+    /// Render Single Palette 
     SinglePaletteView._render(model.state.singlePalette);
     SinglePaletteView._toolTips();
+    /// Load and render Comments
+    await model.loadingGetSinglePalettComments(model.state.singlePalette);
+    CommentsView._render(model.state.singlePaletteComments);
+    CommentFormView._render(model.state.singlePaletteComments);
+    /// render Category Create(View)
     createPaletteCategoryView._render(model.state.createCategoryPalette);
     createPaletteCategory._pushState(model.state.singlePalette);
   }catch(error){
