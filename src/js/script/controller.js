@@ -153,8 +153,10 @@ const controlGetAllPaletteSidebar = async function(query = 'all',tab){
     SidebarTabsView2._update(model.state.allPalettes.query);
     AllPaletteView._render(model.state.allPalettes.result);
     AllPaletteView._toolTips();
+    if(['new'].includes(tab)){
     CarouselPaletteView._render(model.state.allPalettes.result.slice(0,90));
     CarouselPaletteView._slickCarousel();
+    }
   }catch(error){
      AllPaletteView._renderError();
   }
