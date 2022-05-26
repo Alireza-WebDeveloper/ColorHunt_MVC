@@ -11,7 +11,7 @@ class SideBarTabsView extends SideBarTabsPreView{
       </a>
       <a href="/palettes/random" class="btn btn-Tabs" data-tab="random">
         <svg class="svg--btnTab">
-          <use href="${icon}#hdmi"></use>
+          <use href="${icon}#dice-6${this._data === 'random' ? '-fill' : ''}"></use>
         </svg>
         تصادفی
       </a>

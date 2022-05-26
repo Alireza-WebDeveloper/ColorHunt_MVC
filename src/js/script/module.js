@@ -113,8 +113,23 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
         if(String(tab).startsWith('new')){
             state.allPalettes.result = data;
             state.allPalettes.query = tab;
+            console.log(state.allPalettes.result.length);
         }
         //random
+        if(String(tab).startsWith('random')){
+            let curIndex = data.length;
+            let randIndex;
+            const createRandom = (data)=>{
+                while (curIndex != 0) {
+                    randIndex = Math.floor(Math.random() * curIndex);
+                    curIndex--;
+                    [data[curIndex], data[randIndex]] = [data[randIndex], data[curIndex]];
+                    }
+                    return data;
+            }
+            state.allPalettes.result = createRandom(data);
+            state.allPalettes.query = tab;
+        }
     }catch(error){
         throw error;
     }
