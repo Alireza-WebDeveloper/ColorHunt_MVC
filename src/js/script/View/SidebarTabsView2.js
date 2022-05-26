@@ -1,7 +1,7 @@
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
 import SideBarTabsPreView from './SidebarTabsPreView';
-class SideBarTabsView extends SideBarTabsPreView{
-    _parElement = document.querySelector('.sideBar--Tabs');
+class SideBarTabsView2 extends SideBarTabsPreView{
+    _parElement = document.querySelector('.sideBar--Tabs2');
     _generateMarkUp(){
         return `<a href="/palettes/new" class="btn btn-Tabs" data-tab="new">
         <svg class="svg--btnTab" data-tab="new">
@@ -25,4 +25,4 @@ class SideBarTabsView extends SideBarTabsPreView{
    
 }
 
-export default new SideBarTabsView();
+export default new SideBarTabsView2();
