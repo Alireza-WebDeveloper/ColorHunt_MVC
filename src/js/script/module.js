@@ -9,6 +9,7 @@ const state =
     singlePaletteComments:[],
     allPalettes:{
         result:[],
+        query:''
     },
     likesList:[],
     bookMarkList:[],
@@ -98,6 +99,27 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
          throw error
      }
  }
+
+ const loadingGetAllPaletteSidebar = async function(query,tab){
+    try{
+        const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${query}`)])
+        if(!data) return;
+        // popular
+        if(String(tab).startsWith('popular')){
+            state.allPalettes.result = data.filter(({likes})=>likes>0).sort(({likes:a},{likes:b})=>b-a);
+            state.allPalettes.query = tab;
+        }
+        // new
+        if(String(tab).startsWith('new')){
+            state.allPalettes.result = data;
+            state.allPalettes.query = tab;
+        }
+        //random
+    }catch(error){
+        throw error;
+    }
+ }
+
 
 /*
 LikeList
@@ -290,5 +312,5 @@ const loadingLocalStorageCreatePaletteCategory = function(){
 }
 
 /// Exports 
-export {loadingGetSinglePalett , loadingGetSinglePalettComments , loadingSendSinglePaletteComment , state , loadingGetAllPaletteSimilar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingGetSizeCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
+export {loadingGetSinglePalett ,  loadingGetSinglePalettComments , loadingSendSinglePaletteComment , state , loadingGetAllPaletteSimilar , loadingGetAllPaletteSidebar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingGetSizeCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
 

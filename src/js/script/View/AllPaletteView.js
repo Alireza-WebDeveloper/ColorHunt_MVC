@@ -113,7 +113,6 @@ class AllPaletteView extends SinglePalettePreView{
   }
   _windowPopState(handler){
     window.addEventListener('popstate',function(e){
-      console.log(e);
        if(e.target.location.origin === e.target.location.href.slice(0,-1)) handler();
     })
   }

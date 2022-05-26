@@ -71,6 +71,7 @@ const controlGetAllPalettSimilar= async function(query = 'all'){
   AllPaletteView._toolTips();
   CarouselPaletteView._render(model.state.allPalettes.result.slice(0,90));
   CarouselPaletteView._slickCarousel();
+  SidebarTabsView._update(true);
   // PaginationView._render(model.state.allPalettes);
  }catch(error){
    AllPaletteView._renderError(error);
@@ -91,6 +92,7 @@ const controlAllPaletteCategoryByName =async function(categoryName,page=1){
     SinglePaletteView._clear();
     CategoryByNamesView._update(model.state.allCategories);
     CategoryByNames2View._update(model.state.allCategories);
+    SidebarTabsView._update(true);
     //// Render Pagination length and size > 0
     if(model.state.allPalettes.result.length > 0 && model.state.allCategories.size > 0){
       PaginationView._render(model.state.allCategories);
@@ -134,9 +136,26 @@ const controlAddCategoryNames = async  function (query = 'names'){
 const controlAddSidebarTabs = function(){
  SidebarTabsView._render(true);
 }
-////// controlGetAllPalettePopular()
-///// controlGetAllPaletteRandom()
-//// controlGetAllPaletteNew()
+/**
+ * 
+ * @param {*} query = 'all'
+ * @param {*} tab = includes['popular','random','new']
+ */
+const controlGetAllPaletteSidebar = async function(query = 'all',tab){
+  try{
+    AllPaletteView._renderLoading();
+    await model.loadingGetAllPaletteSidebar(query,tab);
+    SidebarTabsView._update(model.state.allPalettes.query);
+    AllPaletteView._render(model.state.allPalettes.result);
+    AllPaletteView._toolTips();
+    CarouselPaletteView._render(model.state.allPalettes.result.slice(0,90));
+    CarouselPaletteView._slickCarousel();
+  }catch(error){
+     AllPaletteView._renderError();
+  }
+}
+
+
 
 ///Create Palette
 const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
@@ -153,6 +172,8 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
     /// render Category Create(View)
     createPaletteCategoryView._render(model.state.createCategoryPalette);
     createPaletteCategory._pushState(model.state.singlePalette);
+    /// update Sidebar Tabs 
+    SidebarTabsView._update(true);
   }catch(error){
     createPaletteCategory._errorOnMessage(error);
   }
@@ -259,6 +280,9 @@ CarouselPaletteView._addHandlerSinglePalette(controlGetSinglePaletteComments);
 CommentFormView._addHandlerSendFormComment(controlSendFormCommentPalette);
 /// Sidebar Tabs Loading 
 SidebarTabsView._windowLoading(controlAddSidebarTabs);
+SidebarTabsView._addHandlerAllPalette(controlGetAllPaletteSidebar);
+SidebarTabsView._windowLoadingAllPaletteView(controlGetAllPaletteSidebar);
+SidebarTabsView._windowPopState(controlGetAllPaletteSidebar);
 }
 initials();
 
