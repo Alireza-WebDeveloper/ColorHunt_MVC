@@ -205,8 +205,9 @@ _addHandlerBookmarkPalette(handler){
     window.addEventListener('load',function(){
       let pathName =  location.pathname;
       let id = pathName.split('/')[2]; 
-      let length = pathName.split('/').length; 
-      if(id && length === 3 && pathName.startsWith('/palettes/')) handler(id);
+      let length = pathName.split('/').length;
+      const include = ['popular','random','new'].includes(id); 
+      if(id && length === 3 && pathName.startsWith('/palettes/') && !include) handler(id);
     })
   }
    /**
