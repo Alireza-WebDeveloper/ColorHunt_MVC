@@ -24,6 +24,7 @@ const controlGetSinglePalett = async function(id){
  try{
   SinglePaletteView._renderLoading();
   PaginationView._clear();
+  CarouselPaletteView._clear();
   await model.loadingGetSinglePalett(id);
   SinglePaletteView._render(model.state.singlePalette);
   SinglePaletteView._toolTips();
@@ -37,11 +38,6 @@ const controlGetSinglePalett = async function(id){
    SinglePaletteView._renderError(error);
  }
 }
-/// Single Palette Categorys 
-const controlGetSinglePaletteCategory = async function(query = 'all'){
- 
-}
-
 //// Single Palette Comments 
 const controlGetSinglePaletteComments = async function(id){
    try{
@@ -152,6 +148,9 @@ const controlAddSidebarTabs = function(){
  */
 const controlGetAllPaletteSidebar = async function(query = 'all',tab){
   try{
+    SinglePaletteView._clear();
+    CommentsView._clear();
+    CommentFormView._clear();
     AllPaletteView._renderLoading();
     await model.loadingGetAllPaletteSidebar(query,tab);
     SidebarTabsView._update(model.state.allPalettes.query);

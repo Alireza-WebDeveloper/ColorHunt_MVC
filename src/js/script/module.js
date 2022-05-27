@@ -52,9 +52,7 @@ const loadingGetSinglePalettSimilarCategory = async function(query){
     const similarCategorys = data.filter(({categoryId})=>categoryId === state.singlePalette.categoryId);
     state.allPalettes.result = CreateRandomArray(similarCategorys,similarCategorys.length).slice(0,10);
     state.allPalettes.query = '';
-    //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
-        /// مقدار صحیح به خودش بگیرد
-        checkUpdateBookMarkList();
+     checkUpdateBookMarkList();
 }
 
 /// Single Palette Comments 
@@ -134,7 +132,7 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
             state.allPalettes.query = tab;
             //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
-         checkUpdateBookMarkList();
+        checkUpdateBookMarkList();
         }
     }catch(error){
         throw error;
