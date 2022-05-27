@@ -184,6 +184,10 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
     /// render Category Create(View)
     createPaletteCategoryView._render(model.state.createCategoryPalette);
     createPaletteCategory._pushState(model.state.singlePalette);
+    //Render All Palette Similar Category
+    await model.loadingGetSinglePalettSimilarCategory('all');
+    AllPaletteView._render(model.state.allPalettes.result);
+    AllPaletteView._toolTips();
     /// update Sidebar Tabs 
     SidebarTabsView._update(true);
     SidebarTabsView2._update(true);
