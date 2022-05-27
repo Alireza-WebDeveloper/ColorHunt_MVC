@@ -23,11 +23,18 @@ const state =
     createCategoryPalette:[]
 }
 //// Check(Update True BookmarkList On All Palette Render )
-const checkUpdateBookMarkList = ()=>{
+const checkUpdate_Bookmark_LikeList = ()=>{
     state.allPalettes.result.forEach((ObjectRes)=>{
         state.bookMarkList.forEach((ObjectBookMark)=>{
            if( ObjectRes.id === ObjectBookMark.id){
                ObjectRes.bookmarked = true;
+           }
+        })
+    })
+    state.allPalettes.result.forEach((ObjectRes)=>{
+        state.likesList.forEach((id)=>{
+           if( ObjectRes.id === id){
+               ObjectRes.activeLike = true;
            }
         })
     })
@@ -40,6 +47,7 @@ const checkUpdateBookMarkList = ()=>{
        state.singlePalette = data;
         //// Add Bookmarked when loading page , load singlePlaette
         state.bookMarkList.some((Object)=>Object.id === state.singlePalette.id) ? state.singlePalette.bookmarked = true : '';
+        state.likesList.some((id)=>id === state.singlePalette.id) ? state.singlePalette.activeLike = true : '';
          
    }catch(error){
        throw error;
@@ -52,7 +60,7 @@ const loadingGetSinglePalettSimilarCategory = async function(query){
     const similarCategorys = data.filter(({categoryId})=>categoryId === state.singlePalette.categoryId);
     state.allPalettes.result = CreateRandomArray(similarCategorys,similarCategorys.length).slice(0,10);
     state.allPalettes.query = '';
-     checkUpdateBookMarkList();
+     checkUpdate_Bookmark_LikeList();
 }
 
 /// Single Palette Comments 
@@ -85,7 +93,7 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
         state.allPalettes.query = query;
         //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
-        checkUpdateBookMarkList();
+        checkUpdate_Bookmark_LikeList();
      }catch(error){
          throw  error;
      }
@@ -100,7 +108,7 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
         state.allPalettes.result = data;
         //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
-        checkUpdateBookMarkList();
+        checkUpdate_Bookmark_LikeList();
      }catch(error){
          throw error
      }
@@ -116,7 +124,7 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
             state.allPalettes.query = tab;
             //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
-        checkUpdateBookMarkList();
+        checkUpdate_Bookmark_LikeList();
         }
         // new
         if(String(tab).startsWith('new')){
@@ -124,7 +132,7 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
             state.allPalettes.query = tab;
           //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
-        checkUpdateBookMarkList();
+        checkUpdate_Bookmark_LikeList();
         }
         //random
         if(String(tab).startsWith('random')){
@@ -132,7 +140,7 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
             state.allPalettes.query = tab;
             //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
-        checkUpdateBookMarkList();
+        checkUpdate_Bookmark_LikeList();
         }
     }catch(error){
         throw error;
@@ -143,25 +151,29 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
 /*
 LikeList
 */
-const UiLikesList = (data)=>{
+const UiLikesList = (data,condition)=>{
 // Update Object -> All Palette()
 const updateObj_AllPalette = state.allPalettes.result.findIndex(({id})=>id === data.id);
 if(updateObj_AllPalette !== -1){
     state.allPalettes.result[updateObj_AllPalette].likes = data.likes;
+    state.allPalettes.result[updateObj_AllPalette].activeLike = condition;
 }
 // Update Object -> CreateAllCategory Palette()
 const updateObj_CreateCategoryPalette = state.createCategoryPalette.findIndex(({id})=>id === data.id);
 if(updateObj_CreateCategoryPalette !== -1){
     state.createCategoryPalette[updateObj_CreateCategoryPalette].likes = data.likes;
+    state.createCategoryPalette[updateObj_CreateCategoryPalette].activeLike = condition;
 }
 // Update Object -> BookMarkList 
 const updateObj_BookMarkList = state.bookMarkList.findIndex(({id})=>id === data.id);
 if(updateObj_BookMarkList !== -1){
     state.bookMarkList[updateObj_BookMarkList].likes = data.likes;
+    state.bookMarkList[updateObj_BookMarkList].activeLike = condition;
 }
 // updateObj_SinglePalette
 if(state.singlePalette.id === data.id){
     state.singlePalette.likes = data.likes;
+    state.singlePalette.activeLike = condition;
 }
 /// update LocalStorage Like-> LikeList  , BookMarkList , CreatePaletteCategory
 updateLocalStorageLikesList();
@@ -177,7 +189,7 @@ const loadingAddLikePalette = async function(id){
         /// Add id  To Like List []
         state.likesList.push(data.id);
         state.likesList = [...new Set(state.likesList)];
-        UiLikesList(data);
+        UiLikesList(data,true);
     }catch(error){
         throw error;
     }
@@ -190,7 +202,7 @@ const loadingDisLikePalette = async function(id){
     // Delete From likesList 
     const index = state.likesList.findIndex((id)=>id === data.id);
     state.likesList.splice(index,1);
-    UiLikesList(data);
+    UiLikesList(data,false);
    }catch(error){
        throw error
    }

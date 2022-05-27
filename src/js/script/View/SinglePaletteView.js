@@ -40,7 +40,7 @@ class SinglePalettView extends View{
           </button>
           <button class='btn btn-Like' data-code='${this._data.id}'>
           <svg class="svg--btnLike">
-          <use href="${icon}#heart${this._data.likes > 0 ?'-fill' :''}"></use>
+          <use href="${icon}#heart${this._data.activeLike?'-fill' :''}"></use>
            </svg>
           <span class="num--Likes">${this._data.likes}</span>
           </button>
