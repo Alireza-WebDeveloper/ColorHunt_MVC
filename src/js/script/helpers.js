@@ -43,6 +43,15 @@ const timeRun = function(SEC){
         },1000*SEC);
     })
 }
+const CreateRandomArray = (array,curIndex)=>{
+    let randIndex;
+    while (curIndex != 0) {
+        randIndex = Math.floor(Math.random() * curIndex);
+        curIndex--;
+        [array[curIndex], array[randIndex]] = [array[randIndex], array[curIndex]];
+        }
+        return array;
+}
 
+export {Ajax , timeOut , timeRun,CreateRandomArray};
 
-export {Ajax , timeOut , timeRun};

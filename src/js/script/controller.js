@@ -27,16 +27,21 @@ const controlGetSinglePalett = async function(id){
   await model.loadingGetSinglePalett(id);
   SinglePaletteView._render(model.state.singlePalette);
   SinglePaletteView._toolTips();
-  // Comment
-  // AllPaletteView._renderLoading();
-  // await model.loadingGetAllPaletteSimilar('all');
-  // AllPaletteView._render(model.state.allPalettes.result);
-  // AllPaletteView._toolTips();
-  AllPaletteView._clear();
+  AllPaletteView._renderLoading();
+  await model.loadingGetSinglePalettSimilarCategory('all');
+  AllPaletteView._render(model.state.allPalettes.result);
+  AllPaletteView._toolTips();
+  SidebarTabsView._update(true);
+  SidebarTabsView2._update(true);
  }catch(error){
    SinglePaletteView._renderError(error);
  }
 }
+/// Single Palette Categorys 
+const controlGetSinglePaletteCategory = async function(query = 'all'){
+ 
+}
+
 //// Single Palette Comments 
 const controlGetSinglePaletteComments = async function(id){
    try{

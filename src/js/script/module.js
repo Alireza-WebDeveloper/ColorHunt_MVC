@@ -1,6 +1,6 @@
 'use strict';
 import { async } from "regenerator-runtime";
-import { Ajax , timeOut , timeRun} from "./helpers";
+import { Ajax , timeOut , timeRun , CreateRandomArray} from "./helpers";
 import { API_URL , SEC ,Res_Per_Page} from "./config";
 /// State 
 const state =
@@ -22,8 +22,16 @@ const state =
     },
     createCategoryPalette:[]
 }
-
-
+//// Check(Update True BookmarkList On All Palette Render )
+const checkUpdateBookMarkList = ()=>{
+    state.allPalettes.result.forEach((ObjectRes)=>{
+        state.bookMarkList.forEach((ObjectBookMark)=>{
+           if( ObjectRes.id === ObjectBookMark.id){
+               ObjectRes.bookmarked = true;
+           }
+        })
+    })
+}
 ///Single Palette
  const loadingGetSinglePalett = async function(id){
    try{
@@ -37,6 +45,18 @@ const state =
        throw error;
    }
  }
+///Single Palette Similar Categorys 
+const loadingGetSinglePalettSimilarCategory = async function(query){
+    const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}palettes/${query}`)])
+    if(!data) return;
+    const similarCategorys = data.filter(({categoryId})=>categoryId === state.singlePalette.categoryId);
+    state.allPalettes.result = CreateRandomArray(similarCategorys,similarCategorys.length).slice(0,10);
+    state.allPalettes.query = '';
+    //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
+        /// مقدار صحیح به خودش بگیرد
+        checkUpdateBookMarkList();
+}
+
 /// Single Palette Comments 
 const loadingGetSinglePalettComments = async function(id){
     const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}comments/${id}`)])
@@ -67,13 +87,7 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
         state.allPalettes.query = query;
         //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
-        state.allPalettes.result.forEach((ObjectRes)=>{
-            state.bookMarkList.forEach((ObjectBookMark)=>{
-               if( ObjectRes.id === ObjectBookMark.id){
-                   ObjectRes.bookmarked = true;
-               }
-            })
-        })
+        checkUpdateBookMarkList();
      }catch(error){
          throw  error;
      }
@@ -88,13 +102,7 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
         state.allPalettes.result = data;
         //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
-        state.allPalettes.result.forEach((ObjectRes)=>{
-            state.bookMarkList.forEach((ObjectBookMark)=>{
-               if( ObjectRes.id === ObjectBookMark.id){
-                   ObjectRes.bookmarked = true;
-               }
-            })
-        })
+        checkUpdateBookMarkList();
      }catch(error){
          throw error
      }
@@ -108,27 +116,25 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
         if(String(tab).startsWith('popular')){
             state.allPalettes.result = data.filter(({likes})=>likes>0).sort(({likes:a},{likes:b})=>b-a);
             state.allPalettes.query = tab;
+            //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
+        /// مقدار صحیح به خودش بگیرد
+        checkUpdateBookMarkList();
         }
         // new
         if(String(tab).startsWith('new')){
             state.allPalettes.result = data;
             state.allPalettes.query = tab;
-            console.log(state.allPalettes.result.length);
+          //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
+        /// مقدار صحیح به خودش بگیرد
+        checkUpdateBookMarkList();
         }
         //random
         if(String(tab).startsWith('random')){
-            let curIndex = data.length;
-            let randIndex;
-            const createRandom = (data)=>{
-                while (curIndex != 0) {
-                    randIndex = Math.floor(Math.random() * curIndex);
-                    curIndex--;
-                    [data[curIndex], data[randIndex]] = [data[randIndex], data[curIndex]];
-                    }
-                    return data;
-            }
-            state.allPalettes.result = createRandom(data);
+            state.allPalettes.result = CreateRandomArray(data,data.length);
             state.allPalettes.query = tab;
+            //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
+        /// مقدار صحیح به خودش بگیرد
+         checkUpdateBookMarkList();
         }
     }catch(error){
         throw error;
@@ -327,5 +333,5 @@ const loadingLocalStorageCreatePaletteCategory = function(){
 }
 
 /// Exports 
-export {loadingGetSinglePalett ,  loadingGetSinglePalettComments , loadingSendSinglePaletteComment , state , loadingGetAllPaletteSimilar , loadingGetAllPaletteSidebar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingGetSizeCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
+export {loadingGetSinglePalett , loadingGetSinglePalettSimilarCategory , loadingGetSinglePalettComments , loadingSendSinglePaletteComment , state , loadingGetAllPaletteSimilar , loadingGetAllPaletteSidebar ,getAllPalettePage , loadingAddLikePalette , loadingLocalStorageLikesList  , addBookMarkList , loadingGetAllCategoryNames , loadingGetSizeCategoryNames , loadingCreatePaletteCategory  ,loadingLocalStorageBookMarkList , loadingLocalStorageCreatePaletteCategory  , deleteCreatePaletteCategory , loadingGetAllPaletteCategoryByName_Page};
 
