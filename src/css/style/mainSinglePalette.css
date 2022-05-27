@@ -141,14 +141,21 @@
 
 @media (max-width:748px) and (pointer:fine) {
     .single--CodeRgb .rgb-Copy , .single--CodeHex .hex-Copy{
-        font-size: 0.5rem;
+        font-size: 0.6rem;
+        
      }
    
 }
 
 @media (max-width:480px) and (pointer:fine) {
     .single--CodeRgb .rgb-Copy , .single--CodeHex .hex-Copy{
-        font-size: 0.2rem;
+        font-size: 0.6rem;
+     }
+}
+
+@media (max-width:360px) and (pointer:fine) {
+    .single--CodeRgb .rgb-Copy , .single--CodeHex .hex-Copy{
+        font-size: 0.4rem;
      }
 }
 
