@@ -27,7 +27,7 @@ class createPaletteCategoryView extends BookmarkPreView{
          <div class='buttons--Info w-100 d-flex flex-row justify-content-between align-items-center p-1'>
            <button class='btn btn-Like  d-flex justify-content-start align-items-center' data-code='${ObjectData.id}'>
            <svg class="svg--btnLike">
-              <use href="${icon}#heart${ObjectData.likes >= 1 ?'-fill' :''}"></use>
+           <use href="${icon}#heart${ObjectData.activeLike ?'-fill' :''}"></use>
             </svg>
            <span class="num--Likes">${ObjectData.likes}</span>
            </button>

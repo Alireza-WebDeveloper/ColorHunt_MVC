@@ -29,7 +29,7 @@ class BookmarkView2 extends BookmarkPreView{
          <div class='buttons--Info'>
            <button class='btn btn-Like w-100 d-flex justify-content-start align-items-center' data-code='${ObjectData.id}'>
            <svg class="svg--btnLike">
-              <use href="${icon}#heart${ObjectData.likes >= 1 ?'-fill' :''}"></use>
+           <use href="${icon}#heart${ObjectData.activeLike ?'-fill' :''}"></use>
             </svg>
            <span class="num--Likes">${ObjectData.likes}</span>
            </button>
