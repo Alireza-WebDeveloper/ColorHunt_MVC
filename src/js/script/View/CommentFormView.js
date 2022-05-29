@@ -84,7 +84,10 @@ class CommentFormView extends View{
       this._parElement.querySelector('#author-Title').value = '';
       this._parElement.querySelector('#author-Message').value = '';
     }
-     
+       _clear(){
+        this._parElement.innerHTML ='';
+        this._SectionComment.classList.remove('bg-light');
+    }
 }
 
 export default new CommentFormView();
