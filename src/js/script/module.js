@@ -73,11 +73,11 @@ const loadingGetSinglePalettComments = async function(id){
 //// Single Palette Send Comment 
 const loadingSendSinglePaletteComment = async function(ObjectData){
     try{
-    //    const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}comments/${state.singlePalette.id}?author=${ObjectData.author}&title=${ObjectData.title}&message=${ObjectData.message}`,'POST')]);
-    //    if(!data) return;
-       console.log(ObjectData);
+       const data = await Promise.race([timeOut(SEC), Ajax(`${API_URL}comments/${state.singlePalette.id}?author=${ObjectData.author}&title=${ObjectData.title}&message=${ObjectData.message}`,'POST')]);
+       if(!data) return;
+      state.singlePaletteComments.unshift(data);
     }catch(error){
-        throw error
+        throw error;
     }
    }
  

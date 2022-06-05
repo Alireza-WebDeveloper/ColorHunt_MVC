@@ -10,22 +10,23 @@ class CommentFormView extends View{
     }
     _generateMarkUp(){
        this._SectionComment.classList.add('bg-light');
-        return `<section class="col comment--Tittle d-flex 
+        return `
+        <section class="col comment--Tittle d-flex 
         flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column
         justify-content-xl-between  justify-content-lg-between  justify-content-md-between  justify-content-sm-between
         justify-content-column
-        align-items-center
-        ">
+        align-items-center">
           <button class="btn add--Comment  order-xl-first order-lg-first order-md-first order-sm-first order-last ">
-            افزودن دیدگاه
                 <svg class="svg--addplus">
              <use href="${icon}#plus"></use>
            </svg>
           </button>
           <h4 class="info--comments   order-xl-last">
+          <span>
+          کامنت ثبت شده
+          </span>
             <span>
-              دیدگاه ثبت شده
-              <bdo dir="right">${this._data.length}</bdo>
+            ${this._data.length}
             </span>
             <svg class="svg--infoComments">
              <use href="${icon}#chat-dots"></use>
@@ -59,7 +60,7 @@ class CommentFormView extends View{
       return condition ? 
         `بستن <svg class="svg--addplus"><use href="${icon}#x"></use></svg> ` 
         : 
-        `افزودن دیدگاه <svg class="svg--addplus"> <use href="${icon}#plus"></use></svg>
+        `<svg class="svg--addplus"> <use href="${icon}#plus"></use></svg>
         `;
     }
     _dropForm(e){

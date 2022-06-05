@@ -52,8 +52,14 @@ const controlGetSinglePaletteComments = async function(id){
 
 //// Single Palette Send Form Comment 
 const controlSendFormCommentPalette = async function(ObjectData){
-     await model.loadingSendSinglePaletteComment(ObjectData);
-     CommentFormView._clearForm();
+     try{
+      await model.loadingSendSinglePaletteComment(ObjectData);
+      CommentFormView._clearForm();
+      CommentsView._render(model.state.singlePaletteComments);
+      CommentFormView._update(model.state.singlePaletteComments);
+     }catch(error){
+       console.log(error);
+     }
 }
 
 
