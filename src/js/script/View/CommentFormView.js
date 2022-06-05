@@ -1,5 +1,6 @@
 import View from "./view";
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
+import Swal from "sweetalert2";
 class CommentFormView extends View{
     _parElement = document.querySelector('.custom_Form');
     _SectionComment = document.querySelector('.Section__Comment');
@@ -88,6 +89,19 @@ class CommentFormView extends View{
        _clear(){
         this._parElement.innerHTML ='';
         this._SectionComment.classList.remove('bg-light');
+    }
+    _SucessAlertComment(){
+      Swal.fire({
+        title: 'پیام شما با موفقیت ثبت شد',
+        color: 'black',
+        timer: 1500,
+        timerProgressBar: true,
+        allowOutsideClick: false,
+        footer: 'تا لحضاتی دیگر نمایش داده می شود',
+        didOpen: () => {
+          Swal.showLoading();
+        },
+      });      
     }
 }
 

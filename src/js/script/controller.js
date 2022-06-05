@@ -5,6 +5,7 @@ import icon from '../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
 import * as model from './module';
 import * as componet from './componet';
 import { async } from 'regenerator-runtime';
+import { timeRun } from './helpers';
 import SinglePaletteView from './View/singlePaletteView';
 import AllPaletteView from './View/AllPaletteView';
 import PaginationView from './View/PaginationView';
@@ -55,6 +56,8 @@ const controlSendFormCommentPalette = async function(ObjectData){
      try{
       await model.loadingSendSinglePaletteComment(ObjectData);
       CommentFormView._clearForm();
+      CommentFormView._SucessAlertComment();
+      await timeRun(2);
       CommentsView._render(model.state.singlePaletteComments);
       CommentFormView._update(model.state.singlePaletteComments);
      }catch(error){
