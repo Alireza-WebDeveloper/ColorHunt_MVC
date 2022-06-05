@@ -176,6 +176,8 @@ const controlCreatePaletteCategory = async function(cateGoryName,uploadData){
     /// Render Single Palette 
     SinglePaletteView._render(model.state.singlePalette);
     SinglePaletteView._toolTips();
+    //// Clear Pagination
+    PaginationView._clear();
     /// Load and render Comments
     await model.loadingGetSinglePalettComments(model.state.singlePalette.id);
     CommentsView._render(model.state.singlePaletteComments);

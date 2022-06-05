@@ -109,6 +109,12 @@ const loadingSendSinglePaletteComment = async function(ObjectData){
         //// زمانی که صفحه لود شد ، باید هر پالت چک کنیم که اگر ایدی اون در لیست بوک مارک وجود داشت 
         /// مقدار صحیح به خودش بگیرد
         checkUpdate_Bookmark_LikeList();
+        /// اضافه شدن پالت ساخته شده 
+        if(state.allCategories.size % state.allCategories.resultPerPage !== 0
+            && 
+            (Math.floor(state.allCategories.size / state.allCategories.resultPerPage)) === state.allCategories.page){
+            state.allPalettes.result.push(...state.createCategoryPalette);
+            }
      }catch(error){
          throw error
      }
