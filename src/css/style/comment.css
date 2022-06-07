@@ -55,6 +55,7 @@
 #comment-Form input , #comment-Form textarea{
     text-align: right;
     box-shadow: inset 0 0 10px var(--dark);
+    direction: rtl;
 }
 
 :is(#author-FirstName,#author-lastName,#author-description)::placeholder , #comment-Submit{
