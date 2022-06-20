@@ -1,10 +1,11 @@
-import View from "./view";
+import View from './view';
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
-class CommentView extends View{
-    _parElement = document.querySelector('.comment--List');
-    _generateMarkUp(){
-       return this._data.map((ObjectData,index)=>{
-            return `<!-- Commnet ${index}  -->
+class CommentView extends View {
+  _parElement = document.querySelector('.comment--List');
+  _generateMarkUp() {
+    return this._data
+      .map((ObjectData, index) => {
+        return `<!-- Commnet ${index}  -->
             <section class="col bg-dark rounded" data-tab="..." data-cmd="${index}" data-info="cmd">
               <div class="row row-cols-1">
                 <div class="col d-flex justify-content-end">
@@ -33,10 +34,10 @@ class CommentView extends View{
                   <p class="text--Description">${ObjectData.message}</p>
                 </div>
               </div>
-              </section>`
-        }).join('');
-    }
+              </section>`;
+      })
+      .join('');
+  }
 }
-
 
 export default new CommentView();

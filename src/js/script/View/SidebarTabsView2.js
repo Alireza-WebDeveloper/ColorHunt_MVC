@@ -1,9 +1,9 @@
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
 import SideBarTabsPreView from './SidebarTabsPreView';
-class SideBarTabsView2 extends SideBarTabsPreView{
-    _parElement = document.querySelector('.sideBar--Tabs2');
-    _generateMarkUp(){
-        return `<a href="/palettes/new" class="btn btn-Tabs" data-tab="new">
+class SideBarTabsView2 extends SideBarTabsPreView {
+  _parElement = document.querySelector('.sideBar--Tabs2');
+  _generateMarkUp() {
+    return `<a href="/palettes/new" class="btn btn-Tabs" data-tab="new">
         <svg class="svg--btnTab" data-tab="new">
           <use href="${icon}#star${this._data === 'new' ? '-fill' : ''}"></use>
         </svg>
@@ -17,12 +17,13 @@ class SideBarTabsView2 extends SideBarTabsPreView{
       </a>
       <a href="/palettes/popular" class="btn btn-Tabs " data-tab="popular">
         <svg class="svg--btnTab">
-          <use href="${icon}#heart${this._data === 'popular' ? '-fill' : ''}"></use>
+          <use href="${icon}#heart${
+      this._data === 'popular' ? '-fill' : ''
+    }"></use>
         </svg>
         محبوب
-      </a>`
-    }
-   
+      </a>`;
+  }
 }
 
 export default new SideBarTabsView2();

@@ -1,10 +1,11 @@
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
 import BookmarkPreView from './BookmarkPreView';
-class BookmarkView extends BookmarkPreView{
-    _parElement = document.querySelector('.bookmark-list'); 
-    _generateMarkUp(){
-        return this._data.map((ObjectData)=>{
-            return ` <section class="palette mt-2">
+class BookmarkView extends BookmarkPreView {
+  _parElement = document.querySelector('.bookmark-list');
+  _generateMarkUp() {
+    return this._data
+      .map((ObjectData) => {
+        return ` <section class="palette mt-2">
             <button type="button" class="btn remove--BookMark btn-close" data-code="${ObjectData.id}">
             </button>
             <a class="recipe-Link" href="/palettes/${ObjectData.id}" data-code="${ObjectData.id}">
@@ -17,9 +18,10 @@ class BookmarkView extends BookmarkPreView{
             <div class="recipe-Place c-4" data-index="4"   style='background-color:${ObjectData.color4}'>
             </div>
             </a>
-            </section>`
-        }).join('');
-    }
+            </section>`;
+      })
+      .join('');
+  }
 }
 
 export default new BookmarkView();

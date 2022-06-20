@@ -1,36 +1,39 @@
-export default class View{
-    _data;
-    _update(data){
-      this._data = data;
-      const newMarkUp = this._generateMarkUp();
-      const newDom = document.createRange().createContextualFragment(newMarkUp);
-      const newElement = Array.from(newDom.querySelectorAll('*'));
-      const curElement = Array.from(this._parElement.querySelectorAll('*'));
-      newElement.forEach((newEl,i)=>{
-        const curEl = curElement[i];
-        /// Update Change Text
-        if(!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !==''){
-          curEl.textContent = newEl.textContent;
-        }
-        if(!newEl.isEqualNode(curEl)){
-          Array.from(newEl.attributes).forEach(attr =>
-            curEl.setAttribute(attr.name, attr.value)
-          );
-        }
-      })
-    }
-    
-    _render(data){
-        if(!data) return;
-        this._data = data;
-        this._clear();
-       const markUp =  this._generateMarkUp();
-       this._parElement.insertAdjacentHTML('beforeEnd',markUp); 
-    }
-  
-    _renderError(message ='اینترنت شما ضعیف است، دوباره تلاش کنید'){
-       this._clear();
-        const markUp = `
+export default class View {
+  _data;
+  _update(data) {
+    this._data = data;
+    const newMarkUp = this._generateMarkUp();
+    const newDom = document.createRange().createContextualFragment(newMarkUp);
+    const newElement = Array.from(newDom.querySelectorAll('*'));
+    const curElement = Array.from(this._parElement.querySelectorAll('*'));
+    newElement.forEach((newEl, i) => {
+      const curEl = curElement[i];
+      /// Update Change Text
+      if (
+        !newEl.isEqualNode(curEl) &&
+        newEl.firstChild?.nodeValue.trim() !== ''
+      ) {
+        curEl.textContent = newEl.textContent;
+      }
+      if (!newEl.isEqualNode(curEl)) {
+        Array.from(newEl.attributes).forEach((attr) =>
+          curEl.setAttribute(attr.name, attr.value)
+        );
+      }
+    });
+  }
+
+  _render(data) {
+    if (!data) return;
+    this._data = data;
+    this._clear();
+    const markUp = this._generateMarkUp();
+    this._parElement.insertAdjacentHTML('beforeEnd', markUp);
+  }
+
+  _renderError(message = 'اینترنت شما ضعیف است، دوباره تلاش کنید') {
+    this._clear();
+    const markUp = `
         <div class="row d-flex justify-content-center mb-3">
         <div class="col col-12 col-sm-12 col-md-8 col-lg-6  col-xl-4">
           <div class="error">
@@ -40,15 +43,14 @@ export default class View{
           </div>
         </div>
       </div>`;
-      this._parElement.insertAdjacentHTML('beforeEnd',markUp);
-       
-    }
-   
-    _renderSuccess(){}
-   
-    _renderLoading(message ='در حال لود شدن'){
-      this._clear();
-        const markUp = `<div class="col d-flex justify-content-center">
+    this._parElement.insertAdjacentHTML('beforeEnd', markUp);
+  }
+
+  _renderSuccess() {}
+
+  _renderLoading(message = 'در حال لود شدن') {
+    this._clear();
+    const markUp = `<div class="col d-flex justify-content-center">
         <div class="spinner">
         <span class="text--Sp">${message}</span>
         <div class="sp" style="--sp:1"></div>
@@ -71,11 +73,10 @@ export default class View{
         <div class="sp" style="--sp:18"></div>
         </div>
         </div>`;
-        this._parElement.insertAdjacentHTML('beforeEnd',markUp);
-    }
-   
-    _clear(){
-        this._parElement.innerHTML ='';
-    }
-    
+    this._parElement.insertAdjacentHTML('beforeEnd', markUp);
+  }
+
+  _clear() {
+    this._parElement.innerHTML = '';
+  }
 }

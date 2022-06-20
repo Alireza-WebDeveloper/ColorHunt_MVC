@@ -1,9 +1,9 @@
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
-import SinglePalettePreView from "./SinglePalettePreView";
-class CarouselPaletteView extends SinglePalettePreView{
-    _parElement = document.querySelector('.carousel_Main');
-    _generateMarkUp(){
-      return `<section class="row custom_Carousel  p-3 rounded-3 gap-3 text-center">
+import SinglePalettePreView from './SinglePalettePreView';
+class CarouselPaletteView extends SinglePalettePreView {
+  _parElement = document.querySelector('.carousel_Main');
+  _generateMarkUp() {
+    return `<section class="row custom_Carousel  p-3 rounded-3 gap-3 text-center">
       ${this._generateMarkUpCarousel()}
       </section>
       <section class="row">
@@ -19,11 +19,13 @@ class CarouselPaletteView extends SinglePalettePreView{
             </svg>
           </a>
         </section>
-      </section>`
-    }
-    _generateMarkUpCarousel(){
-        return this._data.reverse().map((ObjectData)=>{
-            return `<section class="col p-2 custom_Carousel__Item">
+      </section>`;
+  }
+  _generateMarkUpCarousel() {
+    return this._data
+      .reverse()
+      .map((ObjectData) => {
+        return `<section class="col p-2 custom_Carousel__Item">
             <article class="palette">
             <a class="recipe-Link" href="/palettes/${ObjectData.id}" data-code="${ObjectData.id}">
               <div class="recipe-Place c-1" data-index="1" style='background-color:${ObjectData.color1}'>
@@ -41,46 +43,47 @@ class CarouselPaletteView extends SinglePalettePreView{
               </div>
               </a>
               </article>
-          </section>`
-        }).join('');
-    }
-    _slickCarousel(){
-        $(this._parElement.querySelector('.custom_Carousel')).slick({
-            arrows:true,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            slidesToShow:5,
-            slidesToScroll:3,
-            speed:800,
-            cssEase: 'linear',
-            pauseOnHover:true,
-            prevArrow:$(this._parElement.querySelector('#custom_Carousel_Prev')),
-            nextArrow:$(this._parElement.querySelector('#custom_Carousel_Next')),
-            responsive: [
-              {
-                breakpoint: 1280,
-                settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 3,
-                }
-              },
-              {
-                breakpoint: 780,
-                settings: {
-                  slidesToShow: 2,
-                  slidesToScroll: 2
-                }
-              },
-              {
-                breakpoint: 580,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1
-                }
-              }
-            ]
-          });
-    }
+          </section>`;
+      })
+      .join('');
+  }
+  _slickCarousel() {
+    $(this._parElement.querySelector('.custom_Carousel')).slick({
+      arrows: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: 5,
+      slidesToScroll: 3,
+      speed: 800,
+      cssEase: 'linear',
+      pauseOnHover: true,
+      prevArrow: $(this._parElement.querySelector('#custom_Carousel_Prev')),
+      nextArrow: $(this._parElement.querySelector('#custom_Carousel_Next')),
+      responsive: [
+        {
+          breakpoint: 1280,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          },
+        },
+        {
+          breakpoint: 780,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          },
+        },
+        {
+          breakpoint: 580,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    });
+  }
 }
 
 export default new CarouselPaletteView();

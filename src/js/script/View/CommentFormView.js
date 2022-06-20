@@ -1,17 +1,17 @@
-import View from "./view";
+import View from './view';
 import icon from '../../../../node_modules/bootstrap-icons/bootstrap-icons.svg';
-import Swal from "sweetalert2";
-class CommentFormView extends View{
-    _parElement = document.querySelector('.custom_Form');
-    _SectionComment = document.querySelector('.Section__Comment');
-    _activeToggle = false;
-    constructor(){
-        super();
-        this._parElement.addEventListener('click',this._dropForm.bind(this));
-    }
-    _generateMarkUp(){
-       this._SectionComment.classList.add('bg-light');
-        return `
+import Swal from 'sweetalert2';
+class CommentFormView extends View {
+  _parElement = document.querySelector('.custom_Form');
+  _SectionComment = document.querySelector('.Section__Comment');
+  _activeToggle = false;
+  constructor() {
+    super();
+    this._parElement.addEventListener('click', this._dropForm.bind(this));
+  }
+  _generateMarkUp() {
+    this._SectionComment.classList.add('bg-light');
+    return `
         <section class="col comment--Tittle d-flex 
         flex-xl-row flex-lg-row flex-md-row flex-sm-row flex-column
         justify-content-xl-between  justify-content-lg-between  justify-content-md-between  justify-content-sm-between
@@ -56,53 +56,52 @@ class CommentFormView extends View{
     </section>
     <div class="col"><h4 class="header--Comment">نظرات</h4></div>
     `;
-    }
-    _generateMarkUpAddComment(condition){
-      return condition ? 
-        `بستن <svg class="svg--addplus"><use href="${icon}#x"></use></svg> ` 
-        : 
-        `<svg class="svg--addplus"> <use href="${icon}#plus"></use></svg>
+  }
+  _generateMarkUpAddComment(condition) {
+    return condition
+      ? `بستن <svg class="svg--addplus"><use href="${icon}#x"></use></svg> `
+      : `<svg class="svg--addplus"> <use href="${icon}#plus"></use></svg>
         `;
-    }
-    _dropForm(e){
-      const button = e.target.closest('.add--Comment');
-      if(!button) return;
-      $('#comment-Form').slideToggle('fast');
-      this._activeToggle = !this._activeToggle;
-      const markUp = this._generateMarkUpAddComment(this._activeToggle);
-      button.innerHTML  = '';
-      button.insertAdjacentHTML('beforeEnd',markUp);
-    }
-    _addHandlerSendFormComment(handler){
-       this._parElement.addEventListener('submit',function(e){
-        e.preventDefault();
-        const dataArr = [...new FormData(this.querySelector('#comment-Form'))];
-        const dataObj = Object.fromEntries(dataArr); 
-        handler(dataObj);
-       })
-    }
-    _clearForm(){
-      this._parElement.querySelector('#author-Name').value = '';
-      this._parElement.querySelector('#author-Title').value = '';
-      this._parElement.querySelector('#author-Message').value = '';
-    }
-       _clear(){
-        this._parElement.innerHTML ='';
-        this._SectionComment.classList.remove('bg-light');
-    }
-    _SucessAlertComment(){
-      Swal.fire({
-        title: 'پیام شما با موفقیت ثبت شد',
-        color: 'black',
-        timer: 1500,
-        timerProgressBar: true,
-        allowOutsideClick: false,
-        footer: 'تا لحضاتی دیگر نمایش داده می شود',
-        didOpen: () => {
-          Swal.showLoading();
-        },
-      });      
-    }
+  }
+  _dropForm(e) {
+    const button = e.target.closest('.add--Comment');
+    if (!button) return;
+    $('#comment-Form').slideToggle('fast');
+    this._activeToggle = !this._activeToggle;
+    const markUp = this._generateMarkUpAddComment(this._activeToggle);
+    button.innerHTML = '';
+    button.insertAdjacentHTML('beforeEnd', markUp);
+  }
+  _addHandlerSendFormComment(handler) {
+    this._parElement.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const dataArr = [...new FormData(this.querySelector('#comment-Form'))];
+      const dataObj = Object.fromEntries(dataArr);
+      handler(dataObj);
+    });
+  }
+  _clearForm() {
+    this._parElement.querySelector('#author-Name').value = '';
+    this._parElement.querySelector('#author-Title').value = '';
+    this._parElement.querySelector('#author-Message').value = '';
+  }
+  _clear() {
+    this._parElement.innerHTML = '';
+    this._SectionComment.classList.remove('bg-light');
+  }
+  _SucessAlertComment() {
+    Swal.fire({
+      title: 'پیام شما با موفقیت ثبت شد',
+      color: 'black',
+      timer: 1500,
+      timerProgressBar: true,
+      allowOutsideClick: false,
+      footer: 'تا لحضاتی دیگر نمایش داده می شود',
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+  }
 }
 
 export default new CommentFormView();
