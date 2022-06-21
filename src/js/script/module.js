@@ -38,7 +38,12 @@ const checkUpdate_Bookmark_LikeList = () => {
     });
   });
 };
-///Single Palette
+/**
+ *
+ * @param {*} id = 36255#6944#11
+ * @description loading single Palette
+ * @returns Object Of SinglePalette
+ */
 const loadingGetSinglePalett = async function (id) {
   try {
     const data = await Promise.race([
@@ -58,7 +63,12 @@ const loadingGetSinglePalett = async function (id) {
     throw error;
   }
 };
-///Single Palette Similar Categorys
+/**
+ *
+ * @param {*} query = all
+ * @description Become Arrays to => Palette Similar : Equal(CategoryId)
+ * @returns Array Of Equal(CategoryId Palette == Single Palette)
+ */
 const loadingGetSinglePalettSimilarCategory = async function (query) {
   const data = await Promise.race([
     timeOut(SEC),
@@ -76,7 +86,11 @@ const loadingGetSinglePalettSimilarCategory = async function (query) {
   checkUpdate_Bookmark_LikeList();
 };
 
-/// Single Palette Comments
+/**
+ *
+ * @param {*} id single Palette Ex : 63669#54152
+ * @returns Array of Comment List Single Palette
+ */
 const loadingGetSinglePalettComments = async function (id) {
   const data = await Promise.race([
     timeOut(SEC),
@@ -86,7 +100,12 @@ const loadingGetSinglePalettComments = async function (id) {
   state.singlePaletteComments = data;
 };
 
-//// Single Palette Send Comment
+/**
+ *
+ * @param {*} ObjectData From Single palette
+ * @description send form comment
+ * @returns Comments List of Single Palette
+ */
 const loadingSendSinglePaletteComment = async function (ObjectData) {
   try {
     const data = await Promise.race([
@@ -103,7 +122,11 @@ const loadingSendSinglePaletteComment = async function (ObjectData) {
   }
 };
 
-///All Palette Similar
+/**
+ *
+ * @param {*} query  = all
+ * @returns  All Palette Similar []
+ */
 const loadingGetAllPaletteSimilar = async function (query) {
   try {
     const data = await Promise.race([
@@ -121,7 +144,12 @@ const loadingGetAllPaletteSimilar = async function (query) {
     throw error;
   }
 };
-// All Palette By Category Name
+/**
+ *
+ * @param {*} categoryName Ex : pastel,neon,...
+ * @param {*} page Ex : 1
+ * @returns  list array(pallette of category Name)
+ */
 const loadingGetAllPaletteCategoryByName_Page = async function (
   categoryName = state.allCategories.query,
   page = state.allCategories.page
@@ -153,7 +181,12 @@ const loadingGetAllPaletteCategoryByName_Page = async function (
     throw error;
   }
 };
-
+/**
+ *
+ * @param {*} query  string = 'all'
+ * @param {*} tab  = list of tab Ex : ['random','new','popular']
+ * @returns
+ */
 const loadingGetAllPaletteSidebar = async function (query, tab) {
   try {
     const data = await Promise.race([
@@ -195,6 +228,11 @@ const loadingGetAllPaletteSidebar = async function (query, tab) {
 /*
 LikeList
 */
+/**
+ *
+ * @param {*} data  =  Object From Palette = {color1,color2,categoryId,likes,...}
+ * @param {*} condition if True -> DisLike Ex : 3=>2 , if False => Like Ex : 2 => 3
+ */
 const UiLikesList = (data, condition) => {
   // Update Object -> All Palette()
   const updateObj_AllPalette = state.allPalettes.result.findIndex(
@@ -232,7 +270,11 @@ const UiLikesList = (data, condition) => {
   updateLocalStorageBookMarkList();
   updateLocalStorageCreatePaletteCategory();
 };
-/// add -> like List
+/**
+ *
+ * @param {*} id Palette  Ex = 2636#54855#9693
+ * @description addLike Palette , Ex: 3=> 4 , 4 => 5
+ */
 const loadingAddLikePalette = async function (id) {
   try {
     if (state.likesList.includes(id)) return loadingDisLikePalette(id);
@@ -249,7 +291,12 @@ const loadingAddLikePalette = async function (id) {
     throw error;
   }
 };
-/// remove -> like List
+/**
+ *
+ * @param {*} id  Ex : 5636#96954#7452
+ * @description DisLike Palette Ex : 2 => 1 , 4 => 3
+ *
+ */
 const loadingDisLikePalette = async function (id) {
   try {
     const data = await Promise.race([
@@ -307,7 +354,12 @@ const UiBookMark = (id, condition) => {
     updateObj_AllPalette || updateObj_CategoryPalette || state.singlePalette
   );
 };
-/// Add BookMark
+/**
+ *
+ * @param {*} id Ex : 6363#5475#12525#63
+ * @description Add Palette to BookmarkList
+ * @returns array of save list Bookmark
+ */
 const addBookMarkList = function (id) {
   const include = state.bookMarkList.some((ObjectData) => ObjectData.id === id);
   if (include) return deleteBookMarkList(id);
@@ -316,7 +368,12 @@ const addBookMarkList = function (id) {
   state.bookMarkList.push(ObjPush);
   updateLocalStorageBookMarkList();
 };
-/// Delete Bookmark
+/**
+ *
+ * @param {*} id Ex : 6363#5475#12525#63
+ * @description Delete Palette to BookmarkList
+ * @returns array of save list Bookmark
+ */
 const deleteBookMarkList = function (id) {
   const index = state.bookMarkList.findIndex(
     (ObjectData) => ObjectData.id === id
@@ -336,9 +393,12 @@ const loadingLocalStorageBookMarkList = function () {
   if (!data) return;
   state.bookMarkList = JSON.parse(data);
 };
-/* 
-Category 
-*/
+/**
+ *
+ * @param {*} query = all
+ * @description get list names category from request server Ajax()
+ * @returns ['neon','pastel','neon',.....]
+ */
 const loadingGetAllCategoryNames = async function (query) {
   try {
     const data = await Promise.race([
@@ -353,6 +413,11 @@ const loadingGetAllCategoryNames = async function (query) {
 };
 
 /* Category Size Pagination */
+/**
+ *
+ * @param {*} query Ex : ['pastel','neon',...]
+ * @returns length of category name => Ex : pastel , 28 palette length
+ */
 const loadingGetSizeCategoryNames = async function (query) {
   try {
     const data = await Promise.race([
@@ -366,7 +431,12 @@ const loadingGetSizeCategoryNames = async function (query) {
   }
 };
 
-//// CreateCategory
+/**
+ *
+ * @param {*} cateGoryName = EX:['pastel','neon',...]
+ * @param {*} uploadData Object = {categoryName,color1,color2,color3,color4};
+ * @returns Object From Server => new Palette Create Ex : like to single Palette
+ */
 const loadingCreatePaletteCategory = async function (cateGoryName, uploadData) {
   try {
     const data = await Promise.race([
@@ -381,7 +451,12 @@ const loadingCreatePaletteCategory = async function (cateGoryName, uploadData) {
     throw error;
   }
 };
-//// Delete CreateCategory
+/**
+ *
+ * @param {*} id = palette Id Create=> Delete Ex : 68544#213#4626#82
+ * @description  Delete paletteCreate,Update (Category,BookMark,LikeList,AllPalette)
+ *
+ */
 const UiDeletepaletteCategory = (id) => {
   ///Update Category List
   const indexOfCategoryList = state.createCategoryPalette.findIndex(
@@ -401,6 +476,10 @@ const UiDeletepaletteCategory = (id) => {
     state.likesList.splice(indexOfLikeList, 1);
   }
 };
+/**
+ *
+ * @param {*} id = palette Id Create=> Delete Ex : 68544#213#4626#82
+ */
 const deleteCreatePaletteCategory = async function (id) {
   try {
     await Ajax(`${API_URL}palettes/${id}`, 'DELETE');
@@ -426,7 +505,7 @@ const loadingLocalStorageCreatePaletteCategory = function () {
   state.createCategoryPalette = JSON.parse(data);
 };
 
-/// Exports
+/// Exports Functions
 export {
   loadingGetSinglePalett,
   loadingGetSinglePalettSimilarCategory,

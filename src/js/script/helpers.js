@@ -26,7 +26,12 @@ const Ajax = async function (url, type, uploadData) {
     throw error;
   }
 };
-
+/**
+ *
+ * @param {*} SEC = زمان بر حسب ثانیه
+ * @description اگر بیش از زمان مورد انتظار طول داد ،درخواست اشتباه فرستاده شده یا اینکه اینترنت ضعیف
+ * @returns
+ */
 const timeOut = function (SEC) {
   return new Promise((_, reject) => {
     setTimeout(function () {

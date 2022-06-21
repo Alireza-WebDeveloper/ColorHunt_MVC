@@ -1,5 +1,10 @@
 export default class View {
   _data;
+  /**
+   *
+   * @param {*} data Object To Update
+   * @description Like,Bookmark,....
+   */
   _update(data) {
     this._data = data;
     const newMarkUp = this._generateMarkUp();
@@ -22,7 +27,12 @@ export default class View {
       }
     });
   }
-
+  /**
+   *
+   * @param {*} data Object
+   * @description Render For User
+   * @returns
+   */
   _render(data) {
     if (!data) return;
     this._data = data;
