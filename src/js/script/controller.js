@@ -20,6 +20,13 @@ import CarouselPaletteView from './View/CarouselPaletteView';
 import CategoryByNames2View from './View/CategoryByNames2View';
 import SidebarTabsView from './View/SidebarTabsView';
 import SidebarTabsView2 from './View/SidebarTabsView2';
+import HeaderView from './View/HeaderView';
+import Header2View from './View/Header2View';
+/// Load Header
+const controlLoadHeader = () => {
+  HeaderView._render(true);
+  Header2View._render(true);
+};
 ///Single Palette
 const controlGetSinglePalett = async function (id) {
   try {
@@ -270,7 +277,6 @@ const controlLocalStorage = function () {
 const initials = function () {
   controlLocalStorage();
   AllPaletteView._addHandlerSinglePalette(controlGetSinglePalett);
-
   AllPaletteView._addHandlerLikePalette(controlUpadeLikePalette);
   AllPaletteView._addHandlerBookmarkPalette(controlUpdateBookMarkList);
   AllPaletteView._windowPopState(controlGetAllPalettSimilar);
@@ -321,5 +327,7 @@ const initials = function () {
   SidebarTabsView2._addHandlerAllPalette(controlGetAllPaletteSidebar);
   SidebarTabsView._windowLoadingAllPaletteView(controlGetAllPaletteSidebar);
   SidebarTabsView._windowPopState(controlGetAllPaletteSidebar);
+  /// Load Header
+  HeaderView._windowLoading(controlLoadHeader);
 };
 initials();
