@@ -43,6 +43,15 @@
   height: 20px;
 }
 
+.valid_Form {
+  text-transform: capitalize;
+  font-family: fantasy, 'Times New Roman', Times, serif;
+  color: rgb(230, 30, 30);
+  font-size: 1.2rem;
+  font-variant-caps: small-caps;
+  display: none;
+}
+
 /* Form Comment  */
 
 #comment-Form {

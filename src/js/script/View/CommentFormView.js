@@ -50,12 +50,15 @@ class CommentFormView extends View {
          <form class="row row-cols-1  gy-3 p-3 rounded" id="comment-Form">
            <div class="col comment-Form-Author">
              <input class="form-control form-control-lg" type="text" id="author-Name" name="author" placeholder="نام خود را وارد کنید">
+             <div class='check_Author valid_Form p-2'></div>
            </div>
            <div class="col comment-Form-Title">
              <input class="form-control form-control-lg" type="text" id="author-Title" name="title" placeholder="عنوان">
+             <div class='check_Title valid_Form p-2'></div>
            </div>
            <div class="col comment-Form-Message">
             <textarea class="form-control form-control-lg" id="author-Message" name="message" rows="4" placeholder="نظر خود را ثبت نمایید"></textarea>
+            <div class='check_Message valid_Form p-2'></div>
            </div>
            <div class="col comment-Form-submit d-flex justify-content-center">
               <button type="submit" class="btn btn-light p-2" id="comment-Submit">ثبت دیدگاه</button>
@@ -83,12 +86,73 @@ class CommentFormView extends View {
     button.insertAdjacentHTML('beforeEnd', markUp);
   }
   _addHandlerSendFormComment(handler) {
-    this._parElement.addEventListener('submit', function (e) {
+    this._parElement.addEventListener('submit', SendComment.bind(this));
+    function SendComment(e) {
       e.preventDefault();
-      const dataArr = [...new FormData(this.querySelector('#comment-Form'))];
+      const dataArr = [...new FormData(e.target.closest('#comment-Form'))];
       const dataObj = Object.fromEntries(dataArr);
-      handler(dataObj);
-    });
+      /// Check Doms
+      let check_Author = this._parElement.querySelector('.check_Author');
+      let check_Title = this._parElement.querySelector('.check_Title');
+      const check_Message = this._parElement.querySelector('.check_Message');
+      /// Functions Validation
+      const validAuthor = this._validationAuthor(dataObj.author, check_Author);
+      const validTitle = this._validationTitle(dataObj.title, check_Title);
+      const validMessage = this._validationMessage(
+        dataObj.message,
+        check_Message
+      );
+      if (validAuthor && validTitle && validMessage) handler(dataObj);
+    }
+  }
+  _validationAuthor(inputAuthor, check_Author) {
+    let regexCharEnglish = /^[A-Za-z]+$/;
+    let regexCharCharPersian = /^[\u0600-\u06FF\s]+$/;
+    if (
+      (regexCharCharPersian.test(inputAuthor) ||
+        regexCharEnglish.test(inputAuthor)) &&
+      inputAuthor.length >= 4
+    ) {
+      check_Author.style.display = 'none';
+      check_Author.textContent = '';
+      return true;
+    } else {
+      check_Author.style.display = 'block';
+      check_Author.textContent =
+        'Your input character must be longer than 4 characters';
+      return false;
+    }
+  }
+  _validationTitle(inputTitle, checkTitle) {
+    let regexCharEnglish = /^[A-Za-z]+$/;
+    let regexCharCharPersian = /^[\u0600-\u06FF\s]+$/;
+    if (
+      (regexCharCharPersian.test(inputTitle) ||
+        regexCharEnglish.test(inputTitle)) &&
+      inputTitle.length >= 2
+    ) {
+      checkTitle.style.display = 'none';
+      checkTitle.textContent = '';
+      return true;
+    } else {
+      checkTitle.style.display = 'block';
+      checkTitle.textContent =
+        'Your input character must be longer than 2 characters';
+      return false;
+    }
+  }
+  _validationMessage(inputMessage, checkMessage) {
+    const word = inputMessage.split(' ');
+    if (word.length >= 1 && word[0] != '') {
+      checkMessage.style.display = 'none';
+      checkMessage.textContent = '';
+      return true;
+    } else {
+      checkMessage.style.display = 'block';
+      checkMessage.textContent =
+        'Your input character must be longer than 1 word';
+      return false;
+    }
   }
   _clearForm() {
     this._parElement.querySelector('#author-Name').value = '';
