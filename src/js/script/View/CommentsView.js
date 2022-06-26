@@ -16,12 +16,6 @@ class CommentView extends View {
                         <use href="${icon}#person"></use>
                       </svg>
                       </div>
-                      <div class="author--date d-flex justify-content-end w-100   gap-2">
-                        <span>04/05/2022</span>
-                        <svg class="svg--dataList bg-light rounded">
-                          <use href="${icon}#calendar2"></use>
-                        </svg>
-                      </div>
                       <div class="author--title d-flex justify-content-end w-100   gap-2">
                         <span>${ObjectData.title}</span>
                         <svg class="svg--dataTitle bg-light rounded">

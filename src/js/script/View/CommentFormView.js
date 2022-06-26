@@ -4,7 +4,7 @@ import Swal from 'sweetalert2';
 class CommentFormView extends View {
   _parElement = document.querySelector('.custom_Form');
   _SectionComment = document.querySelector('.Section__Comment');
-  _activeToggle = false;
+  _activeToggle = true;
   constructor() {
     super();
     this._parElement.addEventListener('click', this._dropForm.bind(this));
@@ -18,9 +18,19 @@ class CommentFormView extends View {
         justify-content-column
         align-items-center">
           <button class="btn add--Comment  order-xl-first order-lg-first order-md-first order-sm-first order-last ">
-                <svg class="svg--addplus">
-             <use href="${icon}#plus"></use>
-           </svg>
+                ${
+                  this._activeToggle
+                    ? `ارسال کامنت 
+                 <svg class="svg--addplus">
+                   <use href="${icon}#plus"></use>
+                   </svg>`
+                    : `  
+                   <svg class="svg--addplus">
+                   <use href="${icon}#x"></use>
+                   </svg>
+                   `
+                }
+             
           </button>
           <h4 class="info--comments   order-xl-last">
           <span>
@@ -58,9 +68,9 @@ class CommentFormView extends View {
     `;
   }
   _generateMarkUpAddComment(condition) {
-    return condition
+    return !condition
       ? `بستن <svg class="svg--addplus"><use href="${icon}#x"></use></svg> `
-      : `<svg class="svg--addplus"> <use href="${icon}#plus"></use></svg>
+      : `ارسال کامنت<svg class="svg--addplus"> <use href="${icon}#plus"></use></svg>
         `;
   }
   _dropForm(e) {

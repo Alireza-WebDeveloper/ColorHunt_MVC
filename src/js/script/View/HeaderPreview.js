@@ -9,6 +9,7 @@ export default class HeaderPreView extends View {
       class="link-Tabs nav-link"
       data-tab="create"
       data-text="پالت ها"
+      href="${location.origin}"
       >پالت ها</a
     >
   </li>
