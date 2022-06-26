@@ -1,110 +1,98 @@
-.response-Pagination{
-    /* background-color: var(--light); */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.response-Pagination {
+  /* background-color: var(--light); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
- 
 
-.pagination{
+.pagination {
+  padding: 0.3rem;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+}
+
+.page-item {
+  color: var(--light);
+  background-color: var(--dark);
+  width: 50px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  font-family: Far_Nazanin, sans-serif, 'Courier New', Courier, monospace;
+  font-size: 1.6rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.page-item:hover {
+  background-color: var(--light);
+  color: var(--dark);
+}
+
+.page-item:hover svg {
+  filter: invert(0);
+}
+
+.page-item svg {
+  width: 40px;
+  height: 30px;
+  filter: invert(30);
+}
+
+.page-item:not(:nth-child(1)) {
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+}
+#prevState {
+  clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+}
+
+.page-item:first-child {
+  clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+}
+
+.active-Page {
+  background-color: var(--light);
+  color: var(--dark);
+  width: 80px;
+  padding: 0.3rem 0;
+  text-align: center;
+  border-radius: 0.2rem;
+  font-family: Far_Nazanin, sans-serif, 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 468px) and (pointer: fine) {
+  .pagination {
     padding: 0.3rem;
-    gap: 12px;
-    flex-wrap: wrap;
-    align-items: center;
-    align-content: center;
+    gap: 1px;
+  }
 }
 
-.page-item{
-    color: var(--light);
-    background-color: var(--dark);
-    width: 50px;
-    height: 35px;
-    display: flex;
-    justify-content: center;
-    font-family: Far_Nazanin , sans-serif , 'Courier New', Courier, monospace;
+@media (max-width: 468px) and (pointer: coarse) {
+  .pagination {
+    padding: 0.3rem;
+    gap: 0px;
+  }
+}
+
+@media (max-width: 768px) and (pointer: coarse) {
+  .pagination {
+    padding: 0.7rem;
+    gap: 2px;
+  }
+  .page-item {
     font-size: 1.6rem;
-    text-align: center;
-    cursor: pointer;
-}
-
-
-.page-item:hover{
-    background-color: var(--light);
-    color: var(--dark);
-}
-
-.page-item:hover svg{
-    filter: invert(0);
-}
-
-.page-item svg{
-    width: 40px;
-    height: 30px;
-    filter:invert(30);
-}
-
-.page-item:not(:nth-child(1)){
-    clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
-    
-  }
-  #prevState{
-    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%) ;
+    width: 44px;
+    height: 32px;
   }
 
-  .page-item:first-child{
-    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+  .page-item svg {
+    width: 42px;
+    height: 32px;
+    filter: invert(30);
   }
-
-.active-Page{
-    background-color: var(--light);
-    color: var(--dark);
-    width: 80px;
-    padding: 0.3rem 0;
-    text-align: center;
-    border-radius: 0.2rem;
-    font-family: Far_Nazanin , sans-serif , 'Courier New', Courier, monospace;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-
-@media (max-width:468px) and (pointer:fine) {
-    .pagination{
-        padding: 0.3rem;
-        gap: 1px;
-    }
-    
-}
-
-
-@media (max-width:468px) and (pointer:coarse) {
-    .pagination{
-        padding: 0.3rem;
-        gap: 0px;
-    }
-    
-}
-
-
-
-@media (max-width:768px) and (pointer:coarse) {
-    .pagination{
-        padding: 0.7rem;
-        gap: 2px;
-    }
-    .page-item{
-        font-size: 1.6rem;
-        width: 44px;
-        height: 32px;
-    }
-    
-    .page-item svg{
-        width: 42px;
-        height: 32px;
-        filter:invert(30);
-    }
-    
 }
