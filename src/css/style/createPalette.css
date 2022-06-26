@@ -1,121 +1,116 @@
-
 /* Header  */
-.text--CreatePallete{
-    position: relative;
-    text-align: center;
-    font-family: BTitrBd ,sans-serif,'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 0.2rem;
-    font-size: 2rem;
+.text--CreatePallete {
+  position: relative;
+  text-align: center;
+  font-family: BTitrBd, sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana,
+    sans-serif;
+  padding: 0.2rem;
+  font-size: 2rem;
 }
-
 
 /* Create  */
 
-
-
-
-.create--Palette .recipe-Place{
-    height: 6rem;
+.create--Palette .recipe-Place {
+  height: 6rem;
 }
 
-.create--Palette .recipe-Place:nth-child(1){
-    background-color: #969696;
+.create--Palette .recipe-Place:nth-child(1) {
+  background-color: #969696;
 }
 
-.create--Palette .recipe-Place:nth-child(2){
-    background-color: #CCCCCC;
+.create--Palette .recipe-Place:nth-child(2) {
+  background-color: #cccccc;
 }
 
-.create--Palette .recipe-Place:nth-child(3){
-    background-color: #DDDDDD;
+.create--Palette .recipe-Place:nth-child(3) {
+  background-color: #dddddd;
 }
 
-.create--Palette .recipe-Place:nth-child(4){
-    background-color: #d8d2d2;
+.create--Palette .recipe-Place:nth-child(4) {
+  background-color: #d8d2d2;
 }
-
+.information-CategoryNamePalette select {
+  text-transform: capitalize;
+  font-variant-caps: small-caps;
+}
 
 /* Close And Submit  */
-#btn--CreatePalette{
-    position: relative;
-    background-color: var(--dark);
-    font-family: Mlight ,sans-serif,'Segoe UI', Tahoma, Geneva, Verdana;
-    font-size: 1.5rem;
-    color: var(--light);
-    padding: 0.5rem 1rem;
-    z-index: 1;
-    overflow: hidden;
+#btn--CreatePalette {
+  position: relative;
+  background-color: var(--dark);
+  font-family: Mlight, sans-serif, 'Segoe UI', Tahoma, Geneva, Verdana;
+  font-size: 1.5rem;
+  color: var(--light);
+  padding: 0.5rem 1rem;
+  z-index: 1;
+  overflow: hidden;
 }
-#btn--CreatePalette:hover::before{
-    animation: closePalette 1.2s cubic-bezier(0.23, 1, 0.320, 1) infinite alternate;
+#btn--CreatePalette:hover::before {
+  animation: closePalette 1.2s cubic-bezier(0.23, 1, 0.32, 1) infinite alternate;
 }
-#btn--CreatePalette::before{
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform: scaleX(0);
-    transform-origin: left;
-    background-color: green;
-    z-index: -1;
+#btn--CreatePalette::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  background-color: green;
+  z-index: -1;
 }
 
 @keyframes closePalette {
-    0%{
+  0% {
     transform: scaleX(0);
     transform-origin: left;
-    }
-    30%{
-     transform: scaleX(1);
-     transform-origin: left;
-    }
-    60%{
-        transform: scaleX(1);
-        transform-origin: right;
-    }
-    100%{
-        transform: scaleX(0);
-        transform-origin: right;
-    }
-   
+  }
+  30% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  60% {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
 }
-@media (max-width:468px) and (pointer:fine) {
-    .text--CreatePallete{
-        font-size: 1rem;
-    }
-    #btn--CreatePalette{
-        font-size: 0.8rem;
-        padding: 0.5rem 1rem;
-       
-    }
+@media (max-width: 468px) and (pointer: fine) {
+  .text--CreatePallete {
+    font-size: 1rem;
+  }
+  #btn--CreatePalette {
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+  }
 }
 
-@media (max-width:1680px) and (pointer:coarse) {
-    .create--Palette .recipe-Place{
-        height: 10rem;
-    }
-    .text--CreatePallete{
-        font-size: 3rem;
-    }
-    #btn--CreatePalette{
-        font-size: 2.3rem;
-        padding: 0.7rem 1.2rem;
-       
-    }
+@media (max-width: 1680px) and (pointer: coarse) {
+  .create--Palette .recipe-Place {
+    height: 10rem;
+  }
+  .text--CreatePallete {
+    font-size: 3rem;
+  }
+  #btn--CreatePalette {
+    font-size: 2.3rem;
+    padding: 0.7rem 1.2rem;
+  }
 }
 
-@media (max-width:768px) and (pointer:coarse) {
-    .text--CreatePallete{
-        font-size: 1.6rem;
-    }
-    #btn--CreatePalette{
-        font-size: 1.5rem;
-        padding: 0.9rem 1.4rem;
-       
-    }
-    .create--Palette .recipe-Place{
-        height: 6rem;
-    }
+@media (max-width: 768px) and (pointer: coarse) {
+  .text--CreatePallete {
+    font-size: 1.6rem;
+  }
+  #btn--CreatePalette {
+    font-size: 1.5rem;
+    padding: 0.9rem 1.4rem;
+  }
+  .create--Palette .recipe-Place {
+    height: 6rem;
+  }
 }
