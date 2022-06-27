@@ -155,7 +155,7 @@ class CommentFormView extends View {
     } else {
       checkMessage.style.display = 'block';
       checkMessage.textContent =
-        'Your input character must be longer than 1 word';
+        'Your input must be longer than 1 word';
       checkMessage.classList.remove('correct_Valid');
       return false;
     }
