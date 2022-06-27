@@ -113,13 +113,15 @@ class CommentFormView extends View {
         regexCharEnglish.test(inputAuthor)) &&
       inputAuthor.length >= 4
     ) {
-      check_Author.style.display = 'none';
-      check_Author.textContent = '';
+      check_Author.style.display = 'block';
+      check_Author.textContent = 'Correct';
+      check_Author.classList.add('correct_Valid');
       return true;
     } else {
       check_Author.style.display = 'block';
       check_Author.textContent =
         'Your input character must be longer than 4 characters';
+      check_Author.classList.remove('correct_Valid');
       return false;
     }
   }
@@ -131,27 +133,53 @@ class CommentFormView extends View {
         regexCharEnglish.test(inputTitle)) &&
       inputTitle.length >= 2
     ) {
-      checkTitle.style.display = 'none';
-      checkTitle.textContent = '';
+      checkTitle.style.display = 'block';
+      checkTitle.textContent = 'correct';
+      checkTitle.classList.add('correct_Valid');
       return true;
     } else {
       checkTitle.style.display = 'block';
       checkTitle.textContent =
         'Your input character must be longer than 2 characters';
+      checkTitle.classList.remove('correct_Valid');
       return false;
     }
   }
   _validationMessage(inputMessage, checkMessage) {
     const word = inputMessage.split(' ');
     if (word.length >= 1 && word[0] != '') {
-      checkMessage.style.display = 'none';
-      checkMessage.textContent = '';
+      checkMessage.style.display = 'block';
+      checkMessage.textContent = 'correct';
+      checkMessage.classList.add('correct_Valid');
       return true;
     } else {
       checkMessage.style.display = 'block';
       checkMessage.textContent =
         'Your input character must be longer than 1 word';
+      checkMessage.classList.remove('correct_Valid');
       return false;
+    }
+  }
+  _onblurForm() {
+    /// Inputs
+    let input_Author = this._parElement.querySelector('#author-Name');
+    let input_Title = this._parElement.querySelector('#author-Title');
+    let input_Message = this._parElement.querySelector('#author-Message');
+    /// Check Validation
+    let check_Author = this._parElement.querySelector('.check_Author');
+    let check_Title = this._parElement.querySelector('.check_Title');
+    const check_Message = this._parElement.querySelector('.check_Message');
+    /// On Blur Validation
+    input_Author.addEventListener('blur', onBlurAuthor.bind(this));
+    input_Title.addEventListener('blur', onBlurAuthor.bind(this));
+    input_Message.addEventListener('blur', onBlurAuthor.bind(this));
+    function onBlurAuthor(e) {
+      const dataArr = [...new FormData(e.target.closest('#comment-Form'))];
+      const dataObj = Object.fromEntries(dataArr);
+      /// Function Check Validation
+      this._validationAuthor(dataObj.author, check_Author);
+      this._validationTitle(dataObj.title, check_Title);
+      this._validationMessage(dataObj.message, check_Message);
     }
   }
   _clearForm() {

@@ -46,10 +46,13 @@
 .valid_Form {
   text-transform: capitalize;
   font-family: fantasy, 'Times New Roman', Times, serif;
-  color: rgb(230, 30, 30);
+  color: rgb(181, 20, 20);
   font-size: 1.2rem;
   font-variant-caps: small-caps;
   display: none;
+}
+.correct_Valid {
+  color: rgb(18, 125, 18);
 }
 
 /* Form Comment  */

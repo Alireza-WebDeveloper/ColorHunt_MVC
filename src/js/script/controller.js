@@ -53,6 +53,7 @@ const controlGetSinglePaletteComments = async function (id) {
     await model.loadingGetSinglePalettComments(id);
     CommentsView._render(model.state.singlePaletteComments);
     CommentFormView._render(model.state.singlePaletteComments);
+    CommentFormView._onblurForm();
   } catch (error) {
     CommentsView._renderError(error);
   }
