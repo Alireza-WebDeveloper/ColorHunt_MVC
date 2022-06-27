@@ -39,11 +39,11 @@
   --addCmd2: #38a3a5;
 }
 body {
-  background-image: linear-gradient(
-    to right,
-    var(--darkblue),
-    var(--darklight)
-  );
+  background-image: url(/src/css/background/6_compcat.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .container-fluid {

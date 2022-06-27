@@ -203,6 +203,7 @@ const controlCreatePaletteCategory = async function (cateGoryName, uploadData) {
     await model.loadingGetSinglePalettComments(model.state.singlePalette.id);
     CommentsView._render(model.state.singlePaletteComments);
     CommentFormView._render(model.state.singlePaletteComments);
+    CommentFormView._onblurForm();
     /// render Category Create(View)
     createPaletteCategoryView._render(model.state.createCategoryPalette);
     createPaletteCategory._pushState(model.state.singlePalette);
