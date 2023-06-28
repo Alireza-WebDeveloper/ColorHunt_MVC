@@ -25,4 +25,8 @@ Slick Carousel
 ## Screenshots
 
 ![App Screenshot](https://github.com/ProgrammerFront077/ColorHunt_MVC/blob/master/src/screen1.PNG)
+![App Screenshot](https://github.com/ProgrammerFront077/ColorHunt_MVC/blob/master/src/screen2.PNG)
+![App Screenshot](https://github.com/ProgrammerFront077/ColorHunt_MVC/blob/master/src/screen3.PNG)
+![App Screenshot](https://github.com/ProgrammerFront077/ColorHunt_MVC/blob/master/src/screen4.PNG)
+![App Screenshot](https://github.com/ProgrammerFront077/ColorHunt_MVC/blob/master/src/screen5.PNG)
 
