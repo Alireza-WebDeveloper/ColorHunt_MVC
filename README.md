@@ -24,5 +24,5 @@ Slick Carousel
 
 ## Screenshots
 
-![App Screenshot](./src/screen1.png)
+![App Screenshot](https://github.com/ProgrammerFront077/ColorHunt_MVC/blob/master/src/screen1.PNG)
 
